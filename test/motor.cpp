@@ -1,7 +1,9 @@
 // Compile with:
-// g++ test_motor.cpp -o test_motor -lmraa
+// g++ motor.cpp -o motor -lmraa
 // Controls a motor through a range of speeds using the Cytron motor controller
 // Pwm on pin 9, and dir on pin 8.
+
+//new added comment
 
 #include <cassert>
 #include <cmath>
@@ -68,11 +70,11 @@ int main() {
   mraa::Pwm left_motor = mraa::Pwm(9);
   left_motor.write(0.0);
   left_motor.enable(true);
-  mraa::Gpio left_dir = mraa::Pwm(8);
+  mraa::Gpio left_dir = mraa::Gpio(8);
   left_dir.dir(mraa::DIR_OUT);
   left_dir.write(0);
 
-  mraa::Pwm right_motor = mraa::Pwm(5);
+  mraa::Pwm right_motor = mraa::Gpio(5);
   right_motor.write(0.0);
   right_motor.enable(true);
   mraa::Gpio right_dir = mraa::Pwm(4);
