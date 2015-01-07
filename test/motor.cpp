@@ -64,6 +64,20 @@ int main() {
   dir.dir(mraa::DIR_OUT);
   dir.write(0);
   
+  //two motor setup
+  mraa::Pwm left_motor = mraa::Pwm(9);
+  left_motor.write(0.0);
+  left_motor.enable(true);
+  mraa::Gpio left_dir = mraa::Pwm(8);
+  left_dir.dir(mraa::DIR_OUT);
+  left_dir.write(0);
+
+  mraa::Pwm right_motor = mraa::Pwm(5);
+  right_motor.write(0.0);
+  right_motor.enable(true);
+  mraa::Gpio right_dir = mraa::Pwm(4);
+  right_dir.dir(mraa::DIR_OUT);
+  right_dir.write(0);
 
   //testing code
   while(running) {
@@ -75,12 +89,23 @@ int main() {
     sleep(2.0);
 
     //this should do the same thing
-    foward(1.0);
+    foward(pwm, dir, 1.0);
     sleep(2.0);
-    stop();
+    stop(pwm, dir);
     sleep(2.0);
-    reverse(1.0);
+    reverse(pwm, dir, 1.0);
     sleep(2.0);
+    stop(pwm, dir);
+
+    //two motor test
+    forward(left_motor, left_dir, 0.5);
+    forward(right_motor, right_dir, 0.5);
+    sleep(3.0);
+    stop(left_motor, left_dir);
+    stop(right_motor, right_dir);
+    sleep(3.0);
+    reverse(left_motor, left_dir, 0.5);
+    reverse(right_motor, right_dir, 0.5);
   }
 
   //old code - eventually delete
