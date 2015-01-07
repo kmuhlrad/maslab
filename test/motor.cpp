@@ -81,7 +81,7 @@ int main() {
     if (speed > 1.0) {
       speed = -1.0;
       // Let the motor spin down
-      setMotorSpeed(pwm, dir, 0.0);
+      setMotorSpeed(right_motor, right_dir, 0.0);
       sleep(2.0);
     }
     usleep(100000);
