@@ -56,15 +56,6 @@ void sig_handler(int signo)
 int main() {
   // Handle Ctrl-C quit
   signal(SIGINT, sig_handler);
-
-  /*mraa::Pwm pwm = mraa::Pwm(9);
-  pwm.write(0.0);
-  pwm.enable(true);
-  //assert(pwm != NULL);
-  mraa::Gpio dir = mraa::Gpio(8);
-  //assert(dir != NULL);
-  dir.dir(mraa::DIR_OUT);
-  dir.write(0);*/
   
   //two motor setup
   mraa::Pwm left_motor = mraa::Pwm(9);
@@ -81,66 +72,10 @@ int main() {
   right_dir.dir(mraa::DIR_OUT);
   right_dir.write(0);
 
-  //testing code
-  while(running) {
-    /*setMotorSpeed(pwm, dir, 1.0);
-    sleep(2.0);
-    setMotorSpeed(pwm, dir, 0.0);
-    sleep(2.0);
-    setMotorSpeed(pwm, dir, -1.0);
-    sleep(2.0);*/
-
-    stop(left_motor, left_dir);
-    //this should do the same thing
-    /*forward(pwm, dir, 1.0);
-    sleep(2.0);
-    stop(pwm, dir);
-    sleep(2.0);
-    reverse(pwm, dir, 1.0);
-    sleep(2.0);
-    stop(pwm, dir);*/
-
-    //two motor test
-    /*
-    setMotorSpeed(left_motor, left_dir, 0.5);
-    setMotorSpeed(right_motor, right_dir, -0.5);
-    sleep(3.0);
-    stop(left_motor, left_dir);
-    stop(right_motor, right_dir);
-    sleep(3.0);
-    setMotorSpeed(left_motor, left_dir, -0.5);
-    setMotorSpeed(right_motor, right_dir, 0.5);
-    */
-
-    /*std::cout << "Speed: 1.0" << std::endl;
-    setMotorSpeed(right_motor, right_dir, 1.0);
-    sleep(2.0);
-
-    std::cout << "Speed: -1.0" << std::endl;
-    setMotorSpeed(right_motor, right_dir, -1.0);
-    sleep(2.0);
-
-    std::cout << "Speed: 0.0" << std::endl;
-    setMotorSpeed(right_motor, right_dir, 0.0);
-    sleep(2.0);
-
-    std::cout << "Speed: 0.5" << std::endl;
-    setMotorSpeed(right_motor, right_dir, 1.0);
-    sleep(2.0);
-
-    std::cout << "Speed: -0.5" << std::endl;
-    setMotorSpeed(right_motor, right_dir, 1.0);
-    sleep(2.0);*/
-
-    stop(right_motor, right_dir);
-    stop(left_motor, left_dir);
-  }
-
-  //old code - eventually delete
-  /*double speed = -1.0;
+  double speed = -1.0;
   while (running) {
     std::cout << "Speed: " << speed << std::endl;
-    setMotorSpeed(pwm, dir, speed);
+    setMotorSpeed(right_motor, right_dir, speed);
 
     speed += 0.1;
     if (speed > 1.0) {
@@ -150,6 +85,7 @@ int main() {
       sleep(2.0);
     }
     usleep(100000);
-  }*/
+  }
+  }
 }
 
