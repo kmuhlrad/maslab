@@ -75,15 +75,7 @@ int main() {
   double speed = -1.0;
   while (running) {
     std::cout << "Speed: " << "0.5" << std::endl;
-    setMotorSpeed(right_motor, right_dir, 0.5);
-    sleep(1.0);
-
-    std::cout << "Speed: " << "0.0" << std::endl;
-    setMotorSpeed(right_motor, right_dir, 0.0);
-    sleep(1.0);
-
-    std::cout << "Speed: " << "-0.5" << std::endl;
-    setMotorSpeed(right_motor, right_dir, -0.5);
+    setMotorSpeed(right_motor, right_dir, 0.1);
     sleep(1.0);
     /*speed += 0.1;
     if (speed > 1.0) {
@@ -92,6 +84,5 @@ int main() {
       setMotorSpeed(right_motor, right_dir, 0.0);
       sleep(2.0);
     }*/
-    usleep(100000);
   }
 }
