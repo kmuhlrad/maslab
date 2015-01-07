@@ -112,7 +112,7 @@ int main() {
     setMotorSpeed(right_motor, right_dir, 0.5);
     */
 
-    std::cout << "Speed: 1.0" << std::endl;
+    /*std::cout << "Speed: 1.0" << std::endl;
     setMotorSpeed(right_motor, right_dir, 1.0);
     sleep(2.0);
 
@@ -130,7 +130,7 @@ int main() {
 
     std::cout << "Speed: -0.5" << std::endl;
     setMotorSpeed(right_motor, right_dir, 1.0);
-    sleep(2.0);
+    sleep(2.0);*/
 
     stop(right_motor, right_dir);
     stop(left_motor, left_dir);
