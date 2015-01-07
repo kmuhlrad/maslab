@@ -23,6 +23,26 @@ void setMotorSpeed(mraa::Pwm& pwm, mraa::Gpio& dir, double speed) {
   pwm.write(fabs(speed));
 }
 
+//these two functions just explicitly set the motor forward or backward
+//they are redundant and might not be useful
+//take them out if not needed
+void forward(mraa::Pwm& pwm, mraa::Gpio& dir, double speed) {
+  assert(speed >= 0.0 && speed <= 1.0)
+  dir.write(0);
+  pwm.write(speed)
+}
+
+void reverse(mraa::Pwm& pwm, mraa::Gpio& dir, double speed) {
+  assert(speed <= 0.0 && speed >= -1.0)
+  dir.write(1);
+  pwm.write(speed)
+}
+
+void stop(mraa::Pwm& pwm, mraa::Gpio& dir) {
+  pwm.write(0);
+  dir.write(0);
+}
+
 void sig_handler(int signo)
 {
   if (signo == SIGINT) {
@@ -44,7 +64,27 @@ int main() {
   dir.dir(mraa::DIR_OUT);
   dir.write(0);
   
-  double speed = -1.0;
+
+  //testing code
+  while(running) {
+    setMotorSpeed(pwm, dir, 1.0);
+    sleep(2.0);
+    setMotorSpeed(pwm, dir, 0.0);
+    sleep(2.0);
+    setMotorSpeed(pwm, dir, -1.0);
+    sleep(2.0);
+
+    //this should do the same thing
+    foward(1.0);
+    sleep(2.0);
+    stop();
+    sleep(2.0);
+    reverse(1.0);
+    sleep(2.0);
+  }
+
+  //old code - eventually delete
+  /*double speed = -1.0;
   while (running) {
     std::cout << "Speed: " << speed << std::endl;
     setMotorSpeed(pwm, dir, speed);
@@ -57,6 +97,6 @@ int main() {
       sleep(2.0);
     }
     usleep(100000);
-  }
+  }*/
 }
 
