@@ -101,6 +101,7 @@ int main() {
     stop(pwm, dir);*/
 
     //two motor test
+    /*
     setMotorSpeed(left_motor, left_dir, 0.5);
     setMotorSpeed(right_motor, right_dir, -0.5);
     sleep(3.0);
@@ -109,6 +110,27 @@ int main() {
     sleep(3.0);
     setMotorSpeed(left_motor, left_dir, -0.5);
     setMotorSpeed(right_motor, right_dir, 0.5);
+    */
+
+    std::cout << "Speed: 1.0" << std::endl;
+    setMotorSpeed(right_motor, right_dir, 1.0);
+    sleep(2.0);
+
+    std::cout << "Speed: -1.0" << std::endl;
+    setMotorSpeed(right_motor, right_dir, -1.0);
+    sleep(2.0);
+
+    std::cout << "Speed: 0.0" << std::endl;
+    setMotorSpeed(right_motor, right_dir, 0.0);
+    sleep(2.0);
+
+    std::cout << "Speed: 0.5" << std::endl;
+    setMotorSpeed(right_motor, right_dir, 1.0);
+    sleep(2.0);
+
+    std::cout << "Speed: -0.5" << std::endl;
+    setMotorSpeed(right_motor, right_dir, 1.0);
+    sleep(2.0);
   }
 
   //old code - eventually delete
