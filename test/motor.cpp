@@ -89,7 +89,7 @@ int main() {
     sleep(2.0);
 
     //this should do the same thing
-    foward(pwm, dir, 1.0);
+    forward(pwm, dir, 1.0);
     sleep(2.0);
     stop(pwm, dir);
     sleep(2.0);
