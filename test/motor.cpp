@@ -35,7 +35,7 @@ void forward(mraa::Pwm& pwm, mraa::Gpio& dir, double speed) {
 }
 
 void reverse(mraa::Pwm& pwm, mraa::Gpio& dir, double speed) {
-  assert(speed <= 0.0 && speed >= -1.0);
+  assert(speed >= 0.0 && speed <= 1.0);
   dir.write(1);
   pwm.write(speed);
 }
@@ -98,17 +98,17 @@ int main() {
     sleep(2.0);
     reverse(pwm, dir, 1.0);
     sleep(2.0);
-    stop(pwm, dir);
+    stop(pwm, dir);*/
 
     //two motor test
-    /*forward(left_motor, left_dir, 0.5);
-    forward(right_motor, right_dir, 0.5);
+    setMotorSpeed(left_motor, left_dir, 0.5);
+    setMotorSpeed(right_motor, right_dir, -0.5);
     sleep(3.0);
     stop(left_motor, left_dir);
     stop(right_motor, right_dir);
     sleep(3.0);
-    reverse(left_motor, left_dir, 0.5);
-    reverse(right_motor, right_dir, 0.5);*/
+    setMotorSpeed(left_motor, left_dir, -0.5);
+    setMotorSpeed(right_motor, right_dir, 0.5);
   }
 
   //old code - eventually delete
