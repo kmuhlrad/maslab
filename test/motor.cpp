@@ -27,15 +27,15 @@ void setMotorSpeed(mraa::Pwm& pwm, mraa::Gpio& dir, double speed) {
 //they are redundant and might not be useful
 //take them out if not needed
 void forward(mraa::Pwm& pwm, mraa::Gpio& dir, double speed) {
-  assert(speed >= 0.0 && speed <= 1.0)
+  assert(speed >= 0.0 && speed <= 1.0);
   dir.write(0);
-  pwm.write(speed)
+  pwm.write(speed);
 }
 
 void reverse(mraa::Pwm& pwm, mraa::Gpio& dir, double speed) {
-  assert(speed <= 0.0 && speed >= -1.0)
+  assert(speed <= 0.0 && speed >= -1.0);
   dir.write(1);
-  pwm.write(speed)
+  pwm.write(speed);
 }
 
 void stop(mraa::Pwm& pwm, mraa::Gpio& dir) {
