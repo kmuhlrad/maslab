@@ -77,7 +77,7 @@ int main() {
   mraa::Pwm right_motor = mraa::Gpio(5);
   right_motor.write(0.0);
   right_motor.enable(true);
-  mraa::Gpio right_dir = mraa::Pwm(4);
+  mraa::Gpio right_dir = mraa::Gpio(4);
   right_dir.dir(mraa::DIR_OUT);
   right_dir.write(0);
 
