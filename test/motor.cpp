@@ -83,7 +83,7 @@ int main() {
 
   //testing code
   while(running) {
-    setMotorSpeed(pwm, dir, 1.0);
+    /*setMotorSpeed(pwm, dir, 1.0);
     sleep(2.0);
     setMotorSpeed(pwm, dir, 0.0);
     sleep(2.0);
@@ -97,7 +97,7 @@ int main() {
     sleep(2.0);
     reverse(pwm, dir, 1.0);
     sleep(2.0);
-    stop(pwm, dir);
+    stop(pwm, dir);*/
 
     //two motor test
     forward(left_motor, left_dir, 0.5);
