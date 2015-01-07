@@ -74,8 +74,17 @@ int main() {
 
   double speed = -1.0;
   while (running) {
-    std::cout << "Speed: " << "0.5" << std::endl;
+    //std::cout << "Speed: " << "0.5" << std::endl;
+    setMotorSpeed(right_motor, right_dir, -0.1);
     setMotorSpeed(right_motor, right_dir, 0.1);
+    sleep(1.0);
+
+    setMotorSpeed(right_motor, right_dir, 0.0);
+    setMotorSpeed(right_motor, right_dir, 0.0);
+    sleep(1.0);
+
+    setMotorSpeed(right_motor, right_dir, 0.1);
+    setMotorSpeed(right_motor, right_dir, -0.1);
     sleep(1.0);
     /*speed += 0.1;
     if (speed > 1.0) {
