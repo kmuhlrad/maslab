@@ -24,7 +24,10 @@ void echo_handler(void* args) {
   mraa::Gpio* echo = (mraa::Gpio*)args;
   static struct timeval start;
   bool rising = echo->read() == 1;
-  if (rising) {
+
+  std::cout << "Echo: " << echo->read() << std::endl;
+  
+  /*if (rising) {
     std::cout << "rising!" << std::endl;
     gettimeofday(&start, NULL);
   }
@@ -43,7 +46,7 @@ void echo_handler(void* args) {
     std::cout << "Diff time: " << diffTime << std::endl;
     std::cout << "Distance: " <<  distance << "m" << std::endl;
     
-  }
+  }*/
 }
 
 int main() {
