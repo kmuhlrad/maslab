@@ -14,6 +14,8 @@ void sig_handler(int signo)
   }
 }
 
+static double distance = -1.0;
+
 void echo_handler(void* args) {
   // Grab end time first, for accuracy
   struct timeval end;
@@ -23,6 +25,7 @@ void echo_handler(void* args) {
   static struct timeval start;
   bool rising = echo->read() == 1;
   if (rising) {
+    std::cout << "rising!" << std::endl;
     gettimeofday(&start, NULL);
   }
   else {
@@ -34,6 +37,7 @@ void echo_handler(void* args) {
     std::cout << "Diff time: " << diffTime << std::endl;
     // Speed of sound conversion: 340m/s * 0.5 (round trip)
     std::cout << "Distance: " <<  diffTime * 170.0 << "m" << std::endl;
+    distance = diffTime * 170.0;
   }
 }
 
@@ -49,11 +53,16 @@ int main() {
   // echo pulse
   echo->isr(mraa::EDGE_BOTH, echo_handler, echo);
 
+  mraa::Gpio* led = new mraa::Gpio(13);
+  led->dir(mraa::DIR_OUT);
+
   while (running) {
     // 20us trigger pulse (must be at least 10us)
     trig->write(1);
+    led->write(1);
     usleep(20);
     trig->write(0);
+    led->write(0);
 
     // Must pause at least 60ms between measurements
     usleep(500000.0);
