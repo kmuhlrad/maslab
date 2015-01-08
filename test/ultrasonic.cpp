@@ -36,8 +36,8 @@ void echo_handler(void* args) {
     // Speed of sound conversion: 340m/s * 0.5 (round trip)
     distance = diffTime * 170.0;
 
-    std::cout << "Start Time: " << start << std::endl;
-    std::cout << "End Time: " << end << std::endl;
+    std::cout << "Start Time: " << start.tv_sec << std::endl;
+    std::cout << "End Time: " << end.tv_sec << std::endl;
     std::cout << "Diff sec: " << diffSec << std::endl;
     std::cout << "Diff usec: " << diffUSec << std::endl;
     std::cout << "Diff time: " << diffTime << std::endl;
