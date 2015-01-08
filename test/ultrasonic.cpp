@@ -30,14 +30,19 @@ void echo_handler(void* args) {
   }
   else {
     int diffSec = end.tv_sec - start.tv_sec;
-    std::cout << "Diff sec: " << diffSec << std::endl;
     int diffUSec = end.tv_usec - start.tv_usec;
-    std::cout << "Diff usec: " << diffUSec << std::endl;
     double diffTime = (double)diffSec + 0.000001*diffUSec;
-    std::cout << "Diff time: " << diffTime << std::endl;
+
     // Speed of sound conversion: 340m/s * 0.5 (round trip)
-    std::cout << "Distance: " <<  diffTime * 170.0 << "m" << std::endl;
     distance = diffTime * 170.0;
+
+    std::cout << "Start Time: " << start << std::endl;
+    std::cout << "End Time: " << end << std::endl;
+    std::cout << "Diff sec: " << diffSec << std::endl;
+    std::cout << "Diff usec: " << diffUSec << std::endl;
+    std::cout << "Diff time: " << diffTime << std::endl;
+    std::cout << "Distance: " <<  distance << "m" << std::endl;
+    
   }
 }
 
