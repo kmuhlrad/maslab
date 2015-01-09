@@ -26,7 +26,7 @@ void echo_handler(void* args) {
   bool rising = echo->read() == 1;
 
   std::cout << "Echo: " << echo->read() << std::endl;
-  
+
   /*if (rising) {
     std::cout << "rising!" << std::endl;
     gettimeofday(&start, NULL);
@@ -59,7 +59,7 @@ int main() {
   echo->dir(mraa::DIR_IN);
   // Set the echo handlers to receive rising or falling edges of the
   // echo pulse
-  echo->isr(mraa::EDGE_BOTH, echo_handler, echo);
+  echo->isr(mraa::EDGE_RISING, echo_handler, echo);
 
   mraa::Gpio* led = new mraa::Gpio(13);
   led->dir(mraa::DIR_OUT);
