@@ -15,6 +15,7 @@ void sig_handler(int signo)
 }
 
 static double distance = -1.0;
+int counter = 0;
 
 void echo_handler(void* args) {
   // Grab end time first, for accuracy
@@ -26,7 +27,9 @@ void echo_handler(void* args) {
   bool rising = echo->read() == 1;
 
   std::cout << "Echo: " << echo->read() << std::endl;
+  std::cout << "Counter: " << counter << std::endl;
 
+  counter++;
   /*if (rising) {
     std::cout << "rising!" << std::endl;
     gettimeofday(&start, NULL);
