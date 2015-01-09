@@ -120,8 +120,7 @@ int main() {
     turn(right_motor, right_dir, left_motor, left_dir, -0.2, 500000);
 
     //slow down
-    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 500000);
-
+    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 5000000);
 
     /*speed += 0.1;
     if (speed > 1.0) {
