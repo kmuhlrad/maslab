@@ -1,5 +1,5 @@
 // Compile with:
-// g++ motor.cpp -o motor -lmraa
+// g++ turning.cpp -o turning -lmraa
 // Controls a motor through a range of speeds using the Cytron motor controller
 // Pwm on pin 9, and dir on pin 8.
 
@@ -99,30 +99,30 @@ int main() {
     //maybe???
 
     //turn right
-    turn(right_motor, right_dir, left_motor, left_dir, 0.2, 500000)
+    turn(right_motor, right_dir, left_motor, left_dir, 0.2, 500000);
 
     //slow down
-    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 500000)
+    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 500000);
 
     //turn left
-    turn(right_motor, right_dir, left_motor, left_dir, -0.2, 500000)
+    turn(right_motor, right_dir, left_motor, left_dir, -0.2, 500000);
 
     //slow down
-    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 500000)
+    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 500000);
 
     //turn right
-    turn(right_motor, right_dir, left_motor, left_dir, 0.2, 500000)
+    turn(right_motor, right_dir, left_motor, left_dir, 0.2, 500000);
 
     //slow down
-    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 500000)
+    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 500000);
 
     //turn left
-    turn(right_motor, right_dir, left_motor, left_dir, -0.2, 500000)
+    turn(right_motor, right_dir, left_motor, left_dir, -0.2, 500000);
 
     //slow down
-    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 500000)
+    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 500000);
 
-    
+
     /*speed += 0.1;
     if (speed > 1.0) {
       speed = -1.0;
