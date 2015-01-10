@@ -28,10 +28,6 @@ void setMotorSpeed(mraa::Pwm& pwm, mraa::Gpio& dir, double speed) {
   pwm.write(fabs(speed));
 }
 
-bool found_object(mraa::Gpio pin) {
-  return !pin.read();
-}
-
 int main() {
   // Handle Ctrl-C quit
   signal(SIGINT, sig_handler);
@@ -58,7 +54,7 @@ int main() {
   while (running) {
     // 20us trigger pulse (must be at least 10us)
 
-    if (found_object(sensor)) {
+    if (!sensor.read()) {
       setMotorSpeed(left_motor, left_dir, 0.0);
       setMotorSpeed(right_motor, right_dir, 0.0);
     }
