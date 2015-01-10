@@ -48,6 +48,10 @@ void drive_straight(mraa::Pwm& left_motor, mraa::Gpio& left_dir,
     right_dir.write(1);
   }
 
+  int diffSec = end.tv_sec - start.tv_sec;
+  int diffUSec = end.tv_usec - start.tv_usec;
+  double dT = (double)diffSec + 0.000001*diffUSec;
+
   double diff = desired - estimated;
   double intetral += diff*dT;
   double derivative = get_gyro_angular_rate(); //THIS DOESN'T EXIST YET
