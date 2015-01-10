@@ -62,8 +62,7 @@ int main() {
     //std::cout << "Speed: " << "0.5" << std::endl;
     setMotorSpeed(right_motor, right_dir, 0.5);
     setMotorSpeed(left_motor, left_dir, -0.5);
-    std::cout << "Encoder A: " << A.read() << std::endl;
-    std::cout << "Encoder B: " << B.read() << std::endl;
+    std::cout << "Encoder A: " << A.read() << "\t" << "Encoder B: " << B.read() << std::endl;
 
     usleep(100000);
     /*speed += 0.1;
