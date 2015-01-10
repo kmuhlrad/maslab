@@ -9,11 +9,11 @@
 
 int running = 1;
 
-void on(mraa:Gpio pin) {
+void on(mraa::Gpio pin) {
   pin.write(1);
 }
 
-void off(mraa:Gpio pin) {
+void off(mraa::Gpio pin) {
   pin.write(0);
 }
 
