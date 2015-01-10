@@ -47,13 +47,16 @@ int main() {
     sleep(1);*/
 
 
-    std::cout << "IR sensor: " << sr_ir.read() << std::endl;
+    //std::cout << "IR sensor: " << sr_ir.read() << std::endl;
     //old code - eventually delete
-    printf("Gpio high\n");
-    gpio.write(1);
-    sleep(1);
-    printf("Gpio low\n");
-    gpio.write(0);
+    if (sr_ir.read()) {
+      printf("Gpio high\n");
+      gpio.write(1);
+    } else {
+      printf("Gpio low\n");
+      gpio.write(0);
+    }
+
     sleep(1);
   }
 }
