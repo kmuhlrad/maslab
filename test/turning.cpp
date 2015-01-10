@@ -12,6 +12,8 @@
 
 #include "mraa.hpp"
 
+#define MICRO 1000000
+
 int running = 1;
 
 void setMotorSpeed(mraa::Pwm& pwm, mraa::Gpio& dir, double speed) {
@@ -99,29 +101,29 @@ int main() {
     //maybe???
 
     //turn right
-    turn(right_motor, right_dir, left_motor, left_dir, 0.1, 2000000);
+    turn(right_motor, right_dir, left_motor, left_dir, 0.1, 2*MICRO);
 
     //slow down
-    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 1500000);
+    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 1.5*MICRO);
 
     //turn left
-    turn(right_motor, right_dir, left_motor, left_dir, -0.1, 4000000);
+    turn(right_motor, right_dir, left_motor, left_dir, -0.1, 4*MICRO);
 
     //slow down
-    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 1500000);
+    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 1.5*MICRO);
 
     //turn right
-    turn(right_motor, right_dir, left_motor, left_dir, 0.1, 4000000);
+    turn(right_motor, right_dir, left_motor, left_dir, 0.1, 4*MICRO);
 
     //slow down
-    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 1500000);
+    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 1.5*MICRO);
 
     //turn left
-    turn(right_motor, right_dir, left_motor, left_dir, -0.1, 4000000);
+    turn(right_motor, right_dir, left_motor, left_dir, -0.1, 4*MICRO);
 
     //stop for awhile before repeating
     //TERMINATE NOW!!!
-    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 10000000);
+    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 10*MICRO);
 
     /*speed += 0.1;
     if (speed > 1.0) {
