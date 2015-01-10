@@ -85,8 +85,8 @@ int main() {
   while (running) {
     //std::cout << "Speed: " << "0.5" << std::endl
     //drive forward to the cubes
-    setMotorSpeed(right_motor, right_dir, -0.3);
-    setMotorSpeed(left_motor, left_dir, 0.3);
+    setMotorSpeed(right_motor, right_dir, 0.1);
+    setMotorSpeed(left_motor, left_dir, -0.1);
     sleep(1.0);
 
     //slow down and stop
@@ -99,28 +99,29 @@ int main() {
     //maybe???
 
     //turn right
-    turn(right_motor, right_dir, left_motor, left_dir, 0.2, 500000);
+    turn(right_motor, right_dir, left_motor, left_dir, 0.1, 2000000);
 
     //slow down
-    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 500000);
+    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 1500000);
 
     //turn left
-    turn(right_motor, right_dir, left_motor, left_dir, -0.2, 500000);
+    turn(right_motor, right_dir, left_motor, left_dir, -0.1, 4000000);
 
     //slow down
-    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 500000);
+    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 1500000);
 
     //turn right
-    turn(right_motor, right_dir, left_motor, left_dir, 0.2, 500000);
+    turn(right_motor, right_dir, left_motor, left_dir, 0.1, 4000000);
 
     //slow down
-    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 500000);
+    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 1500000);
 
     //turn left
-    turn(right_motor, right_dir, left_motor, left_dir, -0.2, 500000);
+    turn(right_motor, right_dir, left_motor, left_dir, -0.1, 4000000);
 
-    //slow down
-    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 5000000);
+    //stop for awhile before repeating
+    //TERMINATE NOW!!!
+    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 10000000);
 
     /*speed += 0.1;
     if (speed > 1.0) {
