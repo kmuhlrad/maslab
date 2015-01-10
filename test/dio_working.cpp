@@ -49,20 +49,11 @@ int main() {
 
     std::cout << "IR sensor: " << sr_ir.read() << std::endl;
     //old code - eventually delete
-<<<<<<< HEAD:test/dio.cpp
     printf("Gpio high\n");
     gpio.write(1);
     sleep(1);
     printf("Gpio low\n");
     gpio.write(0);
-=======
-    if (sr_ir.read()) {
-      gpio.write(1);
-    } else {
-      gpio.write(0);
-    }
-
->>>>>>> Honestly a test:test/dio_working.cpp
     sleep(1);
   }
 }
