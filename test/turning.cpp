@@ -101,26 +101,29 @@ int main() {
     //maybe???
 
     //turn right
-    turn(right_motor, right_dir, left_motor, left_dir, 0.1, 2*MICRO);
+    turn(right_motor, right_dir, left_motor, left_dir, 0.1, .5*MICRO);
 
     //slow down
-    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 1.5*MICRO);
+    turn(right_motor, right_dir, left_motor, left_dir, 0.0, .5*MICRO);
 
     //turn left
-    turn(right_motor, right_dir, left_motor, left_dir, -0.1, 4*MICRO);
+    turn(right_motor, right_dir, left_motor, left_dir, -0.1, 1*MICRO);
 
     //slow down
-    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 1.5*MICRO);
+    turn(right_motor, right_dir, left_motor, left_dir, 0.0, .5*MICRO);
 
     //turn right
-    turn(right_motor, right_dir, left_motor, left_dir, 0.1, 4*MICRO);
+    turn(right_motor, right_dir, left_motor, left_dir, 0.1, 1*MICRO);
 
     //slow down
-    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 1.5*MICRO);
+    turn(right_motor, right_dir, left_motor, left_dir, 0.0, .5*MICRO);
 
     //turn left
-    turn(right_motor, right_dir, left_motor, left_dir, -0.1, 4*MICRO);
+    turn(right_motor, right_dir, left_motor, left_dir, -0.1, .5*MICRO);
 
+    turn(right_motor, right_dir, left_motor, left_dir, 0.0, 0.5*MICRO);
+
+    turn(right_motor, right_dir, left_motor, left_dir, 0.1, 0.2*MICRO);
     //stop for awhile before repeating
     //TERMINATE NOW!!!
     turn(right_motor, right_dir, left_motor, left_dir, 0.0, 10*MICRO);
