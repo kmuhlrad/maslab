@@ -15,6 +15,9 @@
 int running = 1;
 double integral = 0;
 
+struct timeval start;
+struct timeval end;
+
 void setMotorSpeed(mraa::Pwm& pwm, mraa::Gpio& dir, double speed) {
   assert(-1.0 <= speed && speed <= 1.0);
   if (speed < 0) {
@@ -30,7 +33,7 @@ void setMotorSpeed(mraa::Pwm& pwm, mraa::Gpio& dir, double speed) {
 //NEED TO BE TESTED
 int P = 0.001;
 int I = 0.001;
-int D = 0.001;
+int D = -0.001;
 
 void drive_straight(mraa::Pwm& left_motor, mraa::Gpio& left_dir,
                     mraa::Pwm& right_motor, mraa::Gpio& right_dir,
@@ -48,6 +51,8 @@ void drive_straight(mraa::Pwm& left_motor, mraa::Gpio& left_dir,
     right_dir.write(1);
   }
 
+  gettimeofday(&end, NULL);
+
   int diffSec = end.tv_sec - start.tv_sec;
   int diffUSec = end.tv_usec - start.tv_usec;
   double dT = (double)diffSec + 0.000001*diffUSec;
@@ -59,6 +64,8 @@ void drive_straight(mraa::Pwm& left_motor, mraa::Gpio& left_dir,
 
   left_motor.write(speed + power);
   right_motor.write(speed - power);
+
+  gettimeofday(&start, NULL);
 }
 
 void turn_left() {
@@ -107,8 +114,13 @@ int main() {
   right_dir.dir(mraa::DIR_OUT);
   right_dir.write(0);
 
+  gettimeofday(&start, NULL);
+  
   while (running) {
     //NEED TO CHECK DESIRED AND ESTIMATED BASED ON GYRO OUTPUT
+    //desired should come from external input: cube location or something
+    //estimated should come from the current gryo angle reading
+    //speed should depend on external input from distance sensors or camera
     drive_straight(left_motor, left_dir, right_motor, right_dir, 0.5, 0.6, 0.5)
   }
 }
