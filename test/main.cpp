@@ -5,9 +5,11 @@
 #include <iostream>
 #include <unistd.h>
 
+#include "add.h"
 #include "mraa.hpp"
 
 int running = 1;
+int my_sum = 0;
 
 void sig_handler(int signo)
 {
@@ -25,30 +27,13 @@ int main() {
   mraa::Gpio gpio = mraa::Gpio(13);
   gpio.dir(mraa::DIR_OUT);
 
-  // short range IR sensor
-  mraa::Gpio sr_ir = mraa::Gpio(12);
-  sr_ir.dir(mraa::DIR_IN);
-
   //testing code
   while (running) {
-    //this should do the same thing as below
-    /*
-    on(gpio);
-    sleep(1);
-    off(gpio);
-    sleep(1);*/
-
-
-    //std::cout << "IR sensor: " << sr_ir.read() << std::endl;
-    //old code - eventually delete
-    if (sr_ir.read()) {
-      printf("Gpio high\n");
-      gpio.write(1);
-    } else {
-      printf("Gpio low\n");
-      gpio.write(0);
-    }
-
-    sleep(1);
+    Add test;
+    test.set_a(2);
+    test.set_b(6);
+    my_sum = test.two_sum();
+    gpio.write(1);
+    std::cout << my_sum << std::endl;
   }
 }
