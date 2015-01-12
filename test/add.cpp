@@ -1,11 +1,11 @@
-#include "mraa.hpp"
 #include "add.h"
+#include "mraa.hpp"
 
-void Add::set_a() {
+void Add::set_a(int num) {
 	a = num;
 }
 
-void Add::set_b() {
+void Add::set_b(int num) {
 	b = num;
 }
 
