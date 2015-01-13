@@ -11,16 +11,12 @@
 #include "motor.h"
 #include "mraa.hpp"
 
-//need to be references?
-mraa::Pwm& pwm;
-mraa::Gpio& dir;
-
 Motor::Motor(int pwm_pin, int dir_pin) {
-  pwm = mraa::Pwm(pwm_pin);
+  mraa::Pwm& pwm = mraa::Pwm(pwm_pin);
   pwm.write(0.0);
   pwm.enable(true);
 
-  dir = mraa::Gpio(dir_pin);
+  mraa::Gpio& dir = mraa::Gpio(dir_pin);
   dir.dir(mraa::DIR_OUT);
   dir.write(0);
 }
