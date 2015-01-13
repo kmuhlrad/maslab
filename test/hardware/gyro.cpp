@@ -100,7 +100,6 @@ float Gyro::get_angular_velocity() {
     recvVal = (recvVal << 8) | ((uint8_t)recv[2] & 0xFF);
     recvVal = (recvVal << 8) | ((uint8_t)recv[1] & 0xFF);
     recvVal = (recvVal << 8) | ((uint8_t)recv[0] & 0xFF);
-    printf("Received: 0x%.8x, ", recvVal);
     
     // Sensor reading
     short reading = (recvVal >> 10) & 0xffff;

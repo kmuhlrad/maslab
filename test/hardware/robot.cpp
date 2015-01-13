@@ -26,6 +26,7 @@
 #include "gyro.h"
 #include "motor.h"
 #include "ultrasonic.h"
+#include "ir.h"
 
 int running = 1;
 
@@ -47,8 +48,9 @@ int main() {
   	sensor.dir(mraa::DIR_IN);
 
   	Gyro gyro;
+  	IR medA = IR(3, 5860.550742, -4.236506397);
 
 	while(running) {
-		std::cout << "gyro: " << gyro.get_angular_velocity() << std::endl;
+		std::cout << "IR: " << medA.getDistance() << std::endl;
 	}
 }
