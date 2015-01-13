@@ -1,6 +1,6 @@
 //main robot file
 //compile with:
-//g++ motor.cpp robot.cpp -o robot -lmraa
+//g++ gyro.cpp motor.cpp robot.cpp -o robot -lmraa
 //[ADD IN OTHER FILES LATER AS NEEDED]
 
 #include <csignal>
@@ -31,10 +31,13 @@ int main() {
   	mraa::Gpio sensor = mraa::Gpio(2);
   	sensor.dir(mraa::DIR_IN);
 
+  	Gyro gyro;
+
 	while(running) {
 		if(sensor.read()) {
 			left.setSpeed(0.3);
 			right.setSpeed(-0.3);
+			std::cout << "gyro: " << gyro.get_angle() << std::endl;
 		} else {
 			left.stop();
 			right.stop();
