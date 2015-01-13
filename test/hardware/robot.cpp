@@ -32,7 +32,7 @@ int main() {
   	sensor.dir(mraa::DIR_IN);
 
 	while(running) {
-		if(!sensor.read()) {
+		if(sensor.read()) {
 			left.setSpeed(0.3);
 			right.setSpeed(-0.3);
 		} else {
