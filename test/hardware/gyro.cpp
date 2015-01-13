@@ -28,8 +28,7 @@ mraa::Gpio *chipSelect;
 
 struct timeval tv;
 
-Gyro::Gyro() {
-  *chipSelect = new mraa::Gpio(10);
+Gyro::Gyro() : *chipSelect(10) {
   chipSelect->dir(mraa::DIR_OUT);
   chipSelect->write(1);
 
@@ -86,7 +85,7 @@ float Gyro::get_angle() {
   }
   else {
     printf("No recv\n"); //no data
-    return NULL; //is this valid?
+    return 100000f;
   }
 }
 
