@@ -24,6 +24,8 @@ mraa::Spi* spi;
 mraa::Gpio *chipSelect;
 //CHECK SCOPE OF VARIABLES
 
+struct timeval tv;
+
 Gyro::Gyro() {
   *chipSelect = new mraa::Gpio(10);
   chipSelect->dir(mraa::DIR_OUT);
@@ -124,7 +126,7 @@ float Gyro::get_angular_velocity() {
   }
   else {
     printf("No recv\n"); //no data
-    return NULL;
+    return;
   }
 }
 
