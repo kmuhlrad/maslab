@@ -1,5 +1,6 @@
 // Build with:
-// g++ test_gpio.cpp -o test_gpio -lmraa
+// g++ add.cpp main.cpp -o main -lmraa
+// then run ./main
 
 #include <csignal>
 #include <iostream>
