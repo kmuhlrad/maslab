@@ -12,6 +12,8 @@
 #include "motor.h"
 #include "ultrasonic.h"
 
+int running = 1;
+
 void sig_handler(int signo) {
   if (signo == SIGINT) {
     printf("closing spi nicely\n");
@@ -31,8 +33,8 @@ int main() {
 
 	while(running) {
 		if(!sensor.read()) {
-			left.setMotorSpeed(0.3);
-			right.setMotorSpeed(-0.3);
+			left.setSpeed(0.3);
+			right.setSpeed(-0.3);
 		} else {
 			left.stop();
 			right.stop();
