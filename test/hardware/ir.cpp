@@ -9,3 +9,7 @@ IR::IR(int pin, double a, double b) : sensor(pin) {
 double IR::getDistance() {
 	return A / (sensor.read() + B);
 }
+
+double IR::read() {
+	return sensor.read();
+}

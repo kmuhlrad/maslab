@@ -10,6 +10,7 @@ class IR {
 public:
 	IR(int pin, double a, double b);
 	double getDistance();
+	double read();
 };
 
 #endif

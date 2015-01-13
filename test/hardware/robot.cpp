@@ -44,11 +44,11 @@ int main() {
   	Motor left = Motor(9, 8);
   	Motor right = Motor(5, 4);
 
-  	mraa::Gpio sensor = mraa::Gpio(2);
-  	sensor.dir(mraa::DIR_IN);
+  	/*mraa::Gpio sensor = mraa::Gpio(3);
+  	sensor.dir(mraa::DIR_IN);*/
 
   	Gyro gyro;
-  	IR medA = IR(3, 5860.550742, 4.236506397);
+  	IR medA = IR(2, 5860.550742, 4.236506397);
 
 	while(running) {
 		std::cout << "IR: " << medA.getDistance() << std::endl;
