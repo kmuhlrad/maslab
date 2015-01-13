@@ -17,16 +17,15 @@
 #define GYRO_DATA_OKAY_MASK 0x0C000000
 #define GYRO_DATA_OKAY 0x04000000
 
-int running = 1;
 float angle = 0f;
 float ang_vel = 0f;
 
 mraa::Spi* spi;
-
+mraa::Gpio *chipSelect;
 //CHECK SCOPE OF VARIABLES
 
 Gyro::Gyro() {
-  mraa::Gpio *chipSelect = new mraa::Gpio(10);
+  *chipSelect = new mraa::Gpio(10);
   chipSelect->dir(mraa::DIR_OUT);
   chipSelect->write(1);
 

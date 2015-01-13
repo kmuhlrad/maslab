@@ -14,14 +14,9 @@
 #include "encoder.h"
 #include "mraa.hpp"
 
-mraa::Gpio A;
-mraa::Gpio B;
-
-Encoder::Encoder(int a_pin, int b_pin) {
-  A = mraa::Gpio(a_pin);
+Encoder::Encoder(int a_pin, int b_pin) : A(a_pin), B(b_pin) {
   A.dir(mraa::DIR_IN);
 
-  B = mraa::Gpio(b_pin);
   B.dir(mraa::DIR_IN);
 }
 

@@ -7,14 +7,10 @@
 
 
 double distance = -1.0;
-mraa::Gpio trig;
-mraa::Gpio* echo;
 
-Ultrasonic::Ultrasonic(int trig_pin, int echo_pin) {
-  trig = mraa::Gpio(trig_pin);
+Ultrasonic::Ultrasonic(int trig_pin, int echo_pin) : trig(trig_pin), echo(echo_pin) {
   trig.dir(mraa::DIR_IN);
-
-  echo = new mraa::Gpio(echo_pin);
+  
   echo->dir(mraa::DIR_OUT);
   echo->isr(mraa::EDGE_RISING, echo_handler, echo); //might need to make echo a pointer
 }
