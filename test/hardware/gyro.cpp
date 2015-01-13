@@ -17,8 +17,8 @@
 #define GYRO_DATA_OKAY_MASK 0x0C000000
 #define GYRO_DATA_OKAY 0x04000000
 
-float angle = 0f;
-float ang_vel = 0f;
+float angle = 0.0;
+float ang_vel = 0.0;
 int init = 0;
 char writeBuf[4];
 
@@ -28,7 +28,7 @@ mraa::Gpio *chipSelect;
 
 struct timeval tv;
 
-Gyro::Gyro() : (*chipSelect)(10) {
+Gyro::Gyro() : chipSelect(10) {
   chipSelect->dir(mraa::DIR_OUT);
   chipSelect->write(1);
 
