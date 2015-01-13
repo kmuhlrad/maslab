@@ -23,12 +23,12 @@ int init = 0;
 char writeBuf[4];
 
 mraa::Spi* spi;
-mraa::Gpio *chipSelect;
+mraa::Gpio *chipSelect = new mraa::Gpio(10);
 //CHECK SCOPE OF VARIABLES
 
 struct timeval tv;
 
-Gyro::Gyro() : chipSelect(10) {
+Gyro::Gyro() {
   chipSelect->dir(mraa::DIR_OUT);
   chipSelect->write(1);
 
