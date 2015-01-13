@@ -19,6 +19,8 @@
 
 float angle = 0f;
 float ang_vel = 0f;
+int init = 0;
+char writeBuf[4];
 
 mraa::Spi* spi;
 mraa::Gpio *chipSelect;
@@ -35,7 +37,7 @@ Gyro::Gyro() {
   spi->bitPerWord(32);
 
   char rxBuf[2];
-  char writeBuf[4];
+  
   unsigned int sensorRead = 0x20000000;
   writeBuf[0] = sensorRead & 0xff;
   writeBuf[1] = (sensorRead >> 8) & 0xff;
@@ -44,7 +46,7 @@ Gyro::Gyro() {
 
   float total = 0;
   struct timeval tv;
-  int init = 0;
+  init = 0;
 }
 
 float Gyro::get_angle() {
@@ -126,7 +128,7 @@ float Gyro::get_angular_velocity() {
   }
   else {
     printf("No recv\n"); //no data
-    return;
+    return 10000f;
   }
 }
 
