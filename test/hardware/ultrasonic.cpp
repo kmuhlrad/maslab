@@ -8,18 +8,25 @@
 
 double distance = -1.0;
 mraa::Gpio trig;
-mraa::Gpio echo;
+mraa::Gpio* echo;
 
 Ultrasonic::Ultrasonic(int trig_pin, int echo_pin) {
   trig = mraa::Gpio(trig_pin);
   trig.dir(mraa::DIR_IN);
 
-  echo = mraa::Gpio(echo_pin);
-  echo.dir(mraa::DIR_OUT);
-  echo.isr(mraa::EDGE_RISING, echo_handler, echo); //might need to make echo a pointer
+  echo = new mraa::Gpio(echo_pin);
+  echo->dir(mraa::DIR_OUT);
+  echo->isr(mraa::EDGE_RISING, echo_handler, echo); //might need to make echo a pointer
 }
 
-void echo_handler(void* args) {
+void Ultrasonic::pulse(int us) {
+  assert(us >= 10);
+  trig.write(1);
+  usleep(us);
+  trig.write(0);
+}
+
+void Ultrasonic::echo_handler(void* args) {
   // Grab end time first, for accuracy
   struct timeval end;
   gettimeofday(&end, NULL);
@@ -54,30 +61,6 @@ void echo_handler(void* args) {
   }*/
 }
 
-int main() {
-  // Handle Ctrl-C quit
-  signal(SIGINT, sig_handler);
-
-  mraa::Gpio* trig = new mraa::Gpio(2);
-  trig->dir(mraa::DIR_OUT);
-  mraa::Gpio* echo = new mraa::Gpio(4);
-  echo->dir(mraa::DIR_IN);
-  // Set the echo handlers to receive rising or falling edges of the
-  // echo pulse
-  echo->isr(mraa::EDGE_RISING, echo_handler, echo);
-
-  mraa::Gpio* led = new mraa::Gpio(13);
-  led->dir(mraa::DIR_OUT);
-
-  while (running) {
-    // 20us trigger pulse (must be at least 10us)
-    trig->write(1);
-    led->write(1);
-    usleep(20);
-    trig->write(0);
-    led->write(0);
-
-    // Must pause at least 60ms between measurements
-    usleep(500000.0);
-  }
+Ultrasonic::~Ultrasonic() {
+  delete echo;
 }
