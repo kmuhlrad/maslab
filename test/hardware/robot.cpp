@@ -3,6 +3,21 @@
 //g++ gyro.cpp motor.cpp robot.cpp -o robot -lmraa
 //[ADD IN OTHER FILES LATER AS NEEDED]
 
+//PINS:
+//1
+//2 - Short range IR
+//3
+//4 - Right wheel dir
+//5 - Right wheel pwm
+//6
+//7 - DON'T USE!!!!
+//8 - Left wheel dir
+//9 - Left wheel pwm
+//10 - Gyro CS
+//11 - Gyro MOSI
+//12 - Gyro MISO
+//13 - Gyro SCLK
+
 #include <csignal>
 #include <iostream>
 
@@ -34,13 +49,6 @@ int main() {
   	Gyro gyro;
 
 	while(running) {
-		if(sensor.read()) {
-			left.setSpeed(0.3);
-			right.setSpeed(-0.3);
-			std::cout << "gyro: " << gyro.get_angle() << std::endl;
-		} else {
-			left.stop();
-			right.stop();
-		}
+		std::cout << "gyro: " << gyro.get_angular_velocity() << std::endl;
 	}
 }
