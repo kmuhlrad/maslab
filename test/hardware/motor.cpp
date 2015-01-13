@@ -11,12 +11,15 @@
 #include "motor.h"
 #include "mraa.hpp"
 
+mraa::Pwm pwm;
+mraa::Gpio dir;
+
 Motor::Motor(int pwm_pin, int dir_pin) {
-  mraa::Pwm& pwm = mraa::Pwm(pwm_pin);
+  pwm = mraa::Pwm(pwm_pin);
   pwm.write(0.0);
   pwm.enable(true);
 
-  mraa::Gpio& dir = mraa::Gpio(dir_pin);
+  dir = mraa::Gpio(dir_pin);
   dir.dir(mraa::DIR_OUT);
   dir.write(0);
 }
