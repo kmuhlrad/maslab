@@ -51,6 +51,7 @@ int main() {
   	IR medA = IR(1, 5860.550742, 4.236506397);
 
 	while(running) {
-		std::cout << "IR: " << medA.getDistance() << std::endl;
+		std::cout << "Distance: " << medA.getDistance() << std::endl;
+    std::cout << "Value: " << medA.read() << std::endl;
 	}
 }
