@@ -5,8 +5,8 @@
 
 class Motor {
 	//pins
-	mraa::Pwm& pwm;
-	mraa::Gpio& dir;
+	mraa::Pwm pwm;
+	mraa::Gpio dir;
 public:
 	//constructor
 	Motor(int pwm_pin, int dir_pin);

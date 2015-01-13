@@ -1,7 +1,7 @@
 #ifndef ENCODER_H
 #define ENCODER_H
 
-#include "lmraa.hpp"
+#include "mraa.hpp"
 
 class Encoder {
 	mraa::Gpio A;
