@@ -1,7 +1,7 @@
 #ifndef IR_H
 #define IR_H
 
-#include "mraa.h"
+#include "mraa.hpp"
 
 class IR {
 	mraa::Aio sensor;
