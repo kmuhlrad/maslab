@@ -6,7 +6,7 @@
 //PINS:
 //1
 //2 - Short range IR
-//3
+//3 - Med range IR
 //4 - Right wheel dir
 //5 - Right wheel pwm
 //6
