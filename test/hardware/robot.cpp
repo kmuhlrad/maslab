@@ -147,7 +147,7 @@ int main() {
     //std::cout << "init: " << init_ang << std::endl;
     std::cout << "cur: " << current_ang << std::endl;
     std::cout << "type: " << typeid(current_ang).name() << std::endl;
-    usleep(1000);
+    usleep(500000);
   }
 
   //~Gyro();

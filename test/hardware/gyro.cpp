@@ -81,6 +81,7 @@ float Gyro::get_angle() {
     else { //init == 0
       init = 1;
       gettimeofday(&tv, NULL);
+      return 0;
     }
   }
   else {
