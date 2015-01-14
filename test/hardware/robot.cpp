@@ -67,7 +67,7 @@ int main() {
 	sensor.dir(mraa::DIR_IN);*/
 
 	Gyro gyro;
-	IR medA = IR(1, 5860.550742, 4.236506397);
+	IR medA = IR(1, 6149.816568, 4.468768853);
 
   int dist = 0;
 	while(running) {
