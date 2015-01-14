@@ -29,6 +29,7 @@
 #include <cassert>
 #include <cmath>
 #include <sys/time.h>
+#include <typeinfo>
 
 #include "mraa.hpp"
 #include "encoder.h"
@@ -145,7 +146,7 @@ int main() {
     //drive_straight(left, right, gyro, -10.0, current_ang, 0.3);
     //std::cout << "init: " << init_ang << std::endl;
     std::cout << "cur: " << current_ang << std::endl;
-    std::cout << "total: " << total << std::endl;
+    std::cout << "type: " << typeid(current_ang).name() << std::endl;
     usleep(1000);
   }
 
