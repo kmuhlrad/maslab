@@ -22,7 +22,7 @@ Motor::Motor(int pwm_pin, int dir_pin) : pwm(pwm_pin), dir(dir_pin) {
 }
 
 void Motor::setSpeed(double speed) {
-  assert(-1.0 <= speed && speed <= 1.0);
+  //assert(-1.0 <= speed && speed <= 1.0);
   if (speed < 0) {
     dir.write(1);
   }
