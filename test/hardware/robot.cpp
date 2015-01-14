@@ -72,7 +72,7 @@ int main() {
   int dist = 0;
 	while(running) {
     std::cout << "Distance: " << dist << " cm" << std::endl;
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 15; i++) {
       std::cout << medA.read() << std::endl;
       sleep(2);
     }
@@ -81,7 +81,7 @@ int main() {
     sleep(2);
 	}
 
-  ~Gyro();
+  //~Gyro();
 }
 
 //COMMENT BACK IN AND COMMENT THE OTHER MAIN OUT TO TEST PID DRIVING
