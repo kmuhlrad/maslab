@@ -123,6 +123,7 @@ float Gyro::get_angular_velocity() {
     else { //init == 0
       init = 1;
       gettimeofday(&tv, NULL);
+      return 0;
     }
   }
   else {
