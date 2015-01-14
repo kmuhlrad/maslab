@@ -56,7 +56,7 @@ void sig_handler(int signo) {
   }
 }
 
-int main() {
+/*int main() {
 	// Handle Ctrl-C quit
 	signal(SIGINT, sig_handler);
 
@@ -64,7 +64,7 @@ int main() {
 	Motor right = Motor(5, 4);
 
 	/*mraa::Gpio sensor = mraa::Gpio(3);
-	sensor.dir(mraa::DIR_IN);*/
+	sensor.dir(mraa::DIR_IN);// (put closing comment back!!!)
 
 	Gyro gyro;
 	IR medA = IR(1, 6149.816568, 4.468768853);
@@ -81,11 +81,43 @@ int main() {
     sleep(2);
 	}
 
-  //~Gyro();
-}
+  ~Gyro();
+}*/
 
 //COMMENT BACK IN AND COMMENT THE OTHER MAIN OUT TO TEST PID DRIVING
-/*
+
+void drive_straight(Motor left, Motor right, Gyro gyro,
+                    double desired, double estimated, double speed) {
+  assert(-1.0 <= speed && speed <= 1.0);
+  
+  //set direction
+  //CHECK DIRECTIONS AND THAT THIS WORKS
+  /*if (speed < 0) {
+    left_dir.write(1);
+    right_dir.write(0);
+  }
+  else {
+    left_dir.write(0);
+    right_dir.write(1);
+  }*/
+
+  gettimeofday(&end, NULL);
+
+  int diffSec = end.tv_sec - start.tv_sec;
+  int diffUSec = end.tv_usec - start.tv_usec;
+  double dT = (double)diffSec + 0.000001*diffUSec;
+
+  double diff = desired - estimated;
+  double intetral += diff*dT;
+  double derivative = gyro.get_angular_velocity();
+  double power = P*diff + I*integral + D*derivative;
+
+  left.write(speed + power);
+  right.write(-(speed - power);
+
+  gettimeofday(&start, NULL);
+}
+
 int main() {
   //Handle Ctrl-C quit
   signal(SIGINT, sig_handler);
@@ -108,4 +140,3 @@ int main() {
 
   ~Gyro();
 }
-*/
