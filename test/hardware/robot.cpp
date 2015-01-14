@@ -6,7 +6,7 @@
 //PINS:
 //1
 //2 - Short range IR
-//3 - Med range IR
+//3 -
 //4 - Right wheel dir
 //5 - Right wheel pwm
 //6
@@ -17,9 +17,17 @@
 //11 - Gyro MOSI
 //12 - Gyro MISO
 //13 - Gyro SCLK
+//A0 -
+//A1 - Med range IR A
+//A2 -
+//A3 -
+//A4 -
+//A5 -
 
 #include <csignal>
 #include <iostream>
+#include <cassert>
+#include <cmath>
 
 #include "mraa.hpp"
 #include "encoder.h"
@@ -29,6 +37,17 @@
 #include "ir.h"
 
 int running = 1;
+
+double integral = 0;
+
+struct timeval start;
+struct timeval end;
+
+//PID coefficients
+//NEED TO BE TESTED
+int P = 0.001;
+int I = 0.001;
+int D = -0.001;
 
 void sig_handler(int signo) {
   if (signo == SIGINT) {
@@ -61,4 +80,32 @@ int main() {
     std::cout << "\n" << std::endl;
     sleep(2);
 	}
+
+  ~Gyro();
 }
+
+//COMMENT BACK IN AND COMMENT THE OTHER MAIN OUT TO TEST PID DRIVING
+/*
+int main() {
+  //Handle Ctrl-C quit
+  signal(SIGINT, sig_handler);
+
+  //two motor setup
+  Motor left = Motor(9, 8);
+  Motor right = Motor(5, 4);
+
+  Gyro gyro;
+
+  gettimeofday(&start, NULL);
+
+  while (running) {
+    //NEED TO CHECK DESIRED AND ESTIMATED BASED ON GYRO OUTPUT
+    //desired should come from external input: cube location or something
+    //estimated should come from the current gryo angle reading
+    //speed should depend on external input from distance sensors or camera
+    drive_straight(left, right, gyro, -10.0, gyro.get_angle(), 0.3);
+  }
+
+  ~Gyro();
+}
+*/
