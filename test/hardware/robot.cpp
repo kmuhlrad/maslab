@@ -141,6 +141,8 @@ int main() {
     //drive_straight(left, right, gyro, -10.0, current_ang, 0.3);
     //std::cout << "init: " << init_ang << std::endl;
     std::cout << "cur: " << current_ang << std::endl;
+    std::cout << gyro.get_angle() << std::endl;
+    usleep(1000);
   }
 
   //~Gyro();
