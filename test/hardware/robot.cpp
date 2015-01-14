@@ -39,19 +39,26 @@ void sig_handler(int signo) {
 
 int main() {
 	// Handle Ctrl-C quit
-  	signal(SIGINT, sig_handler);
+	signal(SIGINT, sig_handler);
 
-  	Motor left = Motor(9, 8);
-  	Motor right = Motor(5, 4);
+	Motor left = Motor(9, 8);
+	Motor right = Motor(5, 4);
 
-  	/*mraa::Gpio sensor = mraa::Gpio(3);
-  	sensor.dir(mraa::DIR_IN);*/
+	/*mraa::Gpio sensor = mraa::Gpio(3);
+	sensor.dir(mraa::DIR_IN);*/
 
-  	Gyro gyro;
-  	IR medA = IR(1, 5860.550742, 4.236506397);
+	Gyro gyro;
+	IR medA = IR(1, 5860.550742, 4.236506397);
 
+  int dist = 0;
 	while(running) {
-		std::cout << "Distance: " << medA.getDistance() << std::endl;
-    std::cout << "Value: " << medA.read() << std::endl;
+    std::cout << "Distance: " << dist << " cm" << std::endl;
+    for (int i = 0; i < 5; i++) {
+      std::cout << medA.read() << std::endl;
+      sleep(2);
+    }
+    dist += 5;
+    std::cout << "\n" << std::endl;
+    sleep(2);
 	}
 }
