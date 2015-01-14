@@ -89,7 +89,7 @@ void sig_handler(int signo) {
 
 void drive_straight(Motor left, Motor right, Gyro gyro,
                     double desired, double estimated, double speed) {
-  assert(-1.0 <= speed && speed <= 1.0);
+  //assert(-1.0 <= speed && speed <= 1.0);
   
   //set direction
   //CHECK DIRECTIONS AND THAT THIS WORKS
