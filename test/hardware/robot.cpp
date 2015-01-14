@@ -130,8 +130,8 @@ int main() {
   Gyro gyro;
 
   gettimeofday(&start, NULL);
-  double init_ang = gyro.get_angle();
-  double current_ang = 0;
+  float init_ang = gyro.get_angle();
+  float current_ang = 0;
   while (running) {
     //NEED TO CHECK DESIRED AND ESTIMATED BASED ON GYRO OUTPUT
     //desired should come from external input: cube location or something
