@@ -131,8 +131,8 @@ int main() {
   Gyro gyro;
 
   gettimeofday(&start, NULL);
-  float init_ang = gyro.get_angle();
-  init_ang = gyro.get_angle();
+  //float init_ang = gyro.get_angle();
+  //init_ang = gyro.get_angle();
   float current_ang = 0;
   int init = 0;
 
@@ -142,7 +142,7 @@ int main() {
     //desired should come from external input: cube location or something
     //estimated should come from the current gryo angle reading
     //speed should depend on external input from distance sensors or camera
-    current_ang = gyro.get_angle() - init_ang;
+    //current_ang = gyro.get_angle() - init_ang;
     std::cout << current_ang << std::endl;
     drive_straight(left, right, gyro, -10.0, -15.0, 0.3);
     usleep(10000);
