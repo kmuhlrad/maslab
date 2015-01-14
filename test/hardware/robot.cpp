@@ -136,7 +136,8 @@ int main() {
     //desired should come from external input: cube location or something
     //estimated should come from the current gryo angle reading
     //speed should depend on external input from distance sensors or camera
-    drive_straight(left, right, gyro, -10.0, gyro.get_angle(), 0.3);
+    //drive_straight(left, right, gyro, -10.0, gyro.get_angle(), 0.3);
+    std::cout << gyro.get_angle() << std::endl;
   }
 
   //~Gyro();
