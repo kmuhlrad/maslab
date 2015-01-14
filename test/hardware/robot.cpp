@@ -28,6 +28,7 @@
 #include <iostream>
 #include <cassert>
 #include <cmath>
+#include <sys/time.h>
 
 #include "mraa.hpp"
 #include "encoder.h"
@@ -108,12 +109,12 @@ void drive_straight(Motor left, Motor right, Gyro gyro,
   double dT = (double)diffSec + 0.000001*diffUSec;
 
   double diff = desired - estimated;
-  double intetral += diff*dT;
+  integral += diff*dT;
   double derivative = gyro.get_angular_velocity();
   double power = P*diff + I*integral + D*derivative;
 
-  left.write(speed + power);
-  right.write(-(speed - power);
+  left.setSpeed(speed + power);
+  right.setSpeed(-(speed - power));
 
   gettimeofday(&start, NULL);
 }
@@ -138,5 +139,5 @@ int main() {
     drive_straight(left, right, gyro, -10.0, gyro.get_angle(), 0.3);
   }
 
-  ~Gyro();
+  //~Gyro();
 }
