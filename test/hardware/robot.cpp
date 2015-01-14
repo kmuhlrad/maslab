@@ -89,7 +89,7 @@ void sig_handler(int signo) {
 //COMMENT BACK IN AND COMMENT THE OTHER MAIN OUT TO TEST PID DRIVING
 
 void drive_straight(Motor left, Motor right, Gyro gyro,
-                    double desired, double estimated, double speed) {
+                    float desired, float estimated, float speed) {
   //assert(-1.0 <= speed && speed <= 1.0);
   
   //set direction
@@ -107,12 +107,12 @@ void drive_straight(Motor left, Motor right, Gyro gyro,
 
   int diffSec = end.tv_sec - start.tv_sec;
   int diffUSec = end.tv_usec - start.tv_usec;
-  double dT = (double)diffSec + 0.000001*diffUSec;
+  float dT = (float)diffSec + 0.000001*diffUSec;
 
-  double diff = desired - estimated;
+  float diff = desired - estimated;
   integral += diff*dT;
-  double derivative = gyro.get_angular_velocity();
-  double power = P*diff + I*integral + D*derivative;
+  float derivative = gyro.get_angular_velocity();
+  float power = P*diff + I*integral + D*derivative;
 
   left.setSpeed(speed + power);
   right.setSpeed(-(speed - power));
