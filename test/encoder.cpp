@@ -90,7 +90,7 @@ int main() {
 
   left_en->B = new mraa::Gpio(3);
   left_en->B->dir(mraa::DIR_IN);
-  left_en->B->isr(mraa::EDGE_BOTH, encoder_handler, left_en);
+  //left_en->B->isr(mraa::EDGE_BOTH, encoder_handler, left_en);
 
   // Set the echo handlers to receive rising or falling edges of the
   // echo pulse
