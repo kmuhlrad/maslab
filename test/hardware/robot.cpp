@@ -145,7 +145,7 @@ int main() {
     //current_ang = gyro.get_angle() - init_ang;
     //std::cout << current_ang << std::endl;
     std::cout << gyro.get_angle() << std::endl;
-    ///drive_straight(left, right, gyro, 200.0, gyro.get_angle(), 0.2);
+    drive_straight(left, right, gyro, 10.0, gyro.get_angle(), 0.2);
     usleep(10000);
   }
 
