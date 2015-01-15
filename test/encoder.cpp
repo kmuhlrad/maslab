@@ -50,15 +50,13 @@ void sig_handler(int signo)
 void encoder_handler(void* args) {
   mraa::Gpio* A = (*(struct encoder*)args).A;
   mraa::Gpio* B = (*(struct encoder*)args).B;
-  printf("enhandle");
   //CHECK DIRECTION
   if (A->read() == B->read()) {
     counts++;
-    printf("plus");
   } else {
     counts--;
-    printf("minus");
   }
+  std::cout << counts << std::endl;
 }
 
 int main() {
@@ -105,7 +103,7 @@ int main() {
     //std::cout << "Speed: " << "0.5" << std::endl;
     /*setMotorSpeed(right_motor, right_dir, -0.1);
     setMotorSpeed(left_motor, left_dir, 0.1);*/
-    std::cout << "counts: " << counts << std::endl;
+    //std::cout << "counts: " << counts << std::endl;
     //std::cout << "Encoder A: " << A.read() << "\t" << "Encoder B: " << B.read() << std::endl;
 
     usleep(80);
