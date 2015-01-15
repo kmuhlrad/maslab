@@ -47,9 +47,9 @@ struct timeval end;
 
 //PID coefficients
 //NEED TO BE TESTED
-int P = 0.001;
-int I = 0.001;
-int D = -0.001;
+int P = 0.01;
+int I = 0.01;
+int D = -0.01;
 
 void sig_handler(int signo) {
   if (signo == SIGINT) {
@@ -145,7 +145,7 @@ int main() {
     //current_ang = gyro.get_angle() - init_ang;
     //std::cout << current_ang << std::endl;
     std::cout << gyro.get_angle() << std::endl;
-    drive_straight(left, right, gyro, 200.0, gyro.get_angle(), 0.2);
+    ///drive_straight(left, right, gyro, 200.0, gyro.get_angle(), 0.2);
     usleep(10000);
   }
 

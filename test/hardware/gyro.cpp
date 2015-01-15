@@ -76,7 +76,7 @@ float Gyro::get_angle() {
       float ang_vel = (float)reading / 80.0;
       angle += -0.001 * msf * (ang_vel);
 
-      return angle;
+      return msf;
     }
     else { //init == 0
       init = 1;
