@@ -29,7 +29,11 @@ void Motor::setSpeed(double speed) {
   else {
     dir.write(0);
   }
-  pwm.write(fabs(speed));
+  double output = fabs(speed);
+  if (output > 1) {
+    output == 1;
+  }
+  pwm.write(output);
 }
 
 void Motor::stop() {
