@@ -127,8 +127,8 @@ int main() {
   signal(SIGINT, sig_handler);
 
   //two motor setup
-  Motor left(9, 8);
-  Motor right(5, 4);
+  Motor left = Motor(9, 8);
+  Motor right = Motor(5, 4);
 
   Gyro gyro;
 
