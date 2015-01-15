@@ -59,6 +59,30 @@ void encoder_handler(void* args) {
   std::cout << counts << std::endl;
 }
 
+void encoderA_handler(void* args) {
+  mraa::Gpio* A = (*(struct encoder*)args).A;
+  mraa::Gpio* B = (*(struct encoder*)args).B;
+  //CHECK DIRECTION
+  if (A->read() != B->read()) {
+    counts++;
+  } else {
+    counts--;
+  }
+  std::cout << counts << std::endl;
+}
+
+void encoderB_handler(void* args) {
+  mraa::Gpio* A = (*(struct encoder*)args).A;
+  mraa::Gpio* B = (*(struct encoder*)args).B;
+  //CHECK DIRECTION
+  if (A->read() == B->read()) {
+    counts++;
+  } else {
+    counts--;
+  }
+  std::cout << counts << std::endl;
+}
+
 int main() {
   // Handle Ctrl-C quit
   signal(SIGINT, sig_handler);
@@ -86,10 +110,12 @@ int main() {
 
   left_en->A = new mraa::Gpio(2);
   left_en->A->dir(mraa::DIR_IN);
-  left_en->A->isr(mraa::EDGE_BOTH, encoder_handler, left_en);
+  //left_en->A->isr(mraa::EDGE_BOTH, encoder_handler, left_en);
+  left_en->A->isr(mraa::EDGE_BOTH, encoderA_handler, left_en);
 
   left_en->B = new mraa::Gpio(3);
   left_en->B->dir(mraa::DIR_IN);
+  left_en->B->isr(mraa::EDGE_BOTH, encoderB_handler, left_en);
   //left_en->B->isr(mraa::EDGE_BOTH, encoder_handler, left_en);
 
   // Set the echo handlers to receive rising or falling edges of the
@@ -115,6 +141,6 @@ int main() {
       sleep(2.0);
     }*/
   }
-  
+
   left_en->A->isrExit();
 }
