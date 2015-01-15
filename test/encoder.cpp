@@ -116,5 +116,5 @@ int main() {
     }*/
   }
 
-  left_en->A->isrExit();
+  std::cout << left_en->A->isrExit() << std::endl;
 }
