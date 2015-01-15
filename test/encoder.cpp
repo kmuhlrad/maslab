@@ -115,6 +115,6 @@ int main() {
       sleep(2.0);
     }*/
   }
-  std::cout << "running" << std::endl;
-  std::cout << left_en->A->isrExit() << std::endl;
+  
+  left_en->A->isrExit();
 }
