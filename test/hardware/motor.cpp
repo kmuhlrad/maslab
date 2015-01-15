@@ -31,8 +31,8 @@ void Motor::setSpeed(double speed) {
     dir.write(0);
   }
   double output = fabs(speed);
-  if (output > 1) {
-    output = 1;
+  if (output > 0.3) {
+    output = 0.3;
   }
   pwm.write(output);
 }
