@@ -144,6 +144,7 @@ int main() {
     //speed should depend on external input from distance sensors or camera
     //current_ang = gyro.get_angle() - init_ang;
     //std::cout << current_ang << std::endl;
+    std::cout << gyro.get_angle() << std::endl;
     drive_straight(left, right, gyro, -10.0, gyro.get_angle(), 0.2);
     usleep(10000);
   }
