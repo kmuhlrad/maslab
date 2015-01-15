@@ -82,7 +82,7 @@ int main() {
   /*mraa::Gpio A = mraa::Gpio(2);
   mraa::Gpio B = mraa::Gpio(3);*/
 
-  encoder *left_en;
+  encoder *left_en = new encoder;
 
   left_en->A = new mraa::Gpio(2);
   left_en->A->dir(mraa::DIR_IN);
