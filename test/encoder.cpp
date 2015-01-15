@@ -84,13 +84,13 @@ int main() {
 
   encoder *left_en;
 
-  left_en.A = new mraa::Gpio(2);
-  left_en.A->dir(mraa::DIR_IN);
-  left_en.A->isr(mraa::EDGE_BOTH, encoder_handler, left_en);
+  left_en->A = new mraa::Gpio(2);
+  left_en->A->dir(mraa::DIR_IN);
+  left_en->A->isr(mraa::EDGE_BOTH, encoder_handler, left_en);
 
-  left_en.B = new mraa::Gpio(3);
-  left_en.B->dir(mraa::DIR_IN);
-  left_en.B->isr(mraa::EDGE_BOTH, encoder_handler, left_en);
+  left_en->B = new mraa::Gpio(3);
+  left_en->B->dir(mraa::DIR_IN);
+  left_en->B->isr(mraa::EDGE_BOTH, encoder_handler, left_en);
 
   // Set the echo handlers to receive rising or falling edges of the
   // echo pulse
