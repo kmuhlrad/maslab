@@ -80,8 +80,8 @@ int main() {
     //std::cout << "Encoder A: " << A.read() << "\t" << "Encoder B: " << B.read() << std::endl;
     last_a = A.read();
     last_b = B.read();
-    
-    usleep(2000);
+
+    usleep(20);
     /*speed += 0.1;
     if (speed > 1.0) {
       speed = -1.0;
