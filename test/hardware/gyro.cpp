@@ -116,7 +116,7 @@ float Gyro::get_angular_velocity() {
 
       int msi = (int)ms;
       float msf = (float)msi;
-      float ang_vel = (float)reading / 80.0;
+      float ang_vel = -msf * (float)reading / 80.0;
 
       return ang_vel;
     }
