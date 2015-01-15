@@ -88,7 +88,7 @@ void sig_handler(int signo) {
 
 //COMMENT BACK IN AND COMMENT THE OTHER MAIN OUT TO TEST PID DRIVING
 
-void drive_straight(const Motor& left, const Motor& right, const Gyro& gyro,
+void drive_straight(Motor& left, Motor& right, Gyro& gyro,
                     float desired, float estimated, float speed) {
   //assert(-1.0 <= speed && speed <= 1.0);
   
@@ -114,8 +114,8 @@ void drive_straight(const Motor& left, const Motor& right, const Gyro& gyro,
   float derivative = 0; //gyro.get_angular_velocity();
   float power = P*diff + I*integral + D*derivative;
 
-  left->setSpeed(speed + power);
-  right->setSpeed(-(speed - power));
+  left.setSpeed(speed + power);
+  right.setSpeed(-(speed - power));
 
   gettimeofday(&start, NULL);
 }
