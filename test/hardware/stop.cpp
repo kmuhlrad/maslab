@@ -59,8 +59,8 @@ int main() {
 
   //testing code
   while(running) {
-    stop(left_motor, left_dir, 0.0);
-    stop(right_motor, right_dir, 0.0);
+    stop(left_motor, left_dir);
+    stop(right_motor, right_dir);
   }
 }
 
