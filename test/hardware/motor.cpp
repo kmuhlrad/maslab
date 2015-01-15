@@ -7,6 +7,7 @@
 
 #include <cassert>
 #include <cmath>
+#include <iostream>
 
 #include "motor.h"
 #include "mraa.hpp"
@@ -34,6 +35,7 @@ void Motor::setSpeed(double speed) {
     output = 1;
   }
   pwm.write(0.0);
+  std::cout << "set Speed" << std::endl;
 }
 
 void Motor::stop() {
