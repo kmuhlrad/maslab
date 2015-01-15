@@ -33,7 +33,7 @@ void Motor::setSpeed(double speed) {
   if (output > 1) {
     output = 1;
   }
-  pwm.write(output);
+  pwm.write(0.5);
 }
 
 void Motor::stop() {
