@@ -48,8 +48,8 @@ void sig_handler(int signo)
 }
 
 void encoder_handler(void* args) {
-  mraa::Gpio* A = (mraa::Gpio*)args->A;
-  mraa::Gpio* B = (mraa::Gpio*)args->B;
+  mraa::Gpio* A = (struct encoder*)args->A;
+  mraa::Gpio* B = (struct encoder*)args->B;
 
   //CHECK DIRECTION
   if (A->read() == B->read()) {
