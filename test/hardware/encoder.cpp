@@ -14,20 +14,68 @@
 #include "encoder.h"
 #include "mraa.hpp"
 
-Encoder::Encoder(int a_pin, int b_pin) : A(a_pin), B(b_pin) {
-  A.dir(mraa::DIR_IN);
+struct encoder {
+	mraa::Gpio* A;
+	mraa::Gpio* B;
+};
 
-  B.dir(mraa::DIR_IN);
+Encoder::Encoder(int a_pin, int b_pin) {
+  encoder *en = new encoder;
+
+  en->A = new mraa::Gpio(a_pin);
+  en->A->dir(mraa::DIR_IN);
+  en->A->isr(mraa::EDGE_BOTH, encoderA_handler, en);
+
+  en->B = new mraa::Gpio(b_pin);
+  en->B->dir(mraa::DIR_IN);
+  en->B->isr(mraa::EDGE_BOTH, encoderB_handler, en);
+
+  counts = 0;
 }
 
 int Encoder::getCounts() {
-  //code goes here
-
-  return counts;
+	return counts;
 }
 
+void Encoder::resetCounts() {
+	counts = 0;
+}
+
+//function that triggers when A changes
+void encoderA_handler(void* args) {
+  mraa::Gpio* A = (*(struct encoder*)args).A;
+  mraa::Gpio* B = (*(struct encoder*)args).B;
+  //CHECK DIRECTION
+  if (A->read() != B->read()) {
+    counts++;
+  } else {
+    counts--;
+  }
+  std::cout << counts << std::endl;
+}
+
+//function that trigger when B changes
+void encoderB_handler(void* args) {
+  mraa::Gpio* A = (*(struct encoder*)args).A;
+  mraa::Gpio* B = (*(struct encoder*)args).B;
+  //CHECK DIRECTION
+  if (A->read() == B->read()) {
+    counts++;
+  } else {
+    counts--;
+  }
+  std::cout << counts << std::endl;
+}
+
+//maybe delete
 int Encoder::getPosition() {
   //code goes here
-  
+  double position = 0;
+
   return position;
+}
+
+Encoder::~Encoder() {
+  en->A->isrExit();
+  en->B->isrExit();
 }
