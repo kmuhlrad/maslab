@@ -149,7 +149,7 @@ int main() {
     //std::cout << gyro.get_angle() << std::endl;
     //drive_straight(left, right, gyro, 10.0, gyro.get_angle(), 0);
     left.setSpeed(0.5);
-    right.setSpeed(-0.5);
+    right.setSpeed(0.0);
     usleep(10000);
   }
 
