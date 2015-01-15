@@ -143,8 +143,8 @@ int main() {
     //estimated should come from the current gryo angle reading
     //speed should depend on external input from distance sensors or camera
     //current_ang = gyro.get_angle() - init_ang;
-    std::cout << current_ang << std::endl;
-    drive_straight(left, right, gyro, -10.0, gyro.get_angle(), 0.3);
+    //std::cout << current_ang << std::endl;
+    drive_straight(left, right, gyro, -10.0, gyro.get_angle(), 0.2);
     usleep(10000);
   }
 
