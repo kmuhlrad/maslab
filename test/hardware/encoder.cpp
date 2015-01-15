@@ -23,7 +23,6 @@ int counts;
 encoder *en = new encoder;
 
 Encoder::Encoder(int a_pin, int b_pin) {
-
   en->A = new mraa::Gpio(a_pin);
   en->A->dir(mraa::DIR_IN);
   en->A->isr(mraa::EDGE_BOTH, encoderA_handler, en);
@@ -44,7 +43,7 @@ void Encoder::resetCounts() {
 }
 
 //function that triggers when A changes
-void encoderA_handler(void* args) {
+void Encoder::encoderA_handler(void* args) {
   mraa::Gpio* A = (*(struct encoder*)args).A;
   mraa::Gpio* B = (*(struct encoder*)args).B;
   //CHECK DIRECTION
@@ -56,7 +55,7 @@ void encoderA_handler(void* args) {
 }
 
 //function that trigger when B changes
-void encoderB_handler(void* args) {
+void Encoder::encoderB_handler(void* args) {
   mraa::Gpio* A = (*(struct encoder*)args).A;
   mraa::Gpio* B = (*(struct encoder*)args).B;
   //CHECK DIRECTION
