@@ -41,6 +41,7 @@
 int running = 1;
 
 double integral = 0;
+double last_diff = 0.0;
 
 struct timeval start;
 struct timeval end;
@@ -49,7 +50,7 @@ struct timeval end;
 //NEED TO BE TESTED
 double P = 0.01;
 double I = 0.0;
-double D = -0.01;
+double D = -0.002;
 
 void sig_handler(int signo) {
   if (signo == SIGINT) {
@@ -111,7 +112,7 @@ void drive_straight(Motor& left, Motor& right, Gyro& gyro,
 
   float diff = -desired + estimated;
   integral += diff*dT;
-  float derivative = gyro.get_angular_velocity();
+  float derivative = diff - last_diff;
   float power = P*diff + I*integral + D*derivative;
 
   left.setSpeed(speed + power);
@@ -120,6 +121,7 @@ void drive_straight(Motor& left, Motor& right, Gyro& gyro,
   std::cout << power << std::endl;
 
   gettimeofday(&start, NULL);
+  last_diff = diff;
 }
 
 int main() {
