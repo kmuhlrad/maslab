@@ -125,10 +125,10 @@ int main() {
   signal(SIGINT, sig_handler);
 
   //two motor setup
-  Motor left = Motor(9, 8);
-  Motor right = Motor(5, 4);
+  Motor left(9, 8);
+  Motor right(5, 4);
 
-  Gyro gyro;
+  Gyro gyro();
 
   gettimeofday(&start, NULL);
   //float init_ang = gyro.get_angle();
