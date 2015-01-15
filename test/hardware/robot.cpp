@@ -121,6 +121,7 @@ void drive_straight(Motor& left, Motor& right, Gyro& gyro,
 }
 
 int main() {
+  //
   //Handle Ctrl-C quit
   signal(SIGINT, sig_handler);
 
