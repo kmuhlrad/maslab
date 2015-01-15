@@ -111,7 +111,7 @@ void drive_straight(Motor left, Motor right, Gyro gyro,
 
   float diff = desired - estimated;
   integral += diff*dT;
-  float derivative = gyro.get_angular_velocity();
+  float derivative = 0; //gyro.get_angular_velocity();
   float power = P*diff + I*integral + D*derivative;
 
   left.setSpeed(speed + power);
@@ -144,7 +144,7 @@ int main() {
     //speed should depend on external input from distance sensors or camera
     //current_ang = gyro.get_angle() - init_ang;
     std::cout << current_ang << std::endl;
-    //drive_straight(left, right, gyro, -10.0, -15.0, 0.3);
+    drive_straight(left, right, gyro, -10.0, -15.0, 0.3);
     usleep(10000);
   }
 
