@@ -88,7 +88,7 @@ void sig_handler(int signo) {
 
 //COMMENT BACK IN AND COMMENT THE OTHER MAIN OUT TO TEST PID DRIVING
 
-void drive_straight(Motor left, Motor right, Gyro gyro,
+void drive_straight(Motor& left, Motor& right, Gyro& gyro,
                     float desired, float estimated, float speed) {
   //assert(-1.0 <= speed && speed <= 1.0);
   
