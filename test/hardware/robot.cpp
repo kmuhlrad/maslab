@@ -114,8 +114,8 @@ void drive_straight(const Motor& left, const Motor& right, const Gyro& gyro,
   float derivative = 0; //gyro.get_angular_velocity();
   float power = P*diff + I*integral + D*derivative;
 
-  //left.setSpeed(speed + power);
-  //right.setSpeed(-(speed - power));
+  left.setSpeed(speed + power);
+  right.setSpeed(-(speed - power));
 
   gettimeofday(&start, NULL);
 }
