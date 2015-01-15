@@ -47,7 +47,7 @@ struct timeval end;
 
 //PID coefficients
 //NEED TO BE TESTED
-double P = 0.001;
+double P = 0.01;
 double I = 0.0;
 double D = -0.01;
 
