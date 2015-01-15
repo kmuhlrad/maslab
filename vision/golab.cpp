@@ -72,7 +72,7 @@ using namespace std;
    inRange(imgLAB, Scalar(iLowL, iLowA, iLowB), Scalar(iHighL, iHighA, iHighB), imgThresholded); //Threshold the image
       
   //morphological opening (removes small objects from the foreground)
-/*  erode(imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) );
+  erode(imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) );
   dilate( imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) ); 
 
    //morphological closing (removes small holes from the foreground)
@@ -101,7 +101,7 @@ using namespace std;
 
     iLastX = posX;
    iLastY = posY;
-  }*/
+  }
 
    imshow("Thresholded Image", imgThresholded); //show the thresholded image
 

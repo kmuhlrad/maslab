@@ -6,6 +6,23 @@
 using namespace cv;
 using namespace std;
 
+void filterGreenPx(Vec3b& color,double& gb, double& gr) {//bgr
+//        vector<vector<bool> > eliminate(,vector<bool>());
+        if(color[1] < color[0]*gb || color[1] < color[2]*gr){
+                color[2] = 0;
+                color[1] = 0;
+                color[0] = 0;
+        }
+
+}
+
+void filterGreen(Mat& img,double& gb, double& gr) {
+   for(int y = 0; y < img.rows ; y++)
+        for(int x = 0; x < img.cols;x++)//bgr
+                filterGreenPx(img.at<Vec3b>(Point(x,y)),gb,gr);
+}
+
+
  int main( int argc, char** argv )
  {
     VideoCapture cap(0); //capture the video from webcam
@@ -18,25 +35,15 @@ using namespace std;
 
 
     namedWindow("Control", CV_WINDOW_AUTOSIZE); //create a window called "Control"
-    namedWindow("HSV", CV_WINDOW_AUTOSIZE); //create a window called "Control"
-  int iLowH = 40;
- int iHighH = 80;
 
-  int iLowS = 6; 
- int iHighS = 250;
-
-  int iLowV = 6;
- int iHighV = 250;
+int gb=0;
+int gr=0;
 
   //Create trackbars in "Control" window
- createTrackbar("LowH", "Control", &iLowH, 179); //Hue (0 - 179)
- createTrackbar("HighH", "Control", &iHighH, 179);
+ createTrackbar("G/B minimum*100", "Control", &gb, 300); //Hue (0 - 179)
 
-  createTrackbar("LowS", "Control", &iLowS, 255); //Saturation (0 - 255)
- createTrackbar("HighS", "Control", &iHighS, 255);
+  createTrackbar("G/R minimum*100", "Control", &gr, 300); //Saturation (0 - 255)
 
-  createTrackbar("LowV", "Control", &iLowV, 255);//Value (0 - 255)
- createTrackbar("HighV", "Control", &iHighV, 255);
 
   int iLastX = -1; 
  int iLastY = -1;
@@ -46,8 +53,6 @@ using namespace std;
  cap.read(imgTmp); 
 
   //Create a black image with the size as the camera output
- Mat imgLines = Mat::zeros( imgTmp.size(), CV_8UC3 );;
- 
 
     while (true)
     {
@@ -63,22 +68,19 @@ using namespace std;
              break;
         }
 
-    Mat imgHSV;
-
-   cvtColor(imgOriginal, imgHSV, COLOR_BGR2HSV); //Convert the captured frame from BGR to HSV
  
-  Mat imgThresholded;
-
-   inRange(imgHSV, Scalar(iLowH, iLowS, iLowV), Scalar(iHighH, iHighS, iHighV), imgThresholded); //Threshold the image
-      
+   Mat imgThresholded;
+   imgOriginal.copyTo(imgThresholded);
+double dgb = ((double)gb)/100, dgr = ((double)gr)/100;
+     filterGreen(imgThresholded, dgb,dgr);
   //morphological opening (removes small objects from the foreground)
-  erode(imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) );
+/*  erode(imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) );
   dilate( imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) ); 
 
    //morphological closing (removes small holes from the foreground)
   dilate( imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) ); 
   erode(imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) );
-/*
+
    //Calculate the moments of the thresholded image
   Moments oMoments = moments(imgThresholded);
 
@@ -104,11 +106,9 @@ using namespace std;
   }*/
 
   // imshow("Thresholded Image", imgThresholded); //show the thresholded image
-  Mat imgnew;
-   bitwise_and(imgOriginal,imgOriginal,imgnew,imgThresholded);// + imgLines;
 
-  imshow("HSV", imgHSV); //show the original image
-  imshow("Original", imgnew); //show the original image
+  imshow("Filtered", imgThresholded); //show the original image
+  imshow("Original", imgOriginal); //show the original image
         if (waitKey(30) == 27) //wait for 'esc' key press for 30ms. If 'esc' key is pressed, break loop
        {
             cout << "esc key is pressed by user" << endl;
