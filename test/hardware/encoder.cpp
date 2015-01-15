@@ -19,8 +19,10 @@ struct encoder {
 	mraa::Gpio* B;
 };
 
+int counts;
+encoder *en = new encoder;
+
 Encoder::Encoder(int a_pin, int b_pin) {
-  encoder *en = new encoder;
 
   en->A = new mraa::Gpio(a_pin);
   en->A->dir(mraa::DIR_IN);
@@ -51,7 +53,6 @@ void encoderA_handler(void* args) {
   } else {
     counts--;
   }
-  std::cout << counts << std::endl;
 }
 
 //function that trigger when B changes
@@ -64,7 +65,6 @@ void encoderB_handler(void* args) {
   } else {
     counts--;
   }
-  std::cout << counts << std::endl;
 }
 
 //maybe delete
