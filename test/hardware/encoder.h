@@ -16,7 +16,6 @@ class Encoder {
  	void encoderB_handler(void* args);
 public:
 	Encoder(int a_pin, int b_pin);
-	~Encoder();
 	int getCounts(); //need params? Start, end, time, what?
 	void resetCounts();
 	int getPosition(); //????

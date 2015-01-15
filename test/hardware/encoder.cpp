@@ -20,7 +20,7 @@ struct Encoder::encoder {
 };
 
 int counts;
-encoder *en = new encoder;
+struct encoder *en = new encoder;
 
 Encoder::Encoder(int a_pin, int b_pin) {
   en->A = new mraa::Gpio(a_pin);
@@ -72,9 +72,4 @@ int Encoder::getPosition() {
   double position = 0;
 
   return position;
-}
-
-Encoder::~Encoder() {
-  en->A->isrExit();
-  en->B->isrExit();
 }
