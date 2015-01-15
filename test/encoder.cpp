@@ -47,7 +47,7 @@ void sig_handler(int signo)
   }
 }
 
-void encoder_handler(encoder* args) {
+void encoder_handler(void* args) {
   mraa::Gpio* A = (mraa::Gpio*)args->A;
   mraa::Gpio* B = (mraa::Gpio*)args->B;
 
@@ -82,7 +82,7 @@ int main() {
   /*mraa::Gpio A = mraa::Gpio(2);
   mraa::Gpio B = mraa::Gpio(3);*/
 
-  encoder& left_en;
+  encoder left_en;
 
   left_en.A = new mraa::Gpio(2);
   left_en.A->dir(mraa::DIR_IN);
