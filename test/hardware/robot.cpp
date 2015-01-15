@@ -47,9 +47,9 @@ struct timeval end;
 
 //PID coefficients
 //NEED TO BE TESTED
-int P = 0.001;
-int I = 0.01;
-int D = -0.01;
+double P = 0.001;
+double I = 0.01;
+double D = -0.01;
 
 void sig_handler(int signo) {
   if (signo == SIGINT) {
