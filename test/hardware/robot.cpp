@@ -111,7 +111,7 @@ void drive_straight(Motor& left, Motor& right, Gyro& gyro,
 
   float diff = desired - estimated;
   integral += diff*dT;
-  float derivative = 0; //gyro.get_angular_velocity();
+  float derivative = gyro.get_angular_velocity();
   float power = P*diff + I*integral + D*derivative;
 
   left.setSpeed(speed + power);
