@@ -150,6 +150,7 @@ int main() {
     //drive_straight(left, right, gyro, 10.0, gyro.get_angle(), 0);
     left.setSpeed(0.5);
     right.stop();
+    std::cout << "running" << std::endl;
     usleep(10000);
   }
 
