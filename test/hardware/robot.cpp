@@ -50,7 +50,7 @@ struct timeval end;
 //NEED TO BE TESTED
 double P = 0.01;
 double I = 0.0;
-double D = -0.002;
+double D = 0.15; //was 0.3
 
 void sig_handler(int signo) {
   if (signo == SIGINT) {
@@ -149,7 +149,7 @@ int main() {
     //current_ang = gyro.get_angle() - init_ang;
     //std::cout << current_ang << std::endl;
     //std::cout << gyro.get_angle() << std::endl;
-    drive_straight(left, right, gyro, 10.0, gyro.get_angle(), 0);
+    drive_straight(left, right, gyro, 10.0, gyro.get_angle(), 0.1);
     usleep(10000);
   }
 
