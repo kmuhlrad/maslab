@@ -81,7 +81,7 @@ int main() {
     last_a = A.read();
     last_b = B.read();
 
-    usleep(20);
+    usleep(80);
     /*speed += 0.1;
     if (speed > 1.0) {
       speed = -1.0;
