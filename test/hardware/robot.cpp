@@ -47,7 +47,7 @@ struct timeval end;
 
 //PID coefficients
 //NEED TO BE TESTED
-int P = 0.01;
+int P = 0.001;
 int I = 0.01;
 int D = -0.01;
 
@@ -117,6 +117,8 @@ void drive_straight(Motor& left, Motor& right, Gyro& gyro,
   left.setSpeed(speed + power);
   right.setSpeed(-(speed - power));
 
+  std::cout << power << std::endl;
+  
   gettimeofday(&start, NULL);
 }
 
@@ -144,7 +146,7 @@ int main() {
     //speed should depend on external input from distance sensors or camera
     //current_ang = gyro.get_angle() - init_ang;
     //std::cout << current_ang << std::endl;
-    std::cout << gyro.get_angle() << std::endl;
+    //std::cout << gyro.get_angle() << std::endl;
     drive_straight(left, right, gyro, 10.0, gyro.get_angle(), 0);
     usleep(10000);
   }
