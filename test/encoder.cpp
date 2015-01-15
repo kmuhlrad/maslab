@@ -116,5 +116,5 @@ int main() {
     }*/
   }
 
-  left_en->A->isrExit()
+  left_en->A->isrExit();
 }
