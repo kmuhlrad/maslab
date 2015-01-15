@@ -34,8 +34,7 @@ void Motor::setSpeed(double speed) {
   if (output > 1) {
     output = 1;
   }
-  pwm.write(0.0);
-  std::cout << "set Speed" << std::endl;
+  pwm.write(output);
 }
 
 void Motor::stop() {
