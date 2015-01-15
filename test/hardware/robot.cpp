@@ -128,7 +128,7 @@ int main() {
   Motor left(9, 8);
   Motor right(5, 4);
 
-  Gyro gyro();
+  Gyro gyro;
 
   gettimeofday(&start, NULL);
   //float init_ang = gyro.get_angle();
