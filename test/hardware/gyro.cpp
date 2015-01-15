@@ -130,7 +130,7 @@ float Gyro::get_angular_velocity() {
     printf("No recv\n"); //no data
     return 10000.0;
   }*/
-    return 0;
+    return 0.0;
 }
 
 Gyro::~Gyro() {
