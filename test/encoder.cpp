@@ -65,12 +65,22 @@ int main() {
   mraa::Gpio B = mraa::Gpio(3);
 
   double speed = -1.0;
+  int last_a = A.read();
+  int last_b = B.read();
+  int counts = 0;
+
   while (running) {
     //std::cout << "Speed: " << "0.5" << std::endl;
-    setMotorSpeed(right_motor, right_dir, -0.5);
-    setMotorSpeed(left_motor, left_dir, 0.5);
-    std::cout << "Encoder A: " << A.read() << "\t" << "Encoder B: " << B.read() << std::endl;
-
+    /*setMotorSpeed(right_motor, right_dir, -0.1);
+    setMotorSpeed(left_motor, left_dir, 0.1);*/
+    if (A.read() != last_a || B.read() != last_b) {
+      counts++;
+    }
+    std::cout << "counts: " << counts << std::endl;
+    //std::cout << "Encoder A: " << A.read() << "\t" << "Encoder B: " << B.read() << std::endl;
+    last_a = A.read();
+    last_b = B.read();
+    
     usleep(2000);
     /*speed += 0.1;
     if (speed > 1.0) {
