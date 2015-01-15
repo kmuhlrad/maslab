@@ -71,7 +71,7 @@ int main() {
     setMotorSpeed(left_motor, left_dir, 0.5);
     std::cout << "Encoder A: " << A.read() << "\t" << "Encoder B: " << B.read() << std::endl;
 
-    usleep(2500);
+    usleep(2000);
     /*speed += 0.1;
     if (speed > 1.0) {
       speed = -1.0;
