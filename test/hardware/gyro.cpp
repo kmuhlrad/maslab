@@ -92,7 +92,7 @@ float Gyro::get_angle() {
 
 float Gyro::get_angular_velocity() {
   chipSelect->write(0);
-  //char* recv = spi->write(writeBuf, 4);
+  char* recv = spi->write(writeBuf, 4);
   chipSelect->write(1);
   //printf("%x %x %x %x\r\n", recv[0], recv[1], recv[2], recv[3]);
 
