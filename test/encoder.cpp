@@ -61,8 +61,8 @@ int main() {
   right_dir.write(0);
 
   //encoder input pins
-  mraa::Gpio A = mraa::Gpio(12);
-  mraa::Gpio B = mraa::Gpio(2);
+  mraa::Gpio A = mraa::Gpio(2);
+  mraa::Gpio B = mraa::Gpio(3);
 
   double speed = -1.0;
   while (running) {
