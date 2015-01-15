@@ -60,7 +60,7 @@ int main() {
   //testing code
   while(running) {
     setMotorSpeed(left_motor, left_dir, 0.2);
-    setMotorSpeed(right_motor, right_dir, -0.2);
+    setMotorSpeed(right_motor, right_dir, 0.2);
   }
 }
 
