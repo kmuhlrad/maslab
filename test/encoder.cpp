@@ -51,7 +51,7 @@ void encoder_handler(void* args) {
   mraa::Gpio* A = (*(struct encoder*)args).A;
   mraa::Gpio* B = (*(struct encoder*)args).B;
   //CHECK DIRECTION
-  if (A->read() == B->read()) {
+  if (A->read() != B->read()) {
     counts++;
   } else {
     counts--;
