@@ -118,7 +118,7 @@ void drive_straight(Motor& left, Motor& right, Gyro& gyro,
   right.setSpeed(-(speed - power));
 
   std::cout << power << std::endl;
-  
+
   gettimeofday(&start, NULL);
 }
 
@@ -147,7 +147,9 @@ int main() {
     //current_ang = gyro.get_angle() - init_ang;
     //std::cout << current_ang << std::endl;
     //std::cout << gyro.get_angle() << std::endl;
-    drive_straight(left, right, gyro, 10.0, gyro.get_angle(), 0);
+    //drive_straight(left, right, gyro, 10.0, gyro.get_angle(), 0);
+    left.setSpeed(0.5);
+    right.setSpeed(-0.5);
     usleep(10000);
   }
 
