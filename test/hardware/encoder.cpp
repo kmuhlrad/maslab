@@ -14,7 +14,7 @@
 #include "encoder.h"
 #include "mraa.hpp"
 
-struct encoder {
+struct Encoder::encoder {
 	mraa::Gpio* A;
 	mraa::Gpio* B;
 };
