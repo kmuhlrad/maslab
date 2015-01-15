@@ -50,12 +50,14 @@ void sig_handler(int signo)
 void encoder_handler(void* args) {
   mraa::Gpio* A = (*(struct encoder*)args).A;
   mraa::Gpio* B = (*(struct encoder*)args).B;
-
+  printf("enhandle");
   //CHECK DIRECTION
   if (A->read() == B->read()) {
     counts++;
+    printf("plus");
   } else {
     counts--;
+    printf("minus");
   }
 }
 
