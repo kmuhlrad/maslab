@@ -47,7 +47,7 @@ struct timeval start;
 struct timeval end;
 
 //PID coefficients
-//NEED TO BE TESTED
+//work pretty well, maybe ajdust if necessary
 double P = 0.01;
 double I = 0.0;
 double D = 0.15; //was 0.3

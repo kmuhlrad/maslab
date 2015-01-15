@@ -16,6 +16,12 @@
 #include "mraa.hpp"
 
 int running = 1;
+int counts = 0;
+
+struct encoder {
+  mraa::Gpio* A;
+  mraa::Gpio* B;
+};
 
 void setMotorSpeed(mraa::Pwm& pwm, mraa::Gpio& dir, double speed) {
   assert(-1.0 <= speed && speed <= 1.0);
@@ -41,6 +47,18 @@ void sig_handler(int signo)
   }
 }
 
+void encoder_handler(void* args) {
+  mraa::Gpio* A = (mraa::Gpio*)args.A;
+  mraa::Gpio* B = (mraa::Gpio*)args.B;
+
+  //CHECK DIRECTION
+  if (A.read() == B.read()) {
+    counts++;
+  } else {
+    counts--;
+  }
+}
+
 int main() {
   // Handle Ctrl-C quit
   signal(SIGINT, sig_handler);
@@ -61,25 +79,32 @@ int main() {
   right_dir.write(0);
 
   //encoder input pins
-  mraa::Gpio A = mraa::Gpio(2);
-  mraa::Gpio B = mraa::Gpio(3);
+  /*mraa::Gpio A = mraa::Gpio(2);
+  mraa::Gpio B = mraa::Gpio(3);*/
 
-  double speed = -1.0;
-  int last_a = A.read();
-  int last_b = B.read();
-  int counts = 0;
+  encoder left_en;
+
+  left_en.A = new mraa::Gpio(2);
+  left_en.A->dir(mraa::DIR_IN);
+  left_en.A->isr(mraa::EDGE_BOTH, encoder_handler, left_en);
+
+  left_en.B = new mraa::Gpio(3);
+  left_en.B->dir(mraa::DIR_IN);
+  left_en.B->isr(mraa::EDGE_BOTH, encoder_handler, left_en);
+
+  // Set the echo handlers to receive rising or falling edges of the
+  // echo pulse
+
+  //double speed = -1.0;
+  /*int last_a = left_en.A->read();
+  int last_b = left_en.B->read();*/
 
   while (running) {
     //std::cout << "Speed: " << "0.5" << std::endl;
     /*setMotorSpeed(right_motor, right_dir, -0.1);
     setMotorSpeed(left_motor, left_dir, 0.1);*/
-    if (A.read() != last_a || B.read() != last_b) {
-      counts++;
-    }
     std::cout << "counts: " << counts << std::endl;
     //std::cout << "Encoder A: " << A.read() << "\t" << "Encoder B: " << B.read() << std::endl;
-    last_a = A.read();
-    last_b = B.read();
 
     usleep(80);
     /*speed += 0.1;
