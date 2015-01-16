@@ -17,12 +17,12 @@
 
 int counts;
 
-struct encoder {
-  mraa::Gpio* A;
-  mraa::Gpio* B;
-};
-
 Encoder::Encoder(int a_pin, int b_pin) {
+  struct encoder {
+    mraa::Gpio* A;
+    mraa::Gpio* B;
+  };
+  
   Encoder::encoder.A = new mraa::Gpio(a_pin);
   Encoder::encoder.A->dir(mraa::DIR_IN);
   Encoder::encoder.A->isr(mraa::EDGE_BOTH, encoderA_handler, en);
