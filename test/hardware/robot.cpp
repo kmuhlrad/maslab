@@ -119,8 +119,6 @@ void drive_straight(Motor& left, Motor& right, Gyro& gyro,
   left.setSpeed(speed + power);
   right.setSpeed(-(speed - power));
 
-  std::cout << power << std::endl;
-
   gettimeofday(&start, NULL);
   last_diff = diff;
 }
@@ -135,8 +133,8 @@ int main() {
 
   Gyro gyro;
 
-  Encoderpins *left_ep = new Encoderpins(2, 3);
-  Encoder left_en(left_ep);
+  //Encoderpins *left_ep = new Encoderpins(2, 3);
+  //Encoder left_en(left_ep);
 
   gettimeofday(&start, NULL);
   //float init_ang = gyro.get_angle();
@@ -150,7 +148,7 @@ int main() {
     //desired should come from external input: cube location or something
     //speed should depend on external input from distance sensors or camera
     //std::cout << left_en.getCounts() << std::endl;
-    //drive_straight(left, right, gyro, 10.0, gyro.get_angle(), 0.1);
+    drive_straight(left, right, gyro, 10.0, gyro.get_angle(), 0.1);
     usleep(10000);
   }
 
