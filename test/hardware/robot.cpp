@@ -37,6 +37,7 @@
 #include "motor.h"
 #include "ultrasonic.h"
 #include "ir.h"
+#include "encoderpins.h"
 
 int running = 1;
 
@@ -134,7 +135,8 @@ int main() {
 
   Gyro gyro;
 
-  Encoder left_en(2, 3);
+  encoderpins *left_ep = new encoderpins(2, 3)
+  Encoder left_en(*left_ep);
 
   gettimeofday(&start, NULL);
   //float init_ang = gyro.get_angle();
