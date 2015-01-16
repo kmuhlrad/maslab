@@ -47,7 +47,7 @@ Mat detectShapes(Mat& src2){
        approxPolyDP(contours[i], approxit, area*0.05 , true);
 //       printf("--------------------------------\nNumber of vectors in contour and aprox #%d: %d, %d \n---------------------------------",i,contours[i].size(),approxit.size());
        Scalar color = Scalar( rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
-       if(approxit.size() == 6 ||true) {hexagons.push_back(approxit);drawContours( drawing, hexagons, cuenta, color, 2),cuenta++;}
+       if(approxit.size() <= 6) {hexagons.push_back(approxit);drawContours( drawing, hexagons, cuenta, color, 2),cuenta++;}
      }
   printf("Number of contours, hexagons: %d, %d\n\n\n", contours.size(),cuenta);
 
