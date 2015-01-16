@@ -149,7 +149,7 @@ int main() {
     //NEED TO CHECK DESIRED AND ESTIMATED BASED ON GYRO OUTPUT
     //desired should come from external input: cube location or something
     //speed should depend on external input from distance sensors or camera
-    std::cout << left_en.getCounts() << std::endl;
+    //std::cout << left_en.getCounts() << std::endl;
     //drive_straight(left, right, gyro, 10.0, gyro.get_angle(), 0.1);
     usleep(10000);
   }
