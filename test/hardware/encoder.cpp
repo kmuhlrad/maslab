@@ -36,7 +36,7 @@ void Encoder::resetCounts() {
 }
 
 //function that triggers when A changes
-void Encoder::encoderA_handler(void* args) {
+void Encoder::encoderA_handler(void(* Encoder::args)) {
   mraa::Gpio* A = ((Encoderpins*)args)->A;
   mraa::Gpio* B = ((Encoderpins*)args)->B;
   //CHECK DIRECTION
