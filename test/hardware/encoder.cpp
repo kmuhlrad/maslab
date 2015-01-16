@@ -12,7 +12,7 @@
 #include <cmath>
 
 #include "encoder.h"
-#include "encoderpins.h"
+#include "encoderpin.h"
 #include "mraa.hpp"
 
 struct Encoder::encoder {
