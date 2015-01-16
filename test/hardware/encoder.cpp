@@ -23,13 +23,13 @@ struct encoder {
 } *en;
 
 Encoder::Encoder(int a_pin, int b_pin) {
-  en->A = new mraa::Gpio(a_pin);
-  en->A->dir(mraa::DIR_IN);
-  en->A->isr(mraa::EDGE_BOTH, encoderA_handler, en);
+  Encoder::en->A = new mraa::Gpio(a_pin);
+  Encoder::en->A->dir(mraa::DIR_IN);
+  Encoder::en->A->isr(mraa::EDGE_BOTH, encoderA_handler, en);
 
-  en->B = new mraa::Gpio(b_pin);
-  en->B->dir(mraa::DIR_IN);
-  en->B->isr(mraa::EDGE_BOTH, encoderB_handler, en);
+  Encoder::en->B = new mraa::Gpio(b_pin);
+  Encoder::en->B->dir(mraa::DIR_IN);
+  Encoder::en->B->isr(mraa::EDGE_BOTH, encoderB_handler, en);
 
   counts = 0;
 }
