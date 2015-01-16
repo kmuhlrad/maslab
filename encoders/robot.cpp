@@ -67,7 +67,7 @@ int main() {
   float total = 0;
   while (running) {
     usleep(10000);
-    std::cout << left_en.getCounts() << std::endl;
+    std::cout << left_en->getCounts() << std::endl;
   }
 
   //~Gyro();
