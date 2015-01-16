@@ -17,7 +17,7 @@
 
 int counts;
 
-Encoder::Encoder((encoderpins)* ep) {
+Encoder::Encoder(encoderpins *ep) {
   ep->A->dir(mraa::DIR_IN);
   ep->A->isr(mraa::EDGE_BOTH, encoderA_handler, ep);
 
