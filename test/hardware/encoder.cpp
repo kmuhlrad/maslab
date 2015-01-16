@@ -19,10 +19,10 @@ int counts;
 
 Encoder::Encoder(Encoderpins *ep) {
   ep->A->dir(mraa::DIR_IN);
-  ep->A->isr(mraa::EDGE_BOTH, encoderA_handler, *ep);
+  ep->A->isr(mraa::EDGE_BOTH, Encoder::encoderA_handler, *ep);
 
   ep->B->dir(mraa::DIR_IN);
-  ep->B->isr(mraa::EDGE_BOTH, encoderB_handler, *ep);
+  ep->B->isr(mraa::EDGE_BOTH, Encoder::encoderB_handler, *ep);
 
   counts = 0;
 }
@@ -36,7 +36,7 @@ void Encoder::resetCounts() {
 }
 
 //function that triggers when A changes
-void Encoder::encoderA_handler(void(* Encoder::args)) {
+void Encoder::encoderA_handler(void* args) {
   mraa::Gpio* A = ((Encoderpins*)args)->A;
   mraa::Gpio* B = ((Encoderpins*)args)->B;
   //CHECK DIRECTION
