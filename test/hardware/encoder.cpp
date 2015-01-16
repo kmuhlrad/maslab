@@ -12,26 +12,17 @@
 #include <cmath>
 
 #include "encoder.h"
-//#include "encoderpin.h"
+#include "encoderpins.h"
 #include "mraa.hpp"
 
 int counts;
 
-Encoder::Encoder(int a_pin, int b_pin) {
-  struct encoder {
-    mraa::Gpio* A;
-    mraa::Gpio* B;
-  };
+Encoder::Encoder(encoderpins* ep) {
+  ep->A->dir(mraa::DIR_IN);
+  ep->A->isr(mraa::EDGE_BOTH, encoderA_handler, ep);
 
-  encoder *en = new encoder;
-
-  en->A = new mraa::Gpio(a_pin);
-  en->A->dir(mraa::DIR_IN);
-  en->A->isr(mraa::EDGE_BOTH, encoderA_handler, en);
-
-  en->B = new mraa::Gpio(b_pin);
-  en->B->dir(mraa::DIR_IN);
-  en->B->isr(mraa::EDGE_BOTH, encoderB_handler, en);
+  ep->B->dir(mraa::DIR_IN);
+  ep->B->isr(mraa::EDGE_BOTH, encoderB_handler, ep);
 
   counts = 0;
 }

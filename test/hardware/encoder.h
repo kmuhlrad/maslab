@@ -8,14 +8,13 @@ class Encoder {
 	/*mraa::Gpio A;
  	mraa::Gpio B;*/
 
- 	//struct encoder;
  	//total number of encoder counts
  	int counts;
 
  	void encoderA_handler(void* args);
  	void encoderB_handler(void* args);
 public:
-	Encoder(int a_pin, int b_pin);
+	Encoder(encoderpins* ep);
 	int getCounts(); //need params? Start, end, time, what?
 	void resetCounts();
 	int getPosition(); //????
