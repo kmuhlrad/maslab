@@ -16,7 +16,7 @@
 #include "mraa.hpp"
 
 int counts;
-struct encoderpin *en = new encoderpin;
+encoderpin *en = new encoderpin;
 
 Encoder::Encoder(int a_pin, int b_pin) {
   en->A = new mraa::Gpio(a_pin);
