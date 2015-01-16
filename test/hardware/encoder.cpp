@@ -12,11 +12,15 @@
 #include <cmath>
 
 #include "encoder.h"
-#include "encoderpin.h"
+//#include "encoderpin.h"
 #include "mraa.hpp"
 
 int counts;
-encoderpin *en = new encoderpin;
+
+struct encoder {
+  mraa::Gpio* A;
+  mraa::Gpio* B;
+} *en;
 
 Encoder::Encoder(int a_pin, int b_pin) {
   en->A = new mraa::Gpio(a_pin);

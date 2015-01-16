@@ -8,6 +8,7 @@ class Encoder {
 	/*mraa::Gpio A;
  	mraa::Gpio B;*/
 
+ 	struct encoder;
  	//total number of encoder counts
  	int counts;
 
