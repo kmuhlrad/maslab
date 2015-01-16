@@ -29,9 +29,9 @@ Encoder::Encoder(int a_pin, int b_pin) {
   en->A->dir(mraa::DIR_IN);
   en->A->isr(mraa::EDGE_BOTH, encoderA_handler, en);
 
-  en.B = new mraa::Gpio(b_pin);
-  en.B->dir(mraa::DIR_IN);
-  en.B->isr(mraa::EDGE_BOTH, encoderB_handler, en);
+  en->B = new mraa::Gpio(b_pin);
+  en->B->dir(mraa::DIR_IN);
+  en->B->isr(mraa::EDGE_BOTH, encoderB_handler, en);
 
   counts = 0;
 }
