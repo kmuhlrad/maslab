@@ -59,9 +59,9 @@ int main() {
   //Handle Ctrl-C quit
   signal(SIGINT, sig_handler);
 
-  Encoder left_en = new Encoder(2, 3);
-  left_en.A.isr(mraa::EDGE_BOTH, A_handler, left_en);
-  left_en.B.isr(mraa::EDGE_BOTH, B_handler, left_en);
+  Encoder *left_en = new Encoder(2, 3);
+  left_en->A.isr(mraa::EDGE_BOTH, A_handler, left_en);
+  left_en->B.isr(mraa::EDGE_BOTH, B_handler, left_en);
 
 
   float total = 0;
