@@ -20,16 +20,16 @@ int counts;
 struct encoder {
   mraa::Gpio* A;
   mraa::Gpio* B;
-} *en;
+};
 
 Encoder::Encoder(int a_pin, int b_pin) {
-  Encoder::en->A = new mraa::Gpio(a_pin);
-  Encoder::en->A->dir(mraa::DIR_IN);
-  Encoder::en->A->isr(mraa::EDGE_BOTH, encoderA_handler, en);
+  Encoder::encoder.A = new mraa::Gpio(a_pin);
+  Encoder::encoder.A->dir(mraa::DIR_IN);
+  Encoder::encoder.A->isr(mraa::EDGE_BOTH, encoderA_handler, en);
 
-  Encoder::en->B = new mraa::Gpio(b_pin);
-  Encoder::en->B->dir(mraa::DIR_IN);
-  Encoder::en->B->isr(mraa::EDGE_BOTH, encoderB_handler, en);
+  Encoder::encoder.B = new mraa::Gpio(b_pin);
+  Encoder::encoder.B->dir(mraa::DIR_IN);
+  Encoder::encoder.B->isr(mraa::EDGE_BOTH, encoderB_handler, en);
 
   counts = 0;
 }
