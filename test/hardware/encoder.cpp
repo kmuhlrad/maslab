@@ -15,11 +15,6 @@
 #include "encoderpin.h"
 #include "mraa.hpp"
 
-struct Encoder::encoder {
-	mraa::Gpio* A;
-	mraa::Gpio* B;
-};
-
 int counts;
 struct encoder *en = new encoder;
 
