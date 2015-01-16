@@ -12,17 +12,17 @@
 #include <cmath>
 
 #include "encoder.h"
-#include "encoderpins.h"
 #include "mraa.hpp"
 
 int counts;
 
-Encoder::Encoder(Encoderpins *ep) {
-  ep->A->dir(mraa::DIR_IN);
-  ep->A->isr(mraa::EDGE_BOTH, *(encoderA_handler), *ep);
+mraa::Gpio A;
+mraa::Gpio B;
 
-  ep->B->dir(mraa::DIR_IN);
-  ep->B->isr(mraa::EDGE_BOTH, *(encoderB_handler), *ep);
+Encoder::Encoder(int a_pin, int b_pin) : A(a_pin), B(b_pin) {
+  A.dir(mraa::DIR_IN);
+
+  B.dir(mraa::DIR_IN);
 
   counts = 0;
 }
@@ -36,11 +36,9 @@ void Encoder::resetCounts() {
 }
 
 //function that triggers when A changes
-void Encoder::encoderA_handler(void* args) {
-  mraa::Gpio* A = ((Encoderpins*)args)->A;
-  mraa::Gpio* B = ((Encoderpins*)args)->B;
+void Encoder::encoderA_handler() {
   //CHECK DIRECTION
-  if (A->read() != B->read()) {
+  if (A.read() != B.read()) {
     counts++;
   } else {
     counts--;
@@ -49,20 +47,10 @@ void Encoder::encoderA_handler(void* args) {
 
 //function that trigger when B changes
 void Encoder::encoderB_handler(void* args) {
-  mraa::Gpio* A = ((Encoderpins*)args)->A;
-  mraa::Gpio* B = ((Encoderpins*)args)->B;
   //CHECK DIRECTION
-  if (A->read() == B->read()) {
+  if (A.read() == B.read()) {
     counts++;
   } else {
     counts--;
   }
-}
-
-//maybe delete
-int Encoder::getPosition() {
-  //code goes here
-  double position = 0;
-
-  return position;
 }

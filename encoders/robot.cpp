@@ -46,12 +46,23 @@ void sig_handler(int signo) {
   }
 }
 
+void A_handler(void* args) {
+  Encoder *en = (Encoder*)args;
+  en->encoderA_handler();
+}
+
+void B_handler(void* args) {
+  Encoder *en = (Encoder*)args;
+  en->encoderA_handler();
+}
+
 int main() {
   //Handle Ctrl-C quit
   signal(SIGINT, sig_handler);
 
-  Encoderpins *left_ep = new Encoderpins(2, 3);
-  Encoder left_en(left_ep);
+  Encoder left_en = new Encoder(2, 3);
+  left_en.A.isr(mraa::EDGE_BOTH, A_handler, left_en);
+  left_en.B.isr(mraa::EDGE_BOTH, B_handler, left_en);
 
   gettimeofday(&start, NULL);
   //float init_ang = gyro.get_angle();
