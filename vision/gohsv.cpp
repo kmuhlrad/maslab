@@ -72,12 +72,12 @@ using namespace std;
    inRange(imgHSV, Scalar(iLowH, iLowS, iLowV), Scalar(iHighH, iHighS, iHighV), imgThresholded); //Threshold the image
       
   //morphological opening (removes small objects from the foreground)
-  erode(imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) );
-  dilate( imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) ); 
+  erode(imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(9, 9)) );
+  dilate( imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(9, 9)) ); 
 
    //morphological closing (removes small holes from the foreground)
-  dilate( imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) ); 
-  erode(imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) );
+  dilate( imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(9, 9)) ); 
+  erode(imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(9, 9)) );
 /*
    //Calculate the moments of the thresholded image
   Moments oMoments = moments(imgThresholded);

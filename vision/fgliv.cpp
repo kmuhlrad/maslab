@@ -73,6 +73,13 @@ int gr=0;
    imgOriginal.copyTo(imgThresholded);
 double dgb = ((double)gb)/100, dgr = ((double)gr)/100;
      filterGreen(imgThresholded, dgb,dgr);
+  erode(imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(9, 9)) );
+  dilate( imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(9, 9)) );
+
+   //morphological closing (removes small holes from the foreground)
+  dilate( imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(9, 9)) );
+  erode(imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(9, 9)) );
+
   //morphological opening (removes small objects from the foreground)
 /*  erode(imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) );
   dilate( imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)) ); 
