@@ -46,7 +46,7 @@ void Encoder::encoderA_handler() {
 }
 
 //function that trigger when B changes
-void Encoder::encoderB_handler(void* args) {
+void Encoder::encoderB_handler() {
   //CHECK DIRECTION
   if (A.read() == B.read()) {
     counts++;
