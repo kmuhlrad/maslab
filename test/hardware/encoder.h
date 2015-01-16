@@ -2,6 +2,7 @@
 #define ENCODER_H
 
 #include "mraa.hpp"
+#include "encoderpins.h"
 
 class Encoder {
 	//need to be pointers?
