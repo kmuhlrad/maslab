@@ -19,10 +19,10 @@ int counts;
 
 Encoder::Encoder(Encoderpins *ep) {
   ep->A->dir(mraa::DIR_IN);
-  ep->A->isr(mraa::EDGE_BOTH, encoderA_handler, ep);
+  ep->A->isr(mraa::EDGE_BOTH, encoderA_handler, *ep);
 
   ep->B->dir(mraa::DIR_IN);
-  ep->B->isr(mraa::EDGE_BOTH, encoderB_handler, ep);
+  ep->B->isr(mraa::EDGE_BOTH, encoderB_handler, *ep);
 
   counts = 0;
 }
