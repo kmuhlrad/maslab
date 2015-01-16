@@ -17,6 +17,7 @@
 //11 - Gyro MOSI
 //12 - Gyro MISO
 //13 - Gyro SCLK
+
 //A0 -
 //A1 - Med range IR A
 //A2 -
@@ -60,51 +61,21 @@ void sig_handler(int signo) {
   }
 }
 
-/*int main() {
-	// Handle Ctrl-C quit
-	signal(SIGINT, sig_handler);
+//handler for encoder pin A on the left motor
+void A_handler(void* args) {
+  Encoder *en = (Encoder*)args;
+  en->encoderA_handler();
+}
 
-	Motor left = Motor(9, 8);
-	Motor right = Motor(5, 4);
+//handler for encoder pin B on the left motor
+void B_handler(void* args) {
+  Encoder *en = (Encoder*)args;
+  en->encoderB_handler();
+}
 
-	/*mraa::Gpio sensor = mraa::Gpio(3);
-	sensor.dir(mraa::DIR_IN);// (put closing comment back!!!)
-
-	Gyro gyro;
-	IR medA = IR(1, 6149.816568, 4.468768853);
-
-  int dist = 0;
-	while(running) {
-    std::cout << "Distance: " << dist << " cm" << std::endl;
-    for (int i = 0; i < 15; i++) {
-      std::cout << medA.read() << std::endl;
-      sleep(2);
-    }
-    dist += 5;
-    std::cout << "\n" << std::endl;
-    sleep(2);
-	}
-
-  ~Gyro();
-}*/
-
-//COMMENT BACK IN AND COMMENT THE OTHER MAIN OUT TO TEST PID DRIVING
-
+//PID drive function
 void drive_straight(Motor& left, Motor& right, Gyro& gyro,
                     float desired, float estimated, float speed) {
-  //assert(-1.0 <= speed && speed <= 1.0);
-  
-  //set direction
-  //CHECK DIRECTIONS AND THAT THIS WORKS
-  /*if (speed < 0) {
-    left_dir.write(1);
-    right_dir.write(0);
-  }
-  else {
-    left_dir.write(0);
-    right_dir.write(1);
-  }*/
-
   gettimeofday(&end, NULL);
 
   int diffSec = end.tv_sec - start.tv_sec;
@@ -132,23 +103,21 @@ int main() {
   Motor right(5, 4);
 
   Gyro gyro;
+  //IR medA = IR(1, 6149.816568, 4.468768853);
 
-  //Encoderpins *left_ep = new Encoderpins(2, 3);
-  //Encoder left_en(left_ep);
+  Encoder *left_en = new Encoder(2, 3);
+  left_en->A.isr(mraa::EDGE_BOTH, A_handler, left_en);
+  left_en->B.isr(mraa::EDGE_BOTH, B_handler, left_en);
 
   gettimeofday(&start, NULL);
-  //float init_ang = gyro.get_angle();
-  //init_ang = gyro.get_angle();
-  float current_ang = 0;
-  int init = 0;
 
-  float total = 0;
   while (running) {
     //NEED TO CHECK DESIRED AND ESTIMATED BASED ON GYRO OUTPUT
     //desired should come from external input: cube location or something
     //speed should depend on external input from distance sensors or camera
     //std::cout << left_en.getCounts() << std::endl;
     drive_straight(left, right, gyro, 10.0, gyro.get_angle(), 0.1);
+    std::cout << left_en->getCounts() << std::endl;
     usleep(10000);
   }
 
