@@ -16,9 +16,6 @@
 
 int counts;
 
-mraa::Gpio A;
-mraa::Gpio B;
-
 Encoder::Encoder(int a_pin, int b_pin) : A(a_pin), B(b_pin) {
   A.dir(mraa::DIR_IN);
 
