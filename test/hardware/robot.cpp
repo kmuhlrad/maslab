@@ -135,7 +135,7 @@ int main() {
 
   Gyro gyro;
 
-  Encoderpins *left_ep = new encoderpins(2, 3);
+  Encoderpins *left_ep = new Encoderpins(2, 3);
   Encoder left_en(*left_ep);
 
   gettimeofday(&start, NULL);

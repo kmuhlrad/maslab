@@ -37,8 +37,8 @@ void Encoder::resetCounts() {
 
 //function that triggers when A changes
 void Encoder::encoderA_handler(void* args) {
-  mraa::Gpio* A = (*(Encoder*)args).A;
-  mraa::Gpio* B = (*(Encoder*)args).B;
+  mraa::Gpio* A = (*(Encoderpins*)args).A;
+  mraa::Gpio* B = (*(Encoderpins*)args).B;
   //CHECK DIRECTION
   if (A->read() != B->read()) {
     counts++;
@@ -49,8 +49,8 @@ void Encoder::encoderA_handler(void* args) {
 
 //function that trigger when B changes
 void Encoder::encoderB_handler(void* args) {
-  mraa::Gpio* A = (*(Encoder*)args).A;
-  mraa::Gpio* B = (*(Encoder*)args).B;
+  mraa::Gpio* A = (*(Encoderpins*)args).A;
+  mraa::Gpio* B = (*(Encoderpins*)args).B;
   //CHECK DIRECTION
   if (A->read() == B->read()) {
     counts++;
