@@ -50,9 +50,9 @@ struct timeval end;
 
 //PID coefficients
 //work pretty well, maybe ajdust if necessary
-double P = 0.01;
+double P = 0.05;
 double I = 0.0;
-double D = 0.15; //was 0.3
+double D = 0.2; //was 0.3
 
 void sig_handler(int signo) {
   if (signo == SIGINT) {
@@ -118,7 +118,7 @@ int main() {
     //desired should come from external input: cube location or something
     //speed should depend on external input from distance sensors or camera
     //std::cout << left_en.getCounts() << std::endl;
-    drive_straight(left, right, gyro, 10.0, gyro.get_angle(), 0.1);
+    drive_straight(left, right, gyro, 0.0, gyro.get_angle(), -0.2);
     //std::cout << left_en->getCounts() << std::endl;
     usleep(10000);
   }
