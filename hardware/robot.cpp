@@ -110,7 +110,7 @@ int main() {
   left_en->B.isr(mraa::EDGE_BOTH, B_handler, left_en);*/
 
   gettimeofday(&start, NULL);
-g
+
   while (running) {
     //NEED TO CHECK DESIRED AND ESTIMATED BASED ON GYRO OUTPUT
     //desired should come from external input: cube location or something
