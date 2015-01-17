@@ -2,7 +2,6 @@
 #define ENCODER_H
 
 #include "mraa.hpp"
-#include "encoderpins.h"
 
 class Encoder {
 	//total number of encoder counts
