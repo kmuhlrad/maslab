@@ -33,10 +33,11 @@
 
 #include "mraa.hpp"
 #include "encoder.h"
+#include "motor.h"
 
 int running = 1;
 
-int counts = 0;
+//int counts = 0;
 
 void sig_handler(int signo) {
   if (signo == SIGINT) {
@@ -63,11 +64,13 @@ int main() {
   left_en->A.isr(mraa::EDGE_BOTH, A_handler, left_en);
   left_en->B.isr(mraa::EDGE_BOTH, B_handler, left_en);
 
+  Motor left(5, 4); 
 
-  float total = 0;
   while (running) {
     usleep(10000);
-    std::cout << left_en->getCounts() << std::endl;
+    while (left_en->getCounts() < 100) {
+      motor.setSpeed(0.1)
+    }
   }
 
   //~Gyro();
