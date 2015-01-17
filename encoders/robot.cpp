@@ -67,8 +67,9 @@ int main() {
   Motor motor(5, 4); 
 
   while (running) {
+    int counts = left_en->getCounts();
     usleep(10000);
-    while (left_en->getCounts() < 100) {
+    while (counts < 100) {
       motor.setSpeed(0.1);
     }
   }
