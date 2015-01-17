@@ -64,17 +64,17 @@ int main() {
   left_en->A.isr(mraa::EDGE_BOTH, A_handler, left_en);
   left_en->B.isr(mraa::EDGE_BOTH, B_handler, left_en);
 
-  //Motor motor(5, 4); 
+  Motor motor(5, 4); 
 
   while (running) {
-    //int counts = left_en->getCounts();
+    int counts = left_en->getCounts();
     usleep(10000);
-    std::cout << left_en->getCounts() << std::endl;
-    //while (counts < 100) {
-      //motor.setSpeed(0.1);
-      //counts = left_en->getCounts();
-    //}
-    //motor.stop();
+    while (counts < 100) {
+      motor.setSpeed(0.1);
+      std::cout << counts << std::endl;
+      counts = left_en->getCounts();
+    }
+    motor.stop();
   }
 
   //~Gyro();
