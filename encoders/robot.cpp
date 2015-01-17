@@ -64,9 +64,11 @@ int main() {
   left_en->A.isr(mraa::EDGE_BOTH, A_handler, left_en);
   left_en->B.isr(mraa::EDGE_BOTH, B_handler, left_en);
 
-  Motor motor(5, 4); 
+  Motor motor(9, 8); 
 
   while (running) {
+    signal(SIGINT, sig_handler);
+
     int counts = left_en->getCounts();
     usleep(10000);
     while (counts < 100) {
