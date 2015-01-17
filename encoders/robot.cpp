@@ -68,10 +68,10 @@ int main() {
 
   while (running) {
     signal(SIGINT, sig_handler);
-
+    left_en->resetCounts();
     int counts = left_en->getCounts();
     usleep(10000);
-    while (counts < 100) {
+    while (counts < 1000) {
       motor.setSpeed(0.1);
       std::cout << counts << std::endl;
       counts = left_en->getCounts();
