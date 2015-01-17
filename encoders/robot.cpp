@@ -37,7 +37,7 @@
 
 int running = 1;
 
-//int counts = 0;
+int counts = 0;
 
 void sig_handler(int signo) {
   if (signo == SIGINT) {
