@@ -64,7 +64,7 @@ int main() {
   left_en->A.isr(mraa::EDGE_BOTH, A_handler, left_en);
   left_en->B.isr(mraa::EDGE_BOTH, B_handler, left_en);
   left_en->resetCounts();
-  
+
   Motor motor(9, 8); 
 
   while (running) {
@@ -77,6 +77,8 @@ int main() {
       counts = left_en->getCounts();
     }
     motor.stop();
+
+    std::cout << left_en->getCounts() << std::endl;
   }
 
   //~Gyro();
