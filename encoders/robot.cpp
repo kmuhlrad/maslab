@@ -63,12 +63,12 @@ int main() {
   Encoder *left_en = new Encoder(2, 3);
   left_en->A.isr(mraa::EDGE_BOTH, A_handler, left_en);
   left_en->B.isr(mraa::EDGE_BOTH, B_handler, left_en);
-
+  left_en->resetCounts();
+  
   Motor motor(9, 8); 
 
   while (running) {
     signal(SIGINT, sig_handler);
-    left_en->resetCounts();
     int counts = left_en->getCounts();
     usleep(10000);
     while (counts < 1000) {
