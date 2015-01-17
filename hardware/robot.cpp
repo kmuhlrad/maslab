@@ -61,6 +61,7 @@ void sig_handler(int signo) {
   }
 }
 
+/*
 //handler for encoder pin A on the left motor
 void A_handler(void* args) {
   Encoder *en = (Encoder*)args;
@@ -72,6 +73,7 @@ void B_handler(void* args) {
   Encoder *en = (Encoder*)args;
   en->encoderB_handler();
 }
+*/
 
 //PID drive function
 void drive_straight(Motor& left, Motor& right, Gyro& gyro,
