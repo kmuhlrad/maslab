@@ -71,8 +71,8 @@ int main() {
     signal(SIGINT, sig_handler);
     int counts = left_en->getCounts();
     usleep(10000);
-    while (counts < 1000) {
-      motor.setSpeed(0.1);
+    while (counts < 500) {
+      motor.setSpeed(0.3);
       std::cout << counts << std::endl;
       counts = left_en->getCounts();
     }
