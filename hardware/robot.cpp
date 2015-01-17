@@ -36,9 +36,9 @@
 #include "encoder.h"
 #include "gyro.h"
 #include "motor.h"
-#include "ultrasonic.h"
-#include "ir.h"
-#include "servo.h"
+//#include "ultrasonic.h"
+//#include "ir.h"
+//#include "servo.h"
 
 int running = 1;
 
@@ -105,9 +105,9 @@ int main() {
   Gyro gyro;
   //IR medA = IR(1, 6149.816568, 4.468768853);
 
-  Encoder *left_en = new Encoder(2, 3);
+  /*Encoder *left_en = new Encoder(2, 3);
   left_en->A.isr(mraa::EDGE_BOTH, A_handler, left_en);
-  left_en->B.isr(mraa::EDGE_BOTH, B_handler, left_en);
+  left_en->B.isr(mraa::EDGE_BOTH, B_handler, left_en);*/
 
   gettimeofday(&start, NULL);
 g
@@ -117,7 +117,7 @@ g
     //speed should depend on external input from distance sensors or camera
     //std::cout << left_en.getCounts() << std::endl;
     drive_straight(left, right, gyro, 10.0, gyro.get_angle(), 0.1);
-    std::cout << left_en->getCounts() << std::endl;
+    //std::cout << left_en->getCounts() << std::endl;
     usleep(10000);
   }
 
