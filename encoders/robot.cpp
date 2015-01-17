@@ -71,7 +71,9 @@ int main() {
     usleep(10000);
     while (counts < 100) {
       motor.setSpeed(0.1);
+      counts = left_en->getCounts();
     }
+    motor.stop();
   }
 
   //~Gyro();
