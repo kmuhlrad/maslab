@@ -22,13 +22,15 @@ int main() {
   signal(SIGINT, sig_handler);
 
   // LED is connected to pin 13
-  mraa::Gpio servo = mraa::Pwm(3);
+  mraa::Pwm servo = mraa::Pwm(9);
   servo.enable(true);
 
   //testing code
   while (running) {
-    servo.write(0.3);
+    float speed = 0.3;
+    float output = 04 * speed + .04;
+    servo.write(output);
 
-    sleep(1);
+    usleep(20000);
   }
 }
