@@ -121,7 +121,7 @@ int main() {
     //speed should depend on external input from distance sensors or camera
     //std::cout << left_en.getCounts() << std::endl;
     //drive_straight(left, right, gyro, 0.0, gyro.get_angle(), -0.2);
-    servo.setDegree(90);
+    servo.write(0.5);
     usleep(10000);
   }
 
