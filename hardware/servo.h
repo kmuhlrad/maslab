@@ -8,6 +8,7 @@ class Servo {
 public:
 	Servo(int pwm_pin);
 	void setDegree(int deg); //maybe change to double?
+	void write(float value); //maybe change to double?
 	void stop(); //need this?
 };
 
