@@ -4,9 +4,9 @@
 #include "mraa.hpp"
 
 class Servo {
-	mraa::Pwm pin;
+	mraa::Pwm pwm;
 public:
-	Servo(int pin_num);
+	Servo(int pwm_pin);
 	void setDegree(int deg); //maybe change to double?
 	void stop(); //need this?
 };

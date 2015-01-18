@@ -12,6 +12,8 @@
 #include "motor.h"
 #include "mraa.hpp"
 
+mraa::Pwm pwm;
+
 Servo::Servo(int pwm_pin) : pwm(pwm_pin) {
   //pwm.write(0.0);
   pwm.enable(true);
