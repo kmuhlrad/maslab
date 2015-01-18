@@ -9,7 +9,7 @@
 #include <cmath>
 #include <iostream>
 
-#include "motor.h"
+#include "servo.h"
 #include "mraa.hpp"
 
 mraa::Pwm pwm;
