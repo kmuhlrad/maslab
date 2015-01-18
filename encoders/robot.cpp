@@ -70,10 +70,11 @@ int main() {
   int init = 0;
   while (running) {
     int counts = left_en->getCounts();
-    std::cout << counts  << std::endl;
+    std::cout << counts << std::endl;
     usleep(10000);
     while (counts < 1000) {
       motor.setSpeed(0.3);
+      counts = left_en->getCounts();
     }
     motor.stop();
 
