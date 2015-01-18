@@ -24,6 +24,10 @@ void Servo::setDegree(int deg) {
   pwm.write(value);
 }
 
+void Servo::write(float value) {
+  pwm.write(value);
+}
+
 //maybe delete??
 void Servo::stop() {
   pwm.write(pwm.read());
