@@ -12,7 +12,7 @@ public:
 	Motor(int pwm_pin, int dir_pin);
 
 	//methods
-	void setSpeed(double speed);
+	void setSpeed(double speed, double cap);
 	void stop();
 };
 

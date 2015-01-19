@@ -40,6 +40,7 @@
 
 
 //MAKE SURE THESE WORK
+#include "mraa.hpp"
 #include "sensordata.h"
 #include "../hardware/motor.h"
 #include "../hardware/gyro.h"
