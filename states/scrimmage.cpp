@@ -79,8 +79,8 @@ void drive_straight(Motor& left, Motor& right, Gyro& gyro,
   float derivative = diff - last_diff;
   float power = P*diff + I*integral + D*derivative;
 
-  left.setSpeed(speed + power);
-  right.setSpeed(-(speed - power));
+  left.setSpeed((speed + power), 0.3);
+  right.setSpeed(-(speed - power), 0.3);
 
   gettimeofday(&start, NULL);
   last_diff = diff;
