@@ -1,11 +1,6 @@
 #include "sensordata.h"
 #include "mraa.hpp"
 
-mraa::Gpio close_IR_F;
-mraa::Gpio close_IR_B;
-mraa::Gpio close_IR_L;
-mraa::Gpio close_IR_R;
-  
 SensorData::SensorData(int pinF, int pinB, int pinL, int pinR) :
   close_IR_F(pinF), close_IR_B(pinB), close_IR_L(pinL), close_IR_R(pinR) {
   
