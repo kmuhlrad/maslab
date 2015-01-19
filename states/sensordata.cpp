@@ -14,19 +14,18 @@ void SensorData::collectData() {
   //collect ALL the data!
 }
 
-int readF() {
-  f = close_IR_F.read();
-  return f;
+int SensorData::readF() {
+  return close_IR_F.read();
 }
 
-int readB() {
+int SensorData::readB() {
   return close_IR_B.read();
 }
 
-int readL() {
+int SensorData::readL() {
   return close_IR_L.read();
 }
 
-int readR() {
+int SensorData::readR() {
   return close_IR_R.read();
 }
