@@ -1,14 +1,9 @@
 // Compile with:
-// g++ motor.cpp -o motor -lmraa
-// Controls a motor through a range of speeds using the Cytron motor controller
-// Pwm on pin 9, and dir on pin 8.
-
-//new added comment
+// g++ stop.cpp -o stop -lmraa
 
 #include <cassert>
 #include <cmath>
 #include <csignal>
-#include <iostream>
 
 #include "mraa.hpp"
 

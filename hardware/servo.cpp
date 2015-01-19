@@ -1,14 +1,3 @@
-// Compile with:
-// g++ motor.cpp -o motor -lmraa
-// Controls a motor through a range of speeds using the Cytron motor controller
-// Pwm on pin 9, and dir on pin 8.
-
-//new added comment
-
-#include <cassert>
-#include <cmath>
-#include <iostream>
-
 #include "servo.h"
 #include "mraa.hpp"
 
@@ -22,6 +11,11 @@ void Servo::setDegree(int deg) {
   assert (deg <= 180); //ADJUST THIS 
   float value = deg / 180.0; //ADJUST THIS TOO
   pwm.write(value);
+
+  /*
+  MAPPING 0.09 - 0.5 to 0 - 1
+  y = 0.41x + 0.09
+  */
 }
 
 void Servo::write(float value) {
