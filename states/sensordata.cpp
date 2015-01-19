@@ -15,7 +15,8 @@ void SensorData::collectData() {
 }
 
 int readF() {
-  return close_IR_F.read();
+  f = close_IR_F.read();
+  return f;
 }
 
 int readB() {

@@ -105,19 +105,19 @@ int main() {
 
     if (irs.readF()) {
       //drive backward
-      drive_straight(left, right, gyro, 180, gyro.getAngle(), 0.2);
+      drive_straight(left, right, gyro, 180, gyro.get_angle(), 0.2);
     }
     if (irs.readB()) {
       //drive forward
-      drive_straight(left, right, gyro, 0, gyro.getAngle(), 0.2);
+      drive_straight(left, right, gyro, 0, gyro.get_angle(), 0.2);
     }
     if (irs.readL()) {
       //drive right
-      drive_straight(left, right, gyro, 90, gyro.getAngle(), 0.2);
+      drive_straight(left, right, gyro, 90, gyro.get_angle(), 0.2);
     }
     if (irs.readR()) {
       //drive left
-      drive_straight(left, right, gyro, 270, gyro.getAngle(), 0.2);
+      drive_straight(left, right, gyro, 270, gyro.get_angle(), 0.2);
     }
   }
 }
