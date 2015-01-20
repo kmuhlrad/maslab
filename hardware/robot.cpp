@@ -53,7 +53,7 @@ struct timeval end;
 //were 0.05, 0, 0.2
 double P = 0.1;
 double I = 0.0;
-double D = 0.2; //was 0.3
+double D = -0.2; //was 0.3
 
 void sig_handler(int signo) {
   if (signo == SIGINT) {
@@ -85,7 +85,7 @@ void drive_straight(Motor& left, Motor& right, Gyro& gyro,
   int diffUSec = end.tv_usec - start.tv_usec;
   float dT = (float)diffSec + 0.000001*diffUSec;
 
-  float diff = -desired + estimated;
+  float diff = desired - estimated; //was - of this
   integral += diff*dT;
   float derivative = diff - last_diff;
   float power = P*diff + I*integral + D*derivative;
