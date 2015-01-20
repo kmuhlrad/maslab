@@ -51,7 +51,7 @@ struct timeval end;
 //PID coefficients
 //work pretty well, maybe ajdust if necessary
 //were 0.05, 0, 0.2
-double P = 0.1;
+double P = 0.5;
 double I = 0.0;
 double D = -0.2; //was 0.3
 
@@ -115,7 +115,7 @@ void drive_straight(Motor& left, Motor& right, Gyro& gyro,
 
   left.setSpeed(power);
   right.setSpeed(-power);
-  
+
   std::cout << "power: " << power << std::endl;
 
   gettimeofday(&start, NULL);
