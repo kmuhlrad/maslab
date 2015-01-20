@@ -58,7 +58,7 @@ struct timeval gameclock;
 //work pretty well, maybe ajdust if necessary
 double P = 0.05;
 double I = 0.0;
-double D = 0.2; //was 0.3
+double D = 0.2;
 
 void sig_handler(int signo) {
   if (signo == SIGINT) {
@@ -81,8 +81,9 @@ void drive_straight(Motor& left, Motor& right, Gyro& gyro,
   float derivative = diff - last_diff;
   float power = P*diff + I*integral + D*derivative;
 
-  left.setSpeed((speed + power), 0.3);
-  right.setSpeed((speed - power), 0.3);
+  //CHECK DIRECTION
+  left.setSpeed(speed - power);
+  right.setSpeed(speed + power);
 
   gettimeofday(&start, NULL);
   last_diff = diff;
