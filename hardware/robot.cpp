@@ -51,7 +51,7 @@ struct timeval end;
 //PID coefficients
 //work pretty well, maybe ajdust if necessary
 //were 0.05, 0, 0.2
-double P = 0.5;
+double P = 0.05;
 double I = 0.0;
 double D = -0.2; //was 0.3
 
@@ -79,42 +79,20 @@ void B_handler(void* args) {
 //PID drive function
 void drive_straight(Motor& left, Motor& right, Gyro& gyro,
                     float desired, float estimated, float speed) {
-  /*gettimeofday(&end, NULL);
-
-  int diffSec = end.tv_sec - start.tv_sec;
-  int diffUSec = end.tv_usec - start.tv_usec;
-  float dT = (float)diffSec + 0.000001*diffUSec;
-
-  float diff = desired - estimated; //was - of this
-  integral += diff*dT;
-  float derivative = diff - last_diff;
-  float power = P*diff + I*integral + D*derivative;
-
-  left.setSpeed(speed + power);
-  right.setSpeed(speed - power);
-
-  std::cout << "power: " << power << std::endl;
-
-  gettimeofday(&start, NULL);
-  last_diff = diff;*/
-
-  //OLD WORKING CODE
   gettimeofday(&end, NULL);
 
   int diffSec = end.tv_sec - start.tv_sec;
   int diffUSec = end.tv_usec - start.tv_usec;
   float dT = (float)diffSec + 0.000001*diffUSec;
 
-  float diff = -desired + estimated;
+  float diff = -desired + estimated; //was - of this
   integral += diff*dT;
   float derivative = diff - last_diff;
   float power = P*diff + I*integral + D*derivative;
 
-  //left.setSpeed(speed + power);
-  //right.setSpeed(-(speed - power));
-
-  left.setSpeed(power);
-  right.setSpeed(-power);
+  //CHECK DIRECTION
+  left.setSpeed(speed + power);
+  right.setSpeed(speed - power);
 
   std::cout << "power: " << power << std::endl;
 
