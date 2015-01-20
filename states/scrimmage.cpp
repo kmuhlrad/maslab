@@ -109,16 +109,16 @@ int main() {
 
     //arbitrary unit right now... once sensor is mounted, make intelligent
     //maybe make it greater than some other distance for lift?
-    if (irs.getDistance() < 35) {
+    /*if (irs.getDistance() < 35) {
       //drive backwards
       drive_straight(left, right, gyro, 180, gyro.get_angle(), 0.2);
-    } else if (irs.readB()) {
+    } else*/ if (!irs.readB()) {
       //drive forward
       drive_straight(left, right, gyro, 0, gyro.get_angle(), 0.2);
-    } else if (irs.readR()) {
+    } else if (!irs.readR()) {
       //drive left
       drive_straight(left, right, gyro, 270, gyro.get_angle(), 0.2);
-    } else if (irs.readL()) {
+    } else if (!irs.readL()) {
       //drive right
       drive_straight(left, right, gyro, 90, gyro.get_angle(), 0.2);
     } else {
