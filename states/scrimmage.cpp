@@ -112,20 +112,20 @@ int main() {
     /*if (irs.getDistance() < 35) {
       //drive backwards
       drive_straight(left, right, gyro, 180, gyro.get_angle(), 0.2);
-    } else if (!irs.readB()) {
+    } else */if (!irs.readB()) {
       //drive forward
       drive_straight(left, right, gyro, 0, gyro.get_angle(), 0);
-    } else if (!irs.readR()) {
+    }/* else if (!irs.readR()) {
       //drive left
       drive_straight(left, right, gyro, 270, gyro.get_angle(), 0);
     } else if (!irs.readL()) {
       //drive right
       drive_straight(left, right, gyro, 90, gyro.get_angle(), 0);
-    } else {
+    } */else {
       //KEEP TURNING
       //change the 100, that is just arbitrary right now
-      drive_straight(left, right, gyro, 100, gyro.get_angle(), 0);
-    }*/
+      drive_straight(left, right, gyro, 180, gyro.get_angle(), 0);
+    }
 
     gettimeofday(&gameclock, NULL);
     gametime = ((double)gameclock.tv_sec - (double)start.tv_sec) + 0.000001 * ((double)gameclock.tv_usec - (double)start.tv_usec);
