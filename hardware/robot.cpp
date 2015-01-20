@@ -50,7 +50,8 @@ struct timeval end;
 
 //PID coefficients
 //work pretty well, maybe ajdust if necessary
-double P = 0.05;
+//were 0.05, 0, 0.2
+double P = 0.1;
 double I = 0.0;
 double D = 0.2; //was 0.3
 
@@ -101,17 +102,17 @@ int main() {
   signal(SIGINT, sig_handler);
 
   //two motor setup
-  /*Motor left(9, 8);
+  Motor left(9, 8);
   Motor right(5, 4);
 
-  Gyro gyro;*/
+  Gyro gyro;
   //IR medA = IR(1, 6149.816568, 4.468768853);
 
   /*Encoder *left_en = new Encoder(2, 3);
   left_en->A.isr(mraa::EDGE_BOTH, A_handler, left_en);
   left_en->B.isr(mraa::EDGE_BOTH, B_handler, left_en);*/
 
-  Servo servo(3);
+  //Servo servo(3);
 
   gettimeofday(&start, NULL);
 
@@ -121,7 +122,7 @@ int main() {
     //speed should depend on external input from distance sensors or camera
     //std::cout << left_en.getCounts() << std::endl;
     drive_straight(left, right, gyro, 0.0, gyro.get_angle(), 0.0);
-    servo.write(0.5);
+    //servo.write(0.5);
     usleep(10000);
   }
 
