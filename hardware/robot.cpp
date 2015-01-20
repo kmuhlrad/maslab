@@ -121,7 +121,9 @@ int main() {
     //desired should come from external input: cube location or something
     //speed should depend on external input from distance sensors or camera
     //std::cout << left_en.getCounts() << std::endl;
-    drive_straight(left, right, gyro, 0.0, gyro.get_angle(), 0.0);
+    //drive_straight(left, right, gyro, 0.0, gyro.get_angle(), 0.0);
+    left.setSpeed(0.2, 0.3);
+    right.setSpeed(0.2, 0.3);
     //servo.write(0.5);
     usleep(10000);
   }
