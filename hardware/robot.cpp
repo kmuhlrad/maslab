@@ -53,7 +53,7 @@ struct timeval end;
 //were 0.05, 0, 0.2
 double P = 0.05;
 double I = 0.0;
-double D = -0.2; //was 0.3
+double D = 0.2; //was 0.3
 
 void sig_handler(int signo) {
   if (signo == SIGINT) {
