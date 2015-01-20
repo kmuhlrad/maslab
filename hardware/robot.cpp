@@ -79,7 +79,7 @@ void B_handler(void* args) {
 //PID drive function
 void drive_straight(Motor& left, Motor& right, Gyro& gyro,
                     float desired, float estimated, float speed) {
-  gettimeofday(&end, NULL);
+  /*gettimeofday(&end, NULL);
 
   int diffSec = end.tv_sec - start.tv_sec;
   int diffUSec = end.tv_usec - start.tv_usec;
@@ -92,6 +92,26 @@ void drive_straight(Motor& left, Motor& right, Gyro& gyro,
 
   left.setSpeed(speed + power);
   right.setSpeed(speed - power);
+
+  std::cout << "power: " << power << std::endl;
+
+  gettimeofday(&start, NULL);
+  last_diff = diff;*/
+
+  //OLD WORKING CODE
+  gettimeofday(&end, NULL);
+
+  int diffSec = end.tv_sec - start.tv_sec;
+  int diffUSec = end.tv_usec - start.tv_usec;
+  float dT = (float)diffSec + 0.000001*diffUSec;
+
+  float diff = -desired + estimated;
+  integral += diff*dT;
+  float derivative = diff - last_diff;
+  float power = P*diff + I*integral + D*derivative;
+
+  left.setSpeed(speed + power);
+  right.setSpeed(-(speed - power));
 
   std::cout << "power: " << power << std::endl;
   
