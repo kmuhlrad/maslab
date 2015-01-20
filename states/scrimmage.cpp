@@ -102,7 +102,7 @@ int main() {
   Gyro gyro;
   SensorData irs(2, 3, 6, 1, 6149.816568, 4.468768853);
 
-  float gametime = ((float)gametime.tv_sec - (float)start.tv_sec) + 0.000001 * (gametime.tv_usec - start.tv_usec);
+  double gametime = ((double)gametime.tv_sec - (double)start.tv_sec) + 0.000001 * (gametime.tv_usec - start.tv_usec);
 
   while (running && gametime <= 180) {
     //add more cardinal directions??
@@ -126,7 +126,7 @@ int main() {
     }
 
     gettimeofday(&gameclock, NULL);
-    gametime = ((float)gametime.tv_sec - (float)start.tv_sec) + 0.000001 * (gametime.tv_usec - start.tv_usec);
+    gametime = ((double)gametime.tv_sec - (double)start.tv_sec) + 0.000001 * (gametime.tv_usec - start.tv_usec);
     usleep(10000);
   }
 
