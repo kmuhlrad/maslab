@@ -129,7 +129,7 @@ int main() {
 
     gettimeofday(&gameclock, NULL);
     gametime = ((double)gameclock.tv_sec - (double)start.tv_sec) + 0.000001 * ((double)gameclock.tv_usec - (double)start.tv_usec);
-    std::cout << "angle: " << gyro.get_angle() << std::endl;
+    std::cout << "angle: " << gyro.get_angle() << " back: " << irs.readB() << std::endl;
     /*std::cout << "back: " << irs.readB() << " left: " << irs.readL() << " right: " << irs.readR() << std::endl;*/
     usleep(10000);
   }
