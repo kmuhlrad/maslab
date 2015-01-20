@@ -110,11 +110,14 @@ void drive_straight(Motor& left, Motor& right, Gyro& gyro,
   float derivative = diff - last_diff;
   float power = P*diff + I*integral + D*derivative;
 
-  left.setSpeed(speed + power);
-  right.setSpeed(-(speed - power));
+  //left.setSpeed(speed + power);
+  //right.setSpeed(-(speed - power));
 
-  std::cout << "power: " << power << std::endl;
+  left.setSpeed(power);
+  right.setSpeed(-power);
   
+  std::cout << "power: " << power << std::endl;
+
   gettimeofday(&start, NULL);
   last_diff = diff;
 }
