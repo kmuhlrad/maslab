@@ -112,7 +112,7 @@ int main() {
     /*if (irs.getDistance() < 35) {
       //drive backwards
       drive_straight(left, right, gyro, 180, gyro.get_angle(), 0.2);
-    } else*/ if (!irs.readB()) {
+    } else if (!irs.readB()) {
       //drive forward
       drive_straight(left, right, gyro, 0, gyro.get_angle(), 0);
     } else if (!irs.readR()) {
@@ -125,12 +125,11 @@ int main() {
       //KEEP TURNING
       //change the 100, that is just arbitrary right now
       drive_straight(left, right, gyro, 100, gyro.get_angle(), 0);
-    }
+    }*/
 
     gettimeofday(&gameclock, NULL);
     gametime = ((double)gameclock.tv_sec - (double)start.tv_sec) + 0.000001 * ((double)gameclock.tv_usec - (double)start.tv_usec);
-    std::cout << "angle: " << gyro.get_angle() << " back: " << + irs.readB() << " left: " << irs.readL() << " right: " << irs.readR() << 
-std::endl;
+    std::cout << "angle: " << gyro.get_angle() << std::endl;
     usleep(10000);
   }
 
