@@ -7,7 +7,7 @@ class Collect : public State {
 	int getNext(/*Data*/);
 	void run(/*Data*/);
 public:
-	Collect(int num);
+	Collect();
 	virtual int process(/*Data*/);
 	int getState();
 };

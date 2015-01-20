@@ -43,6 +43,7 @@
 #include "stacksearch.h"
 #include "collect.h"
 #include "state.h"
+#include "robot_states.h"
 
 int running = 1;
 
@@ -57,8 +58,8 @@ int main() {
   //Handle Ctrl-C quit
   signal(SIGINT, sig_handler);
 
-  StackSearch *stack = new StackSearch(1);
-  Collect *collect = new Collect(2);
+  StackSearch *stack = new StackSearch();
+  Collect *collect = new Collect();
 
   State *states[2] = {stack, collect};
   State *curState = states[0];

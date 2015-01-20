@@ -7,8 +7,8 @@ class Servo {
 	mraa::Pwm pwm;
 public:
 	Servo(int pwm_pin);
-	void setDegree(int deg); //maybe change to double?
-	void write(float value); //maybe change to double?
+	void setDegree(double deg);
+	void write(float value);
 	void stop(); //need this?
 };
 

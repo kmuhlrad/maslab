@@ -9,8 +9,9 @@ Servo::Servo(int pwm_pin) : pwm(pwm_pin) {
 void Servo::setDegree(int deg) {
   //put this in some sort of case structure? Or just replace this with a case structure?
   assert (deg <= 180); //ADJUST THIS 
-  float value = deg / 180.0; //ADJUST THIS TOO
-  pwm.write(value);
+  float value = deg / 180.0;
+  float output = 0.41 * value + 0.09;
+  pwm.write(output);
 
   /*
   MAPPING 0.09 - 0.5 to 0 - 1

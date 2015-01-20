@@ -7,7 +7,7 @@ class StackSearch : public State {
 	int getNext(/*Data*/);
 	void run(/*Data*/);
 public:
-	StackSearch(int num);
+	StackSearch();
 	virtual int process(/*Data*/);
 	int getState();
 };

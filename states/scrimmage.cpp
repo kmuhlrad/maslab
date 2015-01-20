@@ -44,6 +44,7 @@
 #include "sensordata.h"
 #include "../hardware/motor.h"
 #include "../hardware/gyro.h"
+#include "../hardware/ir.h"
 
 int running = 1;
 
@@ -52,6 +53,7 @@ double last_diff = 0.0;
 
 struct timeval start;
 struct timeval end;
+struct timeval gameclock;
 
 //PID coefficients
 //work pretty well, maybe ajdust if necessary
@@ -92,32 +94,42 @@ int main() {
   signal(SIGINT, sig_handler);
 
   gettimeofday(&start, NULL);
-
+  gettimeofday(&gameclock, NULL);
+  
   Motor left(5, 4);
   Motor right(9, 8);
 
   Gyro gyro;
-  SensorData irs(2, 3, 4, 5);
+  SensorData irs(2, 3, 6, 1, 6149.816568, 4.468768853);
 
-  while (running) {
-    //add more cardinal directions
+  float gametime = (float)(gametime.tv_sec - start.tv_sec) + 0.000001 * (gametime.tv_usec - start.tv_usec);
+
+  while (running && gametime <= 180) {
+    //add more cardinal directions??
     //actually update angle based on gyro
 
-    if (irs.readF()) {
-      //drive backward
+    if (irs.getDistance() < 15) {
+      //drive forward
       drive_straight(left, right, gyro, 180, gyro.get_angle(), 0.2);
     }
     if (irs.readB()) {
       //drive forward
       drive_straight(left, right, gyro, 0, gyro.get_angle(), 0.2);
     }
-    if (irs.readL()) {
-      //drive right
-      drive_straight(left, right, gyro, 90, gyro.get_angle(), 0.2);
-    }
     if (irs.readR()) {
       //drive left
       drive_straight(left, right, gyro, 270, gyro.get_angle(), 0.2);
     }
+    if (irs.readL()) {
+      //drive right
+      drive_straight(left, right, gyro, 90, gyro.get_angle(), 0.2);
+    }
+
+    gettimeofday(&gameclock, NULL);
+    gametime = (float)(gametime.tv_sec - start.tv_sec) + 0.000001 * (gametime.tv_usec - start.tv_usec);
+    usleep(10000);
   }
+
+  left.stop();
+  right.stop();
 }

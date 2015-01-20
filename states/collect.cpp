@@ -1,21 +1,22 @@
 #include "collect.h"
+#include "robot_states.h"
 //#include "mraa.hpp"
 
-Collect::Collect(int num) : State(num) {
-
+Collect::Collect() {
+	state_num = DRIVE;
 }
 
-/*int Collect::getState() {
+int Collect::getState() {
 	return state_num;
-}*/
+}
 
 int Collect::process() {
-	return 0;
+	return START;
 	//return next_state; //IMPLEMENT THIS
 }
 
 int Collect::getNext(/*Data*/) {
-	return 0;
+	return START;
 	//return next_state; //IMPLEMENT THIS
 }
 

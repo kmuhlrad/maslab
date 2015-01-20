@@ -1,8 +1,9 @@
 #include "stacksearch.h"
+#include "robot_states.h"
 //#include "mraa.hpp"
 
-StackSearch::StackSearch(int num) : State(num) {
-
+StackSearch::StackSearch() {
+	state_num = STACKSEARCH;
 }
 
 int StackSearch::getState() {
@@ -10,12 +11,12 @@ int StackSearch::getState() {
 }
 
 int StackSearch::process() {
-	return 1;
+	return STACKSEARCH;
 	//return next_state; //IMPLEMENT THIS
 }
 
 int StackSearch::getNext(/*Data*/) {
-	return 1;
+	return STACKSEARCH;
 	//return next_state; //IMPLEMENT THIS
 }
 

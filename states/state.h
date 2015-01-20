@@ -6,7 +6,6 @@ protected:
 	int state_num;
 
 public:
-	State(int num);
 	int getState();
 	virtual int process()=0;
 };
