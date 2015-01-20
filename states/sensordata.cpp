@@ -2,8 +2,8 @@
 #include "robot_states.h"
 #include "mraa.hpp"
 
-SensorData::SensorData(int pinB, int pinR, int pinL, int pinIR, double a, double b) :
-  close_IR_B(pinB), close_IR_R(pinR), close_IR_L(pinL), medA(pinIR, a, b) {
+SensorData::SensorData(int pinL, int pinB, int pinR, int pinIR, double a, double b) :
+  close_IR_L(pinL), close_IR_B(pinB), close_IR_R(pinR), medA(pinIR, a, b) {
   
   close_IR_B.dir(mraa::DIR_IN);
   close_IR_R.dir(mraa::DIR_IN);

@@ -30,7 +30,7 @@
 #include <cassert>
 #include <cmath>
 #include <sys/time.h>
-#include <typeinfo>
+#include <unistd.h>
 
 /*#include "mraa.hpp"
 #include "encoder.h"
@@ -40,10 +40,19 @@
 #include "ir.h"
 #include "servo.h"*/
 
-#include "stacksearch.h"
-#include "collect.h"
-#include "state.h"
 #include "robot_states.h"
+#include "state.h"
+
+#include "start.h"
+#include "stacksearch.h"
+#include "drive.h"
+#include "wiggle.h"
+#include "lift.h"
+#include "platformsearch.h"
+#include "align.h"
+#include "drop.h"
+
+
 
 int running = 1;
 
@@ -58,15 +67,22 @@ int main() {
   //Handle Ctrl-C quit
   signal(SIGINT, sig_handler);
 
+  Start *start = new Start();
   StackSearch *stack = new StackSearch();
-  Collect *collect = new Collect();
+  Drive *drive = new Drive();
+  Wiggle *wiggle = new Wiggle();
+  Lift *lift = new Lift();
+  PlatformSearch *platform = new PlatformSearch();
+  Align *align = new Align();
+  Drop *drop = new Drop();
 
-  State *states[2] = {stack, collect};
+  State *states[8] = {start, stack, drive, wiggle, lift, platform, align, drop};
   State *curState = states[0];
 
   while (running) {
     std::cout << "current state: " << curState->getState() << std::endl;
     int next = curState->process();
     curState = states[next];
+    usleep(1000000);
   }
 }

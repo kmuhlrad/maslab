@@ -23,7 +23,7 @@ class SensorData {
 	int dist;
 
 public:
-	SensorData(int pinB, int pinR, int pinL, int pinIR, double a, double b); //initialize all pin values or pass in objects directly
+	SensorData(int pinL, int pinB, int pinR, int pinIR, double a, double b); //initialize all pin values or pass in objects directly
 	void collectData(); //read all of the sensors
 	
 	//return all the values

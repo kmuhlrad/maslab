@@ -11,13 +11,24 @@ int StackSearch::getState() {
 }
 
 int StackSearch::process() {
-	return STACKSEARCH;
-	//return next_state; //IMPLEMENT THIS
+	if (getNext() != state_num) {
+		return getNext();
+	} else {
+		run();
+		return state_num;
+	}
 }
 
 int StackSearch::getNext(/*Data*/) {
-	return STACKSEARCH;
+	return DRIVE;
 	//return next_state; //IMPLEMENT THIS
+	/*
+	if (found stack && right color) {
+		return DRIVE;
+	} else {
+		return STACKSEARCH;
+	}
+	*/
 }
 
 void StackSearch::run(/*Data*/) {

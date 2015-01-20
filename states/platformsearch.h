@@ -1,13 +1,13 @@
-#ifndef COLLECT_H
-#define COLLECT_H
+#ifndef PLATFORMSEARCH_H
+#define PLATFORMSEARCH_H
 
 #include "state.h"
 
-class Collect : public State {
+class PlatformSearch : public State {
 	int getNext(/*Data*/);
 	void run(/*Data*/);
 public:
-	Collect();
+	PlatformSearch();
 	virtual int process(/*Data*/);
 	int getState();
 };
