@@ -91,8 +91,8 @@ void drive_straight(Motor& left, Motor& right, Gyro& gyro,
   float power = P*diff + I*integral + D*derivative;
 
   //CHECK DIRECTION
-  left.setSpeed(speed + power);
-  right.setSpeed(speed - power);
+  left.setSpeed(speed - power);
+  right.setSpeed(speed + power);
 
   std::cout << "power: " << power << std::endl;
 
