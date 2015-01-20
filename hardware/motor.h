@@ -13,6 +13,7 @@ public:
 
 	//methods
 	void setSpeed(double speed, double cap);
+	void setSpeed(double speed);
 	void stop();
 };
 

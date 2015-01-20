@@ -15,6 +15,22 @@ Motor::Motor(int pwm_pin, int dir_pin) : pwm(pwm_pin), dir(dir_pin) {
 }
 
 //maybe hardcode cap for real thing?
+void Motor::setSpeed(double speed) {
+  //assert(-1.0 <= speed && speed <= 1.0);
+  if (speed < 0) {
+    dir.write(1);
+  }
+  else {
+    dir.write(0);
+  }
+  double output = fabs(speed);
+  if (output > 0.3) {
+    output = 0.3;
+  }
+  pwm.write(output);
+}
+
+//maybe hardcode cap for real thing?
 void Motor::setSpeed(double speed, double cap) {
   //assert(-1.0 <= speed && speed <= 1.0);
   if (speed < 0) {

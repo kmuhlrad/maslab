@@ -90,9 +90,11 @@ void drive_straight(Motor& left, Motor& right, Gyro& gyro,
   float derivative = diff - last_diff;
   float power = P*diff + I*integral + D*derivative;
 
-  left.setSpeed((speed + power), 0.3);
-  right.setSpeed((speed - power), 0.3);
+  left.setSpeed(speed + power);
+  right.setSpeed(speed - power);
 
+  std::cout << "power: " << power << std::endl;
+  
   gettimeofday(&start, NULL);
   last_diff = diff;
 }
@@ -102,8 +104,8 @@ int main() {
   signal(SIGINT, sig_handler);
 
   //two motor setup
-  Motor left(9, 8);
-  Motor right(5, 4);
+  Motor left(5, 4);
+  Motor right(9, 8);
 
   Gyro gyro;
   //IR medA = IR(1, 6149.816568, 4.468768853);
@@ -122,7 +124,7 @@ int main() {
     //speed should depend on external input from distance sensors or camera
     //std::cout << left_en.getCounts() << std::endl;
     drive_straight(left, right, gyro, 0.0, gyro.get_angle(), 0.0);
-    std::cout << gyro.get_angle() << std::endl;
+    std::cout << "gyro: " << gyro.get_angle() << std::endl;
     //servo.write(0.5);
     usleep(10000);
   }
