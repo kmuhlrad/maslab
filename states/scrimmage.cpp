@@ -114,17 +114,17 @@ int main() {
       drive_straight(left, right, gyro, 180, gyro.get_angle(), 0.2);
     } else*/ if (!irs.readB()) {
       //drive forward
-      drive_straight(left, right, gyro, 0, gyro.get_angle(), 0.2);
+      drive_straight(left, right, gyro, 0, gyro.get_angle(), 0.1);
     } else if (!irs.readR()) {
       //drive left
-      drive_straight(left, right, gyro, 270, gyro.get_angle(), 0.2);
+      drive_straight(left, right, gyro, 270, gyro.get_angle(), 0.1);
     } else if (!irs.readL()) {
       //drive right
-      drive_straight(left, right, gyro, 90, gyro.get_angle(), 0.2);
+      drive_straight(left, right, gyro, 90, gyro.get_angle(), 0.1);
     } else {
       //KEEP TURNING
       //change the 100, that is just arbitrary right now
-      drive_straight(left, right, gyro, 100, gyro.get_angle(), 0.2);
+      drive_straight(left, right, gyro, 100, gyro.get_angle(), 0.1);
     }
 
     gettimeofday(&gameclock, NULL);
