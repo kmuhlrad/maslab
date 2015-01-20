@@ -130,6 +130,7 @@ int main() {
     usleep(10000);
   }
 
+  std::cout << "finished" << std::endl;
   left.stop();
   right.stop();
 }
