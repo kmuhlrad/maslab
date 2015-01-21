@@ -113,7 +113,7 @@ int main() {
   left_en->A.isr(mraa::EDGE_BOTH, A_handler, left_en);
   left_en->B.isr(mraa::EDGE_BOTH, B_handler, left_en);*/
 
-  Servo left_servo(3);
+  Servo left_servo(12);
   Servo right_servo(9);
 
   mraa::Gpio bottombeam = mraa::Gpio(2);
@@ -128,9 +128,9 @@ int main() {
   int up = 1;
 
   //left_servo.setDegree(90);
-  left_servo.setDegree(180 - 120);
-  right_servo.setDegree(120);
-  left.setSpeed(0.2);
+  //left_servo.setDegree(180 - 120);
+  //right_servo.setDegree(120);
+  //left.setSpeed(0.2);
   double pos;
   //std::cout << "pos: ";
   //std::cin >> pos;
@@ -156,7 +156,7 @@ int main() {
     }*/
     
     
-    if ((!topbeam.read() && up)) {
+    /*if ((!topbeam.read() && up)) {
       left.stop(); //stop
       up = 0;
       left_servo.setDegree(180 - 90);
@@ -172,9 +172,9 @@ int main() {
       left.setSpeed(-0.1); //go down
     } else if (!bottombeam.read() && up) {
       left.setSpeed(0.15); //go up
-    }
+    }*/
     
-
+    left_servo.setDegree(90);
     //left_servo.setDegree(180 - pos);
     //right_servo.setDegree(pos);
 
