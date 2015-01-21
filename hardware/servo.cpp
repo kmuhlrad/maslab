@@ -6,7 +6,7 @@ Servo::Servo(int pwm_pin) : pwm(pwm_pin) {
   pwm.enable(true);
 }
 
-void Servo::setDegree(int deg) {
+void Servo::setDegree(double deg) {
   //put this in some sort of case structure? Or just replace this with a case structure?
   assert (deg <= 180); //ADJUST THIS 
   float value = deg / 180.0;

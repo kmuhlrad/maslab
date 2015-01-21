@@ -150,6 +150,17 @@ int main() {
       }
     }*/
     
+    /*
+    if ((!topbeam.read() && up) || (!bottombeam.read() && !up)) {
+      left.stop(); //stop
+      up = !up;
+      //sleep(seconds);
+    } else if (!topbeam.read() && !up) { //ADD &&bottombeam.read()
+      left.setSpeed(-0.1); //go down
+    } else if (!bottombeam.read() && up) {
+      left.setSpeed(0.15); //go up
+    }
+    */
 
     //last = topbeam.read();
     usleep(10000);
