@@ -5,7 +5,7 @@
 #include "shield.h"
 
 class Servo {
-	Shield shield;
+	Shield *shield;
 	int pin;
 public:
 	Servo(int pwm_pin);
