@@ -104,7 +104,7 @@ int main() {
 
   //two motor setup
   Motor left(5, 4);
-  Motor right(9, 8);
+  //Motor right(9, 8);
 
   Gyro gyro;
   //IR medA = IR(1, 6149.816568, 4.468768853);
@@ -113,18 +113,23 @@ int main() {
   left_en->A.isr(mraa::EDGE_BOTH, A_handler, left_en);
   left_en->B.isr(mraa::EDGE_BOTH, B_handler, left_en);*/
 
-  //Servo servo(3);
+  Servo left_servo(3);
+  Servo right_servo(9);
 
   mraa::Gpio bottombeam = mraa::Gpio(2);
   bottombeam.dir(mraa::DIR_IN);
 
-  mraa::Gpio topbeam = mraa::Gpio(3);
+  mraa::Gpio topbeam = mraa::Gpio(6);
   topbeam.dir(mraa::DIR_IN);
 
   gettimeofday(&start, NULL);
 
   int last = 0;
   int up = 1;
+
+  left_servo.setDegree(90);
+  right_servo.setDegree(90);
+  //left.setSpeed(0.2);
   while (running) {
     //NEED TO CHECK DESIRED AND ESTIMATED BASED ON GYRO OUTPUT
     //desired should come from external input: cube location or something
@@ -134,9 +139,8 @@ int main() {
     //std::cout << "gyro: " << gyro.get_angle() << std::endl;
     //servo.write(0.5);
     //TOGGLE CODE
-
-    /*
-    if (topbeam.read() && !last) {
+    
+    /*if (topbeam.read() && !last) {
       if (left.read() == 0) {
         left.setSpeed(0.2);
         std::cout << "running" << std::endl;
@@ -144,20 +148,8 @@ int main() {
         left.stop();
         std::cout << "stopped" << std::endl;
       }
-    }
-    */
-
-    if ((!topbeam.read() && up) || (!bottombeam.read() && !up)) {
-      left.stop(); //stop
-      up = !up;
-      //sleep(seconds);
-    } else if (!topbeam.read() && !up) { //ADD &&bottombeam.read()
-      left.setSpeed(-0.1); //go down
-    } else if (!bottombeam.read() && up) {
-      left.setSpeed(0.1); //go up
-    } else {
-      left.setSpeed(0.1); //start up
-    }
+    }*/
+    
 
     //last = topbeam.read();
     usleep(10000);
