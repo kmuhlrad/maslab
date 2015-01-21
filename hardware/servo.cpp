@@ -5,7 +5,7 @@
 Servo::Servo(int pwm_pin) {
   //pwm.write(0.0);
   pin = pwm_pin;
-  shield* = Shield();
+  shield = new Shield();
 }
 
 void Servo::setDegree(double deg) {
