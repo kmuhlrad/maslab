@@ -13,7 +13,7 @@ void Servo::setDegree(double deg) {
   //assert (deg <= 180); //ADJUST THIS 
   float value = deg / 180.0;
   float output = 0.41 * value + 0.09;
-  writePWM(shield.i2c, pin, output);
+  shield.writePWM(shield.i2c, pin, output);
 
   /*
   MAPPING 0.09 - 0.5 to 0 - 1
@@ -22,5 +22,5 @@ void Servo::setDegree(double deg) {
 }
 
 void Servo::write(float value) {
-  writePWM(shield.i2c, pin, value);
+  shield.writePWM(shield.i2c, pin, value);
 }
