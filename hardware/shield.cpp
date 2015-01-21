@@ -1,3 +1,5 @@
+#include <cassert>
+
 #include "shield.h"
 #include "mraa.hpp"
 
