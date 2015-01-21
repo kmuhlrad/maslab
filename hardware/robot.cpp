@@ -128,7 +128,7 @@ int main() {
     //drive_straight(left, right, gyro, 0.0, gyro.get_angle(), 0.0);
     //std::cout << "gyro: " << gyro.get_angle() << std::endl;
     //servo.write(0.5);
-    if (!breakbeam.read()) {
+    if (breakbeam.read()) {
       left.setSpeed(0.2);
       std::cout << "broken" << std::endl;
     } else {
