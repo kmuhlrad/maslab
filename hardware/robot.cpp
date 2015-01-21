@@ -157,7 +157,7 @@ int main() {
       left.setSpeed(0.1); //go up
     }
 
-    last = breakbeam.read();
+    //last = breakbeam.read();
     usleep(10000);
   }
 
