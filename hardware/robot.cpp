@@ -147,7 +147,7 @@ int main() {
     }
     */
 
-    if ((!topbeam.read() && up) || (!bottombeam.read() !! !up)) {
+    if ((!topbeam.read() && up) || (!bottombeam.read() && !up)) {
       left.stop(); //stop
       up = !up;
       //sleep(seconds);
