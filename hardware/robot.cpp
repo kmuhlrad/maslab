@@ -115,12 +115,16 @@ int main() {
 
   //Servo servo(3);
 
-  mraa::Gpio breakbeam = mraa::Gpio(2);
-  breakbeam.dir(mraa::DIR_IN);
+  mraa::Gpio bottombeam = mraa::Gpio(2);
+  bottombeam.dir(mraa::DIR_IN);
+
+  mraa::Gpio topbeam = mraa::Gpio(3);
+  topbeam.dir(mraa::DIR_IN);
 
   gettimeofday(&start, NULL);
 
   int last = 0;
+  int up = 1;
   while (running) {
     //NEED TO CHECK DESIRED AND ESTIMATED BASED ON GYRO OUTPUT
     //desired should come from external input: cube location or something
@@ -129,6 +133,9 @@ int main() {
     //drive_straight(left, right, gyro, 0.0, gyro.get_angle(), 0.0);
     //std::cout << "gyro: " << gyro.get_angle() << std::endl;
     //servo.write(0.5);
+    //TOGGLE CODE
+    
+    /*
     if (breakbeam.read() && !last) {
       if (left.read() == 0) {
         left.setSpeed(0.2);
@@ -138,6 +145,18 @@ int main() {
         std::cout << "stopped" << std::endl;
       }
     }
+    */
+
+    if ((!topbeam.read() && up) || (!bottombeam.read() !! !up)) {
+      left.stop(); //stop
+      up = !up;
+      //sleep(seconds);
+    } else if (!topbeam.read() && !up) { //ADD &&bottombeam.read()
+      left.setSpeed(-0.2); //go down
+    } else if (!bottombeam.read() && up) {
+      left.setSpeed(0.2); //go up
+    }
+
     last = breakbeam.read();
     usleep(10000);
   }
