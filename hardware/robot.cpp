@@ -40,7 +40,7 @@
 #include "ir.h"
 #include "servo.h"
 
-int running = 1;
+int running = 0; //SET BACK TO 1 FOR AUTO
 
 double integral = 0;
 double last_diff = 0.0;
@@ -127,9 +127,14 @@ int main() {
   int last = 0;
   int up = 1;
 
-  left_servo.setDegree(90);
-  right_servo.setDegree(90);
-  //left.setSpeed(0.2);
+  //left_servo.setDegree(90);
+  left_servo.setDegree(180 - 120);
+  right_servo.setDegree(120);
+  left.setSpeed(0.2);
+  double pos;
+  //std::cout << "pos: ";
+  //std::cin >> pos;
+  running = 1;
   while (running) {
     //NEED TO CHECK DESIRED AND ESTIMATED BASED ON GYRO OUTPUT
     //desired should come from external input: cube location or something
@@ -150,17 +155,28 @@ int main() {
       }
     }*/
     
-    /*
-    if ((!topbeam.read() && up) || (!bottombeam.read() && !up)) {
+    
+    if ((!topbeam.read() && up)) {
       left.stop(); //stop
-      up = !up;
-      //sleep(seconds);
-    } else if (!topbeam.read() && !up) { //ADD &&bottombeam.read()
+      up = 0;
+      left_servo.setDegree(180 - 90);
+      right_servo.setDegree(90);
+      sleep(2);
+    } else if (!bottombeam.read() && !up) {
+      left.stop();
+      up = 1;
+      left_servo.setDegree(180 - 15);
+      right_servo.setDegree(15);
+      sleep(2);
+    } else if (!topbeam.read() && !up) {
       left.setSpeed(-0.1); //go down
     } else if (!bottombeam.read() && up) {
       left.setSpeed(0.15); //go up
     }
-    */
+    
+
+    //left_servo.setDegree(180 - pos);
+    //right_servo.setDegree(pos);
 
     //last = topbeam.read();
     usleep(10000);
