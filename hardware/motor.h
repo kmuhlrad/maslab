@@ -15,6 +15,7 @@ public:
 	void setSpeed(double speed, double cap);
 	void setSpeed(double speed);
 	void stop();
+	float read();
 };
 
 #endif

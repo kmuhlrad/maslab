@@ -129,12 +129,14 @@ int main() {
     //drive_straight(left, right, gyro, 0.0, gyro.get_angle(), 0.0);
     //std::cout << "gyro: " << gyro.get_angle() << std::endl;
     //servo.write(0.5);
-    if (breakbeam.read() != last) {
-      left.setSpeed(0.2);
-      std::cout << "broken" << std::endl;
-    } else {
-      left.stop();
-      std::cout << "closed" << std::endl;
+    if (breakbeam.read() && !last) {
+      if (left.read() == 0) {
+        left.setSpeed(0.2);
+        std::cout << "running" << std::endl;
+      } else {
+        left.stop();
+        std::cout << "stopped" << std::endl;
+      }
     }
     last = breakbeam.read();
     usleep(10000);

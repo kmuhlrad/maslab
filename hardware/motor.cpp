@@ -50,3 +50,7 @@ void Motor::stop() {
   pwm.write(0.0);
   dir.write(0);
 }
+
+float Motor::read() {
+  return pwm.read();
+}
