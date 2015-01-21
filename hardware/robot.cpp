@@ -136,7 +136,7 @@ int main() {
     //TOGGLE CODE
 
     /*
-    if (breakbeam.read() && !last) {
+    if (topbeam.read() && !last) {
       if (left.read() == 0) {
         left.setSpeed(0.2);
         std::cout << "running" << std::endl;
@@ -155,9 +155,11 @@ int main() {
       left.setSpeed(-0.1); //go down
     } else if (!bottombeam.read() && up) {
       left.setSpeed(0.1); //go up
+    } else {
+      left.setSpeed(0.1); //start up
     }
 
-    //last = breakbeam.read();
+    //last = topbeam.read();
     usleep(10000);
   }
 
