@@ -1,9 +1,11 @@
 #include "servo.h"
+#include "shield.h"
 #include "mraa.hpp"
 
 Servo::Servo(int pwm_pin) : pwm(pwm_pin) {
   //pwm.write(0.0);
-  pwm.enable(true);
+  pin = pwm_pin;
+  shield = new Shield();
 }
 
 void Servo::setDegree(double deg) {
@@ -11,7 +13,7 @@ void Servo::setDegree(double deg) {
   //assert (deg <= 180); //ADJUST THIS 
   float value = deg / 180.0;
   float output = 0.41 * value + 0.09;
-  pwm.write(output);
+  writePWM(shield.i2c, pin, output);
 
   /*
   MAPPING 0.09 - 0.5 to 0 - 1
@@ -20,10 +22,5 @@ void Servo::setDegree(double deg) {
 }
 
 void Servo::write(float value) {
-  pwm.write(value);
-}
-
-//maybe delete??
-void Servo::stop() {
-  pwm.write(pwm.read());
+  writePWM(shield.i2c, pin, value);
 }

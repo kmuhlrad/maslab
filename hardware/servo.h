@@ -4,12 +4,12 @@
 #include "mraa.hpp"
 
 class Servo {
-	mraa::Pwm pwm;
+	Shield shield;
+	int pin;
 public:
 	Servo(int pwm_pin);
 	void setDegree(double deg);
 	void write(float value);
-	void stop(); //need this?
 };
 
 #endif
