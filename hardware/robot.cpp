@@ -49,11 +49,9 @@ struct timeval start;
 struct timeval end;
 
 //PID coefficients
-//work pretty well, maybe ajdust if necessary
-//were 0.05, 0, 0.2
 double P = 0.05;
 double I = 0.0;
-double D = 0.2; //was 0.3
+double D = 0.2;
 
 void sig_handler(int signo) {
   if (signo == SIGINT) {
@@ -117,6 +115,9 @@ int main() {
 
   //Servo servo(3);
 
+  mraa::Gpio breakbeam = new mraa::Gpio(2);
+  breakbeam.dir(mraa::DIR_IN);
+
   gettimeofday(&start, NULL);
 
   while (running) {
@@ -124,9 +125,16 @@ int main() {
     //desired should come from external input: cube location or something
     //speed should depend on external input from distance sensors or camera
     //std::cout << left_en.getCounts() << std::endl;
-    drive_straight(left, right, gyro, 0.0, gyro.get_angle(), 0.0);
-    std::cout << "gyro: " << gyro.get_angle() << std::endl;
+    //drive_straight(left, right, gyro, 0.0, gyro.get_angle(), 0.0);
+    //std::cout << "gyro: " << gyro.get_angle() << std::endl;
     //servo.write(0.5);
+    if (!breakbeam.read()) {
+      left.setSpeed(0.2);
+      std::cout << "broken" << std::endl;
+    } else {
+      left.stop();
+      std::cout << "closed" << std::endl;
+    }
     usleep(10000);
   }
 
