@@ -105,6 +105,7 @@ int main() {
   //two motor setup
   Motor left(5, 4);
   //Motor right(9, 8);
+  //Motor lift(2, 3);
 
   Gyro gyro;
   //IR medA = IR(1, 6149.816568, 4.468768853);
@@ -121,6 +122,9 @@ int main() {
 
   mraa::Gpio topbeam = mraa::Gpio(6);
   topbeam.dir(mraa::DIR_IN);
+
+  mraa::Pwm servo = mraa::Pwm(9);
+  servo.enable(true);
 
   gettimeofday(&start, NULL);
 
@@ -156,25 +160,59 @@ int main() {
     }*/
     
     
-    /*if ((!topbeam.read() && up)) {
-      left.stop(); //stop
+    /*
+    if ((!topbeam.read() && up)) {
+      lift.stop(); //stop
       up = 0;
-      left_servo.setDegree(180 - 90);
+      lift_servo.setDegree(180 - 90);
       right_servo.setDegree(90);
       sleep(2);
     } else if (!bottombeam.read() && !up) {
-      left.stop();
-      up = 1;
+      lift.stop();
+      sleep(1);
+      
+      //put the doors out
+      left_door.setDegree(90);
+      right_door.setDegree(90);
+      sleep(1);
+
+      //wiggle
+      left.setSpeed(0.2);
+      right.setSpeed(-0.2);
+      usleep(500000);
+      left.setSpeed(-0.2);
+      right.setSpeed(0.2);
+      usleep(250000);
+      left.setSpeed(0.2);
+      right.setSpeed(-0.2);
+      usleep(250000);
+      left.setSpeed(-0.2);
+      right.setSpeed(0.2);
+      usleep(250000);
+      left.setSpeed(0.2);
+      right.setSpeed(-0.2);
+      usleep(125000);
+
+      //put the doors back
+      left_door.setDegree(0);
+      right_door.setDegree(180);
+      sleep(1);
+
+      //grab the blocks
       left_servo.setDegree(180 - 15);
       right_servo.setDegree(15);
       sleep(2);
+
+      up = 1;
     } else if (!topbeam.read() && !up) {
-      left.setSpeed(-0.1); //go down
+      lift.setSpeed(-0.1); //go down
     } else if (!bottombeam.read() && up) {
-      left.setSpeed(0.15); //go up
-    }*/
+      lift.setSpeed(0.15); //go up
+    }
+    */
     
-    left_servo.setDegree(90);
+    //left_servo.setDegree(90);
+    servo.write(0.3);
     //left_servo.setDegree(180 - pos);
     //right_servo.setDegree(pos);
 
