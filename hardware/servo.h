@@ -2,6 +2,7 @@
 #define SERVO_H
 
 #include "mraa.hpp"
+#include "shield.h"
 
 class Servo {
 	Shield shield;
