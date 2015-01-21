@@ -134,7 +134,7 @@ int main() {
     //std::cout << "gyro: " << gyro.get_angle() << std::endl;
     //servo.write(0.5);
     //TOGGLE CODE
-    
+
     /*
     if (breakbeam.read() && !last) {
       if (left.read() == 0) {
@@ -152,9 +152,9 @@ int main() {
       up = !up;
       //sleep(seconds);
     } else if (!topbeam.read() && !up) { //ADD &&bottombeam.read()
-      left.setSpeed(-0.2); //go down
+      left.setSpeed(-0.1); //go down
     } else if (!bottombeam.read() && up) {
-      left.setSpeed(0.2); //go up
+      left.setSpeed(0.1); //go up
     }
 
     last = breakbeam.read();
