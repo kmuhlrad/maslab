@@ -115,7 +115,7 @@ int main() {
 
   //Servo servo(3);
 
-  mraa::Gpio breakbeam = new mraa::Gpio(2);
+  mraa::Gpio breakbeam = mraa::Gpio(2);
   breakbeam.dir(mraa::DIR_IN);
 
   gettimeofday(&start, NULL);
