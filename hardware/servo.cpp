@@ -12,7 +12,7 @@ void Servo::setDegree(double deg) {
   //put this in some sort of case structure? Or just replace this with a case structure?
   //assert (deg <= 180); //ADJUST THIS 
   float value = deg / 180.0;
-  float output = 0.41 * value + 0.09;
+  float output = 0.07 * value + 0.03;
   shield->writePWM(shield->i2c, pin, output);
 
   /*

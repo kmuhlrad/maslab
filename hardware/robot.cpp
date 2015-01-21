@@ -211,8 +211,8 @@ int main() {
     }
     */
     
-    //left_servo.setDegree(90);
-    servo.write(0.3);
+    left_servo.setDegree(90);
+    //servo.write(0.3);
     //left_servo.setDegree(180 - pos);
     //right_servo.setDegree(pos);
 
