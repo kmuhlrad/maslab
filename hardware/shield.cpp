@@ -31,7 +31,7 @@ Shield::Shield() {
 }
 
 void Shield::initPWM(mraa::I2c *i2c) {
-  uint8_t writeBuf[2] = {0}; //NOTE: CHANGED TO UNSIGNED
+  uint8_t writeBuf[2] = {0};
   writeBuf[0] = 0x00; // Write to MODE 1 Register;
   writeBuf[1] = 1 << 4; // Enable Sleep Mode
  
@@ -60,7 +60,7 @@ void Shield::writePWM(mraa::I2c* i2c, int index, double duty) {
   double on = 4095.0 * duty;
   uint16_t onRounded = (uint16_t) on;
 
-  uint8_t writeBuf[5]; //NOTE: CHANGED TO UNSIGNED
+  uint8_t writeBuf[5];
 
   // ON_L
   writeBuf[0] = registers[index];
