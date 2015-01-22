@@ -7,12 +7,12 @@ Servo::Servo(int pwm_pin) {
   pin = pwm_pin;
 }
 
-void Servo::setDegree(Shield *shield, double deg) {
+void Servo::setDegree(Shield* shield, double deg) {
   //put this in some sort of case structure? Or just replace this with a case structure?
   //assert (deg <= 180); //ADJUST THIS 
   float value = deg / 180.0;
-  float output = 0.07 * value + 0.03;
-  shield->writePWM(shield->i2c, pin, output);
+  float output = 0.079 * value + 0.021;
+  shield->writePWM(pin, output);
 
   /*
   MAPPING 0.09 - 0.5 to 0 - 1
@@ -22,6 +22,6 @@ void Servo::setDegree(Shield *shield, double deg) {
   */
 }
 
-void Servo::write(Shield *shield, float value) {
-  shield->writePWM(shield->i2c, pin, value);
+void Servo::write(Shield* shield, float value) {
+  shield->writePWM(pin, value);
 }

@@ -8,9 +8,9 @@
 #define MS 1000
 
 Shield::Shield() {
-  registers = new uint8_t[16];   
-  registers[0] = 6;  
-/*registers[16] = {
+  registers = new uint8_t[16];
+  registers[0] = 6;
+  /*registers = {
     6,   // output 0
     10,  // output 1
     14,  // output 2
@@ -30,10 +30,7 @@ Shield::Shield() {
   };*/
 
   i2c = new mraa::I2c(6);
-  initPWM(i2c);
-}
-
-void Shield::initPWM(mraa::I2c *i2c) {
+  
   uint8_t writeBuf[2] = {0};
   writeBuf[0] = 0x00; // Write to MODE 1 Register;
   writeBuf[1] = 1 << 4; // Enable Sleep Mode
@@ -59,7 +56,7 @@ void Shield::initPWM(mraa::I2c *i2c) {
   std::cout << "init" << std::endl;
 }
 
-void Shield::writePWM(mraa::I2c* i2c, int index, double duty) {
+void Shield::writePWM(int index, double duty) {
   assert(0.0 <= duty && duty <= 1.0);
   assert(0 <= index && index < 16);
   double on = 4095.0 * duty;
