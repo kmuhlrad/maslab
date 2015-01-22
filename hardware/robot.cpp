@@ -114,8 +114,10 @@ int main() {
   left_en->A.isr(mraa::EDGE_BOTH, A_handler, left_en);
   left_en->B.isr(mraa::EDGE_BOTH, B_handler, left_en);*/
 
-  Servo left_servo(0);
-  Servo right_servo(9);
+  Shield *shield = new Shield();
+
+  Servo left_servo(0, shield);
+  Servo right_servo(9, shield);
 
   mraa::Gpio bottombeam = mraa::Gpio(2);
   bottombeam.dir(mraa::DIR_IN);

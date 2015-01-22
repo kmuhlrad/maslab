@@ -2,10 +2,9 @@
 #include "shield.h"
 #include "mraa.hpp"
 
-Servo::Servo(int pwm_pin) {
+Servo::Servo(int pwm_pin, Shield* shield) {
   //pwm.write(0.0);
   pin = pwm_pin;
-  shield = new Shield();
 }
 
 void Servo::setDegree(double deg) {

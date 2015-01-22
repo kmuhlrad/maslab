@@ -5,10 +5,9 @@
 #include "shield.h"
 
 class Servo {
-	Shield *shield;
 	int pin;
 public:
-	Servo(int pwm_pin);
+	Servo(int pwm_pin, Shield *shield);
 	void setDegree(double deg);
 	void write(float value);
 };
