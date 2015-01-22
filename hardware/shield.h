@@ -6,7 +6,7 @@
 class Shield {
 public:
 	mraa::I2c* i2c;
-	uint8_t registers[];
+	static uint8_t registers[];
 
 	Shield();
 

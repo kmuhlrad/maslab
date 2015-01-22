@@ -8,7 +8,7 @@
 #define MS 1000
 
 Shield::Shield() {
-  uint8_t registers[] = {
+  registers = {
     6,   // output 0
     10,  // output 1
     14,  // output 2
