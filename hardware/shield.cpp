@@ -53,6 +53,8 @@ void Shield::initPWM(mraa::I2c *i2c) {
         
   i2c->address(SHIELD_I2C_ADDR);
   i2c->write(writeBuf, 2);
+
+  std::cout << "init" << std::endl;
 }
 
 void Shield::writePWM(mraa::I2c* i2c, int index, double duty) {
@@ -71,5 +73,4 @@ void Shield::writePWM(mraa::I2c* i2c, int index, double duty) {
   writeBuf[4] = (onRounded >> 8) & 0xFF; // OFF MSB
   i2c->address(SHIELD_I2C_ADDR);
   i2c->write(writeBuf, 5);
-  std::cout << "writing" << std::endl;
 }
