@@ -117,7 +117,7 @@ int main() {
   Shield *shield = new Shield();
 
   Servo left_servo(0);
-  Servo right_servo(9);
+  //Servo right_servo(9);
 
   mraa::Gpio bottombeam = mraa::Gpio(2);
   bottombeam.dir(mraa::DIR_IN);

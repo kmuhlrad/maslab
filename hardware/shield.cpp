@@ -8,7 +8,9 @@
 #define MS 1000
 
 Shield::Shield() {
-  registers = {
+  registers = new uint8_t[16];   
+  registers[0] = 6;  
+/*registers[16] = {
     6,   // output 0
     10,  // output 1
     14,  // output 2
@@ -25,7 +27,7 @@ Shield::Shield() {
     58,  // output 13
     62,  // output 14
     66   // output 15
-  };
+  };*/
 
   i2c = new mraa::I2c(6);
   initPWM(i2c);
