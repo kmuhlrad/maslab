@@ -5,17 +5,16 @@
 
 class Motor {
 	//pins
-	mraa::Pwm pwm;
 	mraa::Gpio dir;
+	int pin;
 public:
 	//constructor
 	Motor(int pwm_pin, int dir_pin);
 
 	//methods
-	void setSpeed(double speed, double cap);
-	void setSpeed(double speed);
+	void setSpeed(Shield* shield, double speed, double cap);
+	void setSpeed(Shield* shield, double speed);
 	void stop();
-	float read();
 };
 
 #endif
