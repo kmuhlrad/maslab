@@ -213,10 +213,11 @@ int main() {
       lift.setSpeed(0.15); //go up
     }
     */
-    
-    left_servo.setDegree(shield, 90);
-    std::cout << value << std::endl;
-    value += 0.01;
+    left.setSpeed(shield, 0.2);
+    std::cout << "running" << std::endl;
+    //left_servo.setDegree(shield, 90);
+    //std::cout << value << std::endl;
+    //value += 0.01;
     //servo.write(0.3);
     //left_servo.setDegree(180 - pos);
     //right_servo.setDegree(pos);
