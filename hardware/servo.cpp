@@ -5,7 +5,7 @@
 Servo::Servo(int pwm_pin) {
   //pwm.write(0.0);
   pin = pwm_pin;
-  shield = Shield();
+  shield = new Shield();
 }
 
 void Servo::setDegree(double deg) {
@@ -18,6 +18,8 @@ void Servo::setDegree(double deg) {
   /*
   MAPPING 0.09 - 0.5 to 0 - 1
   y = 0.41x + 0.09
+
+  //new mapping 0.07x + 0.03
   */
 }
 

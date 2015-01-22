@@ -114,7 +114,7 @@ int main() {
   left_en->A.isr(mraa::EDGE_BOTH, A_handler, left_en);
   left_en->B.isr(mraa::EDGE_BOTH, B_handler, left_en);*/
 
-  Servo left_servo(12);
+  Servo left_servo(0);
   Servo right_servo(9);
 
   mraa::Gpio bottombeam = mraa::Gpio(2);
@@ -213,6 +213,7 @@ int main() {
     */
     
     left_servo.write(0.07*value + 0.03);
+    std::cout << value << std::endl;
     value += 0.01;
     //servo.write(0.3);
     //left_servo.setDegree(180 - pos);
