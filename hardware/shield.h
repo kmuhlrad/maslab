@@ -6,12 +6,11 @@
 class Shield {
 public:
 	mraa::I2c* i2c;
-	static uint8_t registers[];
+	uint8_t* registers;
 
 	Shield();
 
-	void initPWM(mraa::I2c *i2c);
-	void writePWM(mraa::I2c* i2c, int index, double duty);
+	void writePWM(int index, double duty);
 };
 
 #endif

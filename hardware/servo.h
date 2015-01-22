@@ -8,8 +8,8 @@ class Servo {
 	int pin;
 public:
 	Servo(int pwm_pin);
-	void setDegree(Shield *shield, double deg);
-	void write(Shield *shield, float value);
+	void setDegree(Shield* shield, double deg);
+	void write(Shield* shield, float value);
 };
 
 #endif
