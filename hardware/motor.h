@@ -2,6 +2,7 @@
 #define MOTOR_H
 
 #include "mraa.hpp"
+#include "shield.h"
 
 class Motor {
 	//pins
@@ -14,7 +15,7 @@ public:
 	//methods
 	void setSpeed(Shield* shield, double speed, double cap);
 	void setSpeed(Shield* shield, double speed);
-	void stop();
+	void stop(Shield* shield);
 };
 
 #endif
