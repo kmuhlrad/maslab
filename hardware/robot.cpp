@@ -139,7 +139,8 @@ int main() {
   //std::cout << "pos: ";
   //std::cin >> pos;
   running = 1;
-  while (running) {
+  double value = 0;
+  while (running && value <= 1) {
     //NEED TO CHECK DESIRED AND ESTIMATED BASED ON GYRO OUTPUT
     //desired should come from external input: cube location or something
     //speed should depend on external input from distance sensors or camera
@@ -211,13 +212,14 @@ int main() {
     }
     */
     
-    left_servo.setDegree(90);
+    left_servo.write(0.07*value + 0.03);
+    value += 0.01;
     //servo.write(0.3);
     //left_servo.setDegree(180 - pos);
     //right_servo.setDegree(pos);
 
     //last = topbeam.read();
-    usleep(10000);
+    usleep(100000);
   }
 
   //~Gyro();
