@@ -45,7 +45,7 @@ void Motor::setSpeed(Shield* shield, double speed) {
   shield->writePWM(pin, output);
 }
 
-void Motor::stop() {
+void Motor::stop(Shield* shield) {
   shield->writePWM(pin, 0.0);
   dir.write(0);
 }
