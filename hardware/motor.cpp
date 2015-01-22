@@ -13,7 +13,7 @@ Motor::Motor(int pwm_pin, int dir_pin) : dir(dir_pin) {
 }
 
 //maybe hardcode cap for real thing?
-void Motor::setSpeed(double speed, double cap) {
+void Motor::setSpeed(Shield* shield, double speed, double cap) {
   assert(-1.0 <= speed && speed <= 1.0);
   if (speed < 0) {
     dir.write(1);
