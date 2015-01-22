@@ -10,6 +10,22 @@
 Shield::Shield() {
   registers = new uint8_t[16];
   registers[0] = 6;
+  registers[1] = 10;
+  registers[2] = 14;
+  registers[3] = 18;
+  registers[4] = 22;
+  registers[5] = 26;
+  registers[6] = 30;
+  registers[7] = 34;
+  registers[8] = 38;
+  registers[9] = 42;
+  registers[10] = 46;
+  registers[11] = 50;
+  registers[12] = 54;
+  registers[13] = 58;
+  registers[14] = 62;
+  registers[15] = 66;
+
   /*registers = {
     6,   // output 0
     10,  // output 1
@@ -30,7 +46,7 @@ Shield::Shield() {
   };*/
 
   i2c = new mraa::I2c(6);
-  
+
   uint8_t writeBuf[2] = {0};
   writeBuf[0] = 0x00; // Write to MODE 1 Register;
   writeBuf[1] = 1 << 4; // Enable Sleep Mode
@@ -52,8 +68,6 @@ Shield::Shield() {
         
   i2c->address(SHIELD_I2C_ADDR);
   i2c->write(writeBuf, 2);
-
-  std::cout << "init" << std::endl;
 }
 
 void Shield::writePWM(int index, double duty) {
