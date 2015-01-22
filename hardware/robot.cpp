@@ -214,7 +214,7 @@ int main() {
     }
     */
     
-    left_servo.write(0.07*value + 0.03, shield);
+    left_servo.write(shield, 0.07*value + 0.03);
     std::cout << value << std::endl;
     value += 0.01;
     //servo.write(0.3);
