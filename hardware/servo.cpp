@@ -2,12 +2,12 @@
 #include "shield.h"
 #include "mraa.hpp"
 
-Servo::Servo(int pwm_pin, Shield *shield) {
+Servo::Servo(int pwm_pin) {
   //pwm.write(0.0);
   pin = pwm_pin;
 }
 
-void Servo::setDegree(double deg) {
+void Servo::setDegree(double deg, Shield *shield) {
   //put this in some sort of case structure? Or just replace this with a case structure?
   //assert (deg <= 180); //ADJUST THIS 
   float value = deg / 180.0;
@@ -22,6 +22,6 @@ void Servo::setDegree(double deg) {
   */
 }
 
-void Servo::write(float value) {
+void Servo::write(float value, Shield, *shield) {
   shield->writePWM(shield->i2c, pin, value);
 }

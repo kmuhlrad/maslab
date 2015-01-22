@@ -116,8 +116,8 @@ int main() {
 
   Shield *shield = new Shield();
 
-  Servo left_servo(0, shield);
-  Servo right_servo(9, shield);
+  Servo left_servo(0);
+  Servo right_servo(9);
 
   mraa::Gpio bottombeam = mraa::Gpio(2);
   bottombeam.dir(mraa::DIR_IN);
@@ -214,7 +214,7 @@ int main() {
     }
     */
     
-    left_servo.write(0.07*value + 0.03);
+    left_servo.write(0.07*value + 0.03, shield);
     std::cout << value << std::endl;
     value += 0.01;
     //servo.write(0.3);

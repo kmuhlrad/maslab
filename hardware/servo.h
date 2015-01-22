@@ -7,9 +7,9 @@
 class Servo {
 	int pin;
 public:
-	Servo(int pwm_pin, Shield *shield);
-	void setDegree(double deg);
-	void write(float value);
+	Servo(int pwm_pin);
+	void setDegree(Shield *shield, double deg);
+	void write(Shield, *shield, float value);
 };
 
 #endif
