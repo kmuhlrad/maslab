@@ -214,7 +214,7 @@ int main() {
     }
     */
     
-    left_servo.write(shield, 0.07*value + 0.03);
+    left_servo.setDegree(shield, 90);
     std::cout << value << std::endl;
     value += 0.01;
     //servo.write(0.3);
