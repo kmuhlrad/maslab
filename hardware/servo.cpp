@@ -22,6 +22,6 @@ void Servo::setDegree(Shield *shield, double deg) {
   */
 }
 
-void Servo::write(Shield, *shield, float value) {
+void Servo::write(Shield *shield, float value) {
   shield->writePWM(shield->i2c, pin, value);
 }
