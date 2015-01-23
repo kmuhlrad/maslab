@@ -103,9 +103,9 @@ int main() {
   signal(SIGINT, sig_handler);
 
   //two motor setup
-  Motor left(5, 4);
-  //Motor right(9, 8);
-  //Motor lift(2, 3);
+  Motor left(15, 2);
+  Motor right(0, 8);
+  Motor lift(12, 3);
 
   Gyro gyro;
   //IR medA = IR(1, 6149.816568, 4.468768853);
@@ -116,17 +116,17 @@ int main() {
 
   Shield *shield = new Shield();
 
-  Servo left_servo(0);
-  //Servo right_servo(9);
+  Servo left_lift(9);
+  Servo right_lift(7);
 
-  mraa::Gpio bottombeam = mraa::Gpio(2);
+  Servo left_door(11);
+  Servo right_door(5)
+
+  mraa::Gpio bottombeam = mraa::Gpio(5);
   bottombeam.dir(mraa::DIR_IN);
 
-  mraa::Gpio topbeam = mraa::Gpio(6);
+  mraa::Gpio topbeam = mraa::Gpio(4);
   topbeam.dir(mraa::DIR_IN);
-
-  mraa::Pwm servo = mraa::Pwm(9);
-  servo.enable(true);
 
   gettimeofday(&start, NULL);
 
@@ -152,69 +152,69 @@ int main() {
     //servo.write(0.5);
     //TOGGLE CODE
     
-    /*if (topbeam.read() && !last) {
-      if (left.read() == 0) {
-        left.setSpeed(0.2);
-        std::cout << "running" << std::endl;
-      } else {
-        left.stop();
-        std::cout << "stopped" << std::endl;
-      }
-    }*/
+    if (topbeam.read()) {
+      left.setSpeed(shield, 0.2);
+    } else if (bottombeam.read()) {
+      left.setSpeed(shield, -0.2);
+    } else {
+      left.stop();
+    }
     
     
     /*
     if ((!topbeam.read() && up)) {
-      lift.stop(); //stop
+      lift.stop(shield); //stop
       up = 0;
-      lift_servo.setDegree(180 - 90);
-      right_servo.setDegree(90);
+      lift_servo.setDegree(shield, 180 - 90);
+      right_servo.setDegree(shield, 90);
       sleep(2);
     } else if (!bottombeam.read() && !up) {
-      lift.stop();
+      lift.stop(shield);
       sleep(1);
       
       //put the doors out
-      left_door.setDegree(90);
-      right_door.setDegree(90);
+      left_door.setDegree(shield, 90);
+      right_door.setDegree(shield, 90);
       sleep(1);
 
       //wiggle
-      left.setSpeed(0.2);
-      right.setSpeed(-0.2);
+      left.setSpeed(shield, 0.2);
+      right.setSpeed(shield, -0.2);
       usleep(500000);
-      left.setSpeed(-0.2);
-      right.setSpeed(0.2);
+      left.setSpeed(shield, -0.2);
+      right.setSpeed(shield, 0.2);
       usleep(250000);
-      left.setSpeed(0.2);
-      right.setSpeed(-0.2);
+      left.setSpeed(shield, 0.2);
+      right.setSpeed(shield, -0.2);
       usleep(250000);
-      left.setSpeed(-0.2);
-      right.setSpeed(0.2);
+      left.setSpeed(shield, -0.2);
+      right.setSpeed(shield, 0.2);
       usleep(250000);
-      left.setSpeed(0.2);
-      right.setSpeed(-0.2);
+      left.setSpeed(shield, 0.2);
+      right.setSpeed(shield, -0.2);
       usleep(125000);
 
       //put the doors back
-      left_door.setDegree(0);
-      right_door.setDegree(180);
+      left_door.setDegree(shield, 0);
+      right_door.setDegree(shield, 180);
       sleep(1);
 
       //grab the blocks
-      left_servo.setDegree(180 - 15);
-      right_servo.setDegree(15);
+      left_servo.setDegree(shield, 180 - 15);
+      right_servo.setDegree(shield, 15);
       sleep(2);
 
       up = 1;
     } else if (!topbeam.read() && !up) {
-      lift.setSpeed(-0.1); //go down
+      lift.setSpeed(shield, -0.1); //go down
     } else if (!bottombeam.read() && up) {
-      lift.setSpeed(0.15); //go up
+      lift.setSpeed(shield, 0.15); //go up
     }
     */
+
     left.setSpeed(shield, 0.2);
     std::cout << "running" << std::endl;
+
     //left_servo.setDegree(shield, 90);
     //std::cout << value << std::endl;
     //value += 0.01;
