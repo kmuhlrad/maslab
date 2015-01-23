@@ -35,7 +35,7 @@ int main() {
   Shield *shield = new Shield();
 
   while (running && value <= 1) {
-    left.stop(shield):
+    left.stop(shield);
     right.stop(shield);
     lift.stop(shield);
     usleep(100000);
