@@ -134,15 +134,15 @@ int main() {
   int up = 1;
 
   //left_servo.setDegree(90);
-  //left_servo.setDegree(180 - 120);
-  //right_servo.setDegree(120);
-  //left.setSpeed(0.2);
-  double pos;
-  std::cin >> pos;
+  left_lift.setDegree(180 - 120);
+  right_lift.setDegree(120);
+  left.setSpeed(0.2); //CHANGE TO LIFT
+  //double pos;
+  //std::cin >> pos;
   running = 1;
   while (running) {
 
-    /*
+    /* 
     left.setSpeed(shield, -0.2);
     right.setSpeed(shield, -0.2);
     sleep(2);
@@ -154,58 +154,73 @@ int main() {
     //left_door.setDegree(shield, 150-pos);
     //right_door.setDegree(shield, pos);
     
-    left_lift.setDegree(shield, 180-pos);
-    right_lift.setDegree(shield, pos);
-    /*
+    //left_lift.setDegree(shield, 180-pos);
+    //right_lift.setDegree(shield, pos);
+    
     if ((!topbeam.read() && up)) {
-      lift.stop(shield); //stop
+      left.stop(shield); //stop CHANGE TO LIFT
       up = 0;
-      lift_servo.setDegree(shield, 180 - 90);
-      right_servo.setDegree(shield, 90);
+      left_lift.setDegree(shield, 180 - 90);
+      right_lift.setDegree(shield, 90);
       sleep(2);
     } else if (!bottombeam.read() && !up) {
-      lift.stop(shield);
+      left.stop(shield); //CHANGE TO LIFT
       sleep(1);
       
       //put the doors out
-      left_door.setDegree(shield, 90);
-      right_door.setDegree(shield, 90);
+      left_door.setDegree(shield, 0);
+      right_door.setDegree(shield, 0);
       sleep(1);
 
       //wiggle
       left.setSpeed(shield, 0.2);
       right.setSpeed(shield, -0.2);
+      usleep(250000);
+      left.stop(shield);
+      right.stop(shield);
+      usleep(250000);
+      left.setSpeed(shield, -0.2);
+      right.setSpeed(shield, 0.2);
       usleep(500000);
-      left.setSpeed(shield, -0.2);
-      right.setSpeed(shield, 0.2);
+      left.stop(shield);
+      right.stop(shield);
       usleep(250000);
       left.setSpeed(shield, 0.2);
       right.setSpeed(shield, -0.2);
+      usleep(500000);
+      left.stop(shield);
+      right.stop(shield);
       usleep(250000);
       left.setSpeed(shield, -0.2);
       right.setSpeed(shield, 0.2);
+      usleep(500000);
+      left.stop(shield);
+      right.stop(shield);
       usleep(250000);
       left.setSpeed(shield, 0.2);
       right.setSpeed(shield, -0.2);
-      usleep(125000);
+      usleep(25000);
+      left.stop(shield);
+      right.stop(shield);
+      usleep(250000);
 
       //put the doors back
-      left_door.setDegree(shield, 0);
-      right_door.setDegree(shield, 180);
+      left_door.setDegree(shield, 150-130);
+      right_door.setDegree(shield, 130);
       sleep(1);
 
       //grab the blocks
-      left_servo.setDegree(shield, 180 - 15);
-      right_servo.setDegree(shield, 15);
+      left_lift.setDegree(shield, 180 - 40);
+      right_lift.setDegree(shield, 40);
       sleep(2);
 
       up = 1;
     } else if (!topbeam.read() && !up) {
-      lift.setSpeed(shield, -0.1); //go down
+      left.setSpeed(shield, -0.1); //go down CHANGE TO LIFT
     } else if (!bottombeam.read() && up) {
-      lift.setSpeed(shield, 0.15); //go up
+      left.setSpeed(shield, 0.15); //go up CHANGE TO LIFT
     }
-    */
+    
 
     usleep(100000);
   }
