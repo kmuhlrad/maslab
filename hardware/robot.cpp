@@ -120,7 +120,7 @@ int main() {
   Servo right_lift(7);
 
   Servo left_door(11);
-  Servo right_door(5)
+  Servo right_door(5);
 
   mraa::Gpio bottombeam = mraa::Gpio(5);
   bottombeam.dir(mraa::DIR_IN);
@@ -138,28 +138,11 @@ int main() {
   //right_servo.setDegree(120);
   //left.setSpeed(0.2);
   double pos;
-  //std::cout << "pos: ";
-  //std::cin >> pos;
   running = 1;
-  double value = 0;
-  while (running && value <= 1) {
-    //NEED TO CHECK DESIRED AND ESTIMATED BASED ON GYRO OUTPUT
-    //desired should come from external input: cube location or something
-    //speed should depend on external input from distance sensors or camera
-    //std::cout << left_en.getCounts() << std::endl;
-    //drive_straight(left, right, gyro, 0.0, gyro.get_angle(), 0.0);
-    //std::cout << "gyro: " << gyro.get_angle() << std::endl;
-    //servo.write(0.5);
-    //TOGGLE CODE
-    
-    if (topbeam.read()) {
-      left.setSpeed(shield, 0.2);
-    } else if (bottombeam.read()) {
-      left.setSpeed(shield, -0.2);
-    } else {
-      left.stop();
-    }
-    
+  while (running) {
+
+    left_door.setDegree(shield, 90);
+    right_door.setDegree(shield, 90);
     
     /*
     if ((!topbeam.read() && up)) {
@@ -212,17 +195,6 @@ int main() {
     }
     */
 
-    left.setSpeed(shield, 0.2);
-    std::cout << "running" << std::endl;
-
-    //left_servo.setDegree(shield, 90);
-    //std::cout << value << std::endl;
-    //value += 0.01;
-    //servo.write(0.3);
-    //left_servo.setDegree(180 - pos);
-    //right_servo.setDegree(pos);
-
-    //last = topbeam.read();
     usleep(100000);
   }
 
