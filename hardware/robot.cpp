@@ -158,14 +158,8 @@ int main() {
     
     if ((!topbeam.read() && up)) {
       left.stop(shield); //stop CHANGE TO LIFT
-      up = 0;
-      left_lift.setDegree(shield, 180 - 90);
-      right_lift.setDegree(shield, 90);
-      sleep(2);
-    } else if (!bottombeam.read() && !up) {
-      left.stop(shield); //CHANGE TO LIFT
       sleep(1);
-      
+
       //put the doors out
       left_door.setDegree(shield, 0);
       right_door.setDegree(shield, 0);
@@ -201,11 +195,21 @@ int main() {
       usleep(25000);
       left.stop(shield);
       right.stop(shield);
-      usleep(250000);
+      sleep(1);
 
       //put the doors back
-      left_door.setDegree(shield, 150-130);
-      right_door.setDegree(shield, 130);
+      left_door.setDegree(shield, 150-150);
+      right_door.setDegree(shield, 150);
+      sleep(1);
+
+      //drop stack 
+      left_lift.setDegree(shield, 180 - 90);
+      right_lift.setDegree(shield, 90);
+      sleep(2);
+
+      up = 0;
+    } else if (!bottombeam.read() && !up) {
+      left.stop(shield); //CHANGE TO LIFT
       sleep(1);
 
       //grab the blocks
