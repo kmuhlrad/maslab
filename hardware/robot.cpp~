@@ -142,20 +142,20 @@ int main() {
   running = 1;
   while (running) {
 
-    
+    /*
     left.setSpeed(shield, -0.2);
     right.setSpeed(shield, -0.2);
     sleep(2);
     left.stop(shield);
     right.stop(shield);
     sleep(2);
-    
+    */
 
     //left_door.setDegree(shield, 150-pos);
     //right_door.setDegree(shield, pos);
     
-    //left_lift.setDegree(shield, 180-pos);
-    //right_lift.setDegree(shield, pos);
+    left_lift.setDegree(shield, 180-pos);
+    right_lift.setDegree(shield, pos);
     /*
     if ((!topbeam.read() && up)) {
       lift.stop(shield); //stop
