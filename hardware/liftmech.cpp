@@ -24,7 +24,7 @@ LiftMech::LiftMech(Motor* lw, Motor* rw, Motor* lm,
   up = 1;
 }
 
-void LiftMech::collect(Shield* shield) {
+void LiftMech::collect() {
   lift_motor->setSpeed(shield, 0.2);
 
   while(counter != 2) {
@@ -109,7 +109,7 @@ void LiftMech::collect(Shield* shield) {
   }
 }
 
-void LiftMech::score(Shield* shield) {
+void LiftMech::score() {
   //close doors
   left_door->setDegree(shield, 150-150);
   right_door->setDegree(shield, 150);
