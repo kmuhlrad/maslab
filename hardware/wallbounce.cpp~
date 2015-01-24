@@ -10,6 +10,8 @@
 #include "motor.h"
 #include "piddrive.h"
 #include "shield.h"
+#include "ir.h"
+#include "pwmpin.h"
 
 int running = 1;
 
@@ -29,14 +31,31 @@ int main() {
   //two motor setup
   Motor left_motor(15, 2);
   Motor right_motor(4, 8);
-  Motor lift_motor(12, 3);
 
   Gyro gyro;
 
+  IR medA = IR(1, 6149.816568, 4.468768853);
+
+  PWMPin test(10);
+
   PIDDrive drive(&left_motor, &right_motor, shield, 0.015, 0, 0.4);
 
+  int counter = 0;
+  double curAngle = gyro.get_angle();
+
   while (running) {
-    drive.drive(90, gyro.get_angle(), 0);
-    std::cout << gyro.get_angle() << std::endl;
+    test.write(shield, 1);
+    if (medA.getDistance() < 45) {
+      drive.drive(100, gyro.get_angle(), .25);
+      counter = 0;
+      sleep(0.5);
+    } else {
+      if (counter == 0) {
+        curAngle = gyro.get_angle();
+      }
+      counter++;
+      drive.drive(curAngle, gyro.get_angle(), 0.25);
+      sleep(0.5);
+    }
   }
 }
