@@ -42,7 +42,7 @@ int main() {
 
   LiftMech lift(left_motor, right_motor, lift_motor,
                 left_door, right_door, left_lift, right_lift,
-                5, 4, shield);
+                5, 4);
   /*mraa::Gpio bottombeam = mraa::Gpio(5);
   bottombeam.dir(mraa::DIR_IN);
 
@@ -52,7 +52,7 @@ int main() {
   int up = 1;
   int test = 0;
   while (running && !test) {
-    lift.collect();
+    lift.collect(shield);
     test = 1;
     std::cout << "collected" << std::endl;
     //lift.reset();

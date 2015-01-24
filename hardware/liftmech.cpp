@@ -6,16 +6,15 @@
 
 LiftMech::LiftMech(Motor lw, Motor rw, Motor lm, 
 			             Servo ld, Servo rd, Servo ll, Servo rl,
-			             int top, int bottom, Shield* sh) : left_wheel(lw), right_wheel(lw), lift_motor(lm),
+			             int top, int bottom) : left_wheel(lw), right_wheel(lw), lift_motor(lm),
 									left_door(ld), right_door(rd),
 									left_lift(ll), right_lift (rl),
 									topbeam(top), bottombeam(bottom) {
-  shield = sh;
   counter = 0;
   up = 1;
 }
 
-void LiftMech::collect() {
+void LiftMech::collect(Shield* shield) {
   lift_motor.setSpeed(shield, 0.2);
 
   while(counter != 2) {
@@ -100,7 +99,7 @@ void LiftMech::collect() {
   }
 }
 
-void LiftMech::score() {
+void LiftMech::score(Shield* shield) {
   //close doors
   left_door.setDegree(shield, 150-150);
   right_door.setDegree(shield, 150);
