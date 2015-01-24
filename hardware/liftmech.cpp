@@ -4,8 +4,8 @@
 #include "shield.h"
 #include "liftmech.h"
 
-LiftMech::LiftMech(Motor lw, Motor rw, Motor lm, 
-			             Servo ld, Servo rd, Servo ll, Servo rl,
+LiftMech::LiftMech(Motor& lw, Motor& rw, Motor& lm, 
+			             Servo& ld, Servo& rd, Servo& ll, Servo& rl,
 			             int top, int bottom) : left_wheel(lw), right_wheel(lw), lift_motor(lm),
 									left_door(ld), right_door(rd),
 									left_lift(ll), right_lift (rl),
