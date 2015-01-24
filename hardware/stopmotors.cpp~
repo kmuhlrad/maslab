@@ -29,7 +29,7 @@ int main() {
   signal(SIGINT, sig_handler);
 
   Motor left(15, 2);
-  Motor right(4, 8);
+  Motor right(0, 8);
   Motor lift(12, 3);
 
   Shield *shield = new Shield();
