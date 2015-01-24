@@ -30,15 +30,15 @@ int main() {
   Shield *shield = new Shield();
 
   //two motor setup
-  Motor left_motor = new Motor(15, 2);
-  Motor right_motor = new Motor(4, 8);
-  Motor lift_motor = new Motor(12, 3);
+  Motor *left_motor = new Motor(15, 2);
+  Motor *right_motor = new Motor(4, 8);
+  Motor *lift_motor = new Motor(12, 3);
 
-  Servo left_lift = new Servo(9);
-  Servo right_lift = new Servo(8);
+  Servo *left_lift = new Servo(9);
+  Servo *right_lift = new Servo(8);
 
-  Servo left_door = new Servo(1);
-  Servo right_door = new Servo(0);
+  Servo *left_door = new Servo(1);
+  Servo *right_door = new Servo(0);
 
   LiftMech lift(&left_motor, &right_motor, &lift_motor,
                 &left_door, &right_door, &left_lift, &right_lift,
