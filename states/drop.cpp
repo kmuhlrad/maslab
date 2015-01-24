@@ -25,11 +25,13 @@ int Drop::process() {
 }
 
 int Drop::getNext(/*Data*/) {
-	return DROP; //last state - eventually change but for now...
-	//return next_state; //IMPLEMENT THIS
+	return DROP;
 }
 
 void Drop::run(/*Data*/) {
     std::cout << "scoring" << std::endl;
 	liftmech->score();
+	/*
+	STOP EVERYTHING
+	*/
 }

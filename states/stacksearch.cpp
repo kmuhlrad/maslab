@@ -32,6 +32,11 @@ int StackSearch::getNext(/*Data*/) {
 }
 
 void StackSearch::run(/*Data*/) {
-	//DO STUFF
-	//printf("run\n");
+	/*
+	if (gyro.get_angle() > 360 || gyro.get_angle() < -360) {
+		wallFollow() OR wallBounce();
+	} else {
+		drive.drive(gyro.get_angle() - 20, gyro.get_angle(), 0.2);
+	}
+	*/
 }
