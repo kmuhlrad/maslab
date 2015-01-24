@@ -19,7 +19,7 @@ LiftMech::LiftMech(Motor* lw, Motor* rw, Motor* lm,
   right_lift = rl;
 
   shield = sh;
-  
+
   counter = 0;
   up = 1;
 }
@@ -37,8 +37,8 @@ void LiftMech::collect(Shield* shield) {
         break;
       }
       //put the doors out
-      left_door->setDegree(shield, 150-0);
-      right_door->setDegree(shield, 0);
+      left_door->setDegree(shield, 150-150);
+      right_door->setDegree(shield, 150);
       sleep(1);
 
       //wiggle
@@ -81,8 +81,8 @@ void LiftMech::collect(Shield* shield) {
       right_wheel->setSpeed(shield, 0);
 
       //put the doors back
-      left_door->setDegree(shield, 150-150);
-      right_door->setDegree(shield, 150);
+      left_door->setDegree(shield, 150-0);
+      right_door->setDegree(shield, 0);
       sleep(1);
 
       //drop stack 
