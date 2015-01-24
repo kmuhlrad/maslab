@@ -55,6 +55,7 @@ int running = 1;
 
 
 struct timeval gameclock;
+struct timeval starttime;
 
 void sig_handler(int signo) {
   if (signo == SIGINT) {
@@ -101,7 +102,7 @@ int main() {
   State *curState = states[0];
 
   gettimeofday(&gameclock, NULL);
-  double gametime = ((double)gameclock.tv_sec - (double)start.tv_sec) + 0.000001 * (gameclock.tv_usec - start.tv_usec);
+  double gametime = ((double)gameclock.tv_sec - (double)starttime.tv_sec) + 0.000001 * (gameclock.tv_usec - starttime.tv_usec);
 
   while (running && gametime <= 180) {
     std::cout << "current state: " << curState->getState() << std::endl;
@@ -109,7 +110,7 @@ int main() {
     curState = states[next];
 
     gettimeofday(&gameclock, NULL);
-    gametime = ((double)gameclock.tv_sec - (double)start.tv_sec) + 0.000001 * ((double)gameclock.tv_usec - (double)start.tv_usec);
+    gametime = ((double)gameclock.tv_sec - (double)starttime.tv_sec) + 0.000001 * ((double)gameclock.tv_usec - (double)starttime.tv_usec);
     usleep(1000000);
   }
 }

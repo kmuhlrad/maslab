@@ -1,0 +1,1 @@
+g++ robot.cpp state.cpp start.cpp stacksearch.cpp drive.cpp lift.cpp platformsearch.cpp align.cpp drop.cpp ../hardware/motor.cpp ../hardware/servo.cpp ../hardware/liftmech.cpp ../hardware/servo.cpp -o robot -lmraa
