@@ -35,13 +35,13 @@ int main() {
   Motor lift_motor = new Motor(12, 3);
 
   Servo left_lift = new Servo(9);
-  Servo right_lift = new Servo(9);(8);
+  Servo right_lift = new Servo(8);
 
-  Servo left_door = new Servo(9);(1);
-  Servo right_door = new Servo(9);(0);
+  Servo left_door = new Servo(1);
+  Servo right_door = new Servo(0);
 
-  LiftMech lift(left_motor, right_motor, lift_motor,
-                left_door, right_door, left_lift, right_lift,
+  LiftMech lift(&left_motor, &right_motor, &lift_motor,
+                &left_door, &right_door, &left_lift, &right_lift,
                 4, 5);
   /*mraa::Gpio bottombeam = mraa::Gpio(5);
   bottombeam.dir(mraa::DIR_IN);
