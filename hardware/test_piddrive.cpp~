@@ -33,7 +33,7 @@ int main() {
 
   Gyro gyro;
 
-  PIDDrive drive(&left_motor, &right_motor, shield, 0.015, 0, 0.4);
+  PIDDrive drive(&left_motor, &right_motor, shield, 0.02, 0, 0.5);
 
   while (running) {
     drive.drive(90, gyro.get_angle(), 0);

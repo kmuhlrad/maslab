@@ -6,7 +6,7 @@
 #include "shield.h"
 #include "mraa.hpp"
 
-PIDDrive::PIDDrive(Motor* a, Motor* b, Shield* s,
+PIDDrive(Motor* a, Motor* b, Shield* s,
        double p, double i, double d) {
   A = a;
   B = b;
