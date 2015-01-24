@@ -1,0 +1,104 @@
+Distance: 0 cm
+479
+479
+467
+456
+457
+Distance: 5 cm
+230
+225
+230
+229
+230
+Distance: 10 cm
+174
+173
+171
+169
+166
+Distance: 15 cm
+125
+127
+124
+124
+125
+Distance: 20 cm
+113
+107
+103
+105
+102
+Distance: 25 cm
+74
+77
+80
+79
+79
+Distance: 30 cm
+62
+62
+63
+63
+64
+Distance: 35 cm
+52
+52
+55
+55
+56
+Distance: 40 cm
+50
+43
+45
+46
+44
+Distance: 45 cm
+38
+39
+37
+41
+40
+Distance: 50 cm
+34
+34
+34
+39
+41
+Distance: 55 cm
+42
+43
+41
+48
+56
+Distance: 60 cm
+30
+31
+32
+27
+26
+Distance: 65 cm
+29
+19
+23
+17
+19
+Distance: 70 cm
+27
+17
+8
+13
+25
+Distance: 75 cm
+26
+29
+36
+22
+18
+Distance: 80 cm
+31
+38
+30
+39
+36
+Distance: 85 cm
+63
