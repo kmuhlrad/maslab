@@ -2,6 +2,7 @@
 #include "motor.h"
 #include "servo.h"
 #include "shield.h"
+#include "liftmech.h"
 
 LiftMech::LiftMech(Motor lw, Motor rw, Motor lm, 
 			             Servo ld, Servo rd, Servo ll, Servo rl,
@@ -32,43 +33,43 @@ void LiftMech::collect() {
       sleep(1);
 
       //wiggle
-      left_motor.setSpeed(shield, 0.25);
-      right_motor.setSpeed(shield, -0.25);
+      left_wheel.setSpeed(shield, 0.25);
+      right_wheel.setSpeed(shield, -0.25);
       usleep(250000);
-      left_motor.stop(shield);
-      right_motor.stop(shield);
+      left_wheel.stop(shield);
+      right_wheel.stop(shield);
       usleep(300000);
-      left_motor.setSpeed(shield, -0.25);
-      right_motor.setSpeed(shield, 0.25);
+      left_wheel.setSpeed(shield, -0.25);
+      right_wheel.setSpeed(shield, 0.25);
       usleep(500000);
-      left_motor.stop(shield);
-      right_motor.stop(shield);
+      left_wheel.stop(shield);
+      right_wheel.stop(shield);
       usleep(300000);
-      left_motor.setSpeed(shield, 0.25);
-      right_motor.setSpeed(shield, -0.25);
+      left_wheel.setSpeed(shield, 0.25);
+      right_wheel.setSpeed(shield, -0.25);
       usleep(500000);
-      left_motor.stop(shield);
-      right_motor.stop(shield);
+      left_wheel.stop(shield);
+      right_wheel.stop(shield);
       usleep(300000);
-      left_motor.setSpeed(shield, -0.25);
-      right_motor.setSpeed(shield, 0.25);
+      left_wheel.setSpeed(shield, -0.25);
+      right_wheel.setSpeed(shield, 0.25);
       usleep(500000);
-      left_motor.stop(shield);
-      right_motor.stop(shield);
+      left_wheel.stop(shield);
+      right_wheel.stop(shield);
       usleep(300000);
-      left_motor.setSpeed(shield, 0.25);
-      right_motor.setSpeed(shield, -0.25);
+      left_wheel.setSpeed(shield, 0.25);
+      right_wheel.setSpeed(shield, -0.25);
       usleep(200000);
-      left_motor.stop(shield);
-      right_motor.stop(shield);
+      left_wheel.stop(shield);
+      right_wheel.stop(shield);
       usleep(300000);
 
       //drive forward slightly
-      left_motor.setSpeed(shield, 0.2);
-      right_motor.setSpeed(shield, 0.2);
+      left_wheel.setSpeed(shield, 0.2);
+      right_wheel.setSpeed(shield, 0.2);
       usleep(300000);
-      left_motor.setSpeed(shield, 0);
-      right_motor.setSpeed(shield, 0);
+      left_wheel.setSpeed(shield, 0);
+      right_wheel.setSpeed(shield, 0);
 
       //put the doors back
       left_door.setDegree(shield, 150-150);

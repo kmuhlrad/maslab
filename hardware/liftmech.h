@@ -27,9 +27,10 @@ class LiftMech {
 public:
 	LiftMech(Motor lw, Motor rw, Motor lm, 
 			 Servo ld, Servo rd, Servo ll, Servo rl,
-			 int top, int bottom);
+			 int top, int bottom, Shield* sh);
 	void collect();
 	void score();
+	void reset();
 };
 
 #endif
