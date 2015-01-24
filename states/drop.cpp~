@@ -31,5 +31,5 @@ int Drop::getNext(/*Data*/) {
 
 void Drop::run(/*Data*/) {
     std::cout << "scoring" << std::endl;
-	liftmech->score();
+	liftmech.score();
 }

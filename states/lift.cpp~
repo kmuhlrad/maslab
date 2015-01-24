@@ -27,11 +27,11 @@ int Lift::process() {
 }
 
 int Lift::getNext(/*Data*/) {
-	//return PLATFORMSEARCH; 
+	//return PLATFORMSEARCH;
+   counter++; 
    if (counter == 4) {
     	return PLATFORMSEARCH;
     } else {
-        counter++;
     	return LIFT;
     }
     

@@ -40,9 +40,6 @@ int main() {
   Servo left_door(1);
   Servo right_door(0);
 
-  mraa::Gpio topbeam(4);
-  mraa::Gpio bottombeam(5);
-
   LiftMech lift(&left_motor, &right_motor, &lift_motor,
                 &left_door, &right_door, &left_lift, &right_lift,
                 &topbeam, &bottombeam, shield);

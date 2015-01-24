@@ -84,7 +84,7 @@ int main() {
 
   LiftMech liftmech(&left_wheel, &right_wheel, &lift_motor,
                     &left_door, &right_door, &left_lift, &right_lift,
-                    &topbeam, &bottombeam, shield);
+                    &bottombeam, &topbeam, shield);
 
   Start *start = new Start();
   StackSearch *stack = new StackSearch();

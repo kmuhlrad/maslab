@@ -113,8 +113,8 @@ void LiftMech::collect() {
 
 void LiftMech::score() {
   //close doors
-  left_door->setDegree(shield, 150-0);
-  right_door->setDegree(shield, 0);
+  left_door->setDegree(shield, 150-150);
+  right_door->setDegree(shield, 150);
   sleep(1);
 
   //drop cubes
