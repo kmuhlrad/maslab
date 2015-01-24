@@ -42,7 +42,7 @@ int main() {
 
   LiftMech lift(&left_motor, &right_motor, &lift_motor,
                 &left_door, &right_door, &left_lift, &right_lift,
-                4, 5);
+                4, 5, shield);
   /*mraa::Gpio bottombeam = mraa::Gpio(5);
   bottombeam.dir(mraa::DIR_IN);
 
