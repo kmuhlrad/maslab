@@ -1,0 +1,51 @@
+#include <iostream>
+#include <sys/time.h>
+
+#include "piddrive.h"
+#include "motor.h"
+#include "shield.h"
+#include "mraa.hpp"
+
+PIDDrive(Motor* a, Motor* b, Shield* s,
+       double p, double i, double d) {
+  A = a;
+  B = b;
+
+  shield = s;
+
+  P = p;
+  I = i;
+  D = d;
+
+  integral = 0;
+  last_diff = 0.0;
+
+  gettimeofday(&start, NULL);
+}
+
+void PIDDrive::drive(double desired, double estimated, double speed) {
+  gettimeofday(&end, NULL);
+
+  int diffSec = end.tv_sec - start.tv_sec;
+  int diffUSec = end.tv_usec - start.tv_usec;
+  float dT = (float)diffSec + 0.000001*diffUSec;
+
+  float diff = -desired + estimated;
+  integral += diff*dT;
+  float derivative = diff - last_diff;
+  float power = P*diff + I*integral + D*derivative;
+
+  //CHECK DIRECTION
+  A->setSpeed(shield, speed - power));
+  B->setSpeed(shield, speed + power);
+
+  std::cout << "power: " << power << std::endl;
+
+  gettimeofday(&start, NULL);
+  last_diff = diff;
+}
+
+void PIDDrive::stop() {
+  A->stop();
+  B->stop();
+}

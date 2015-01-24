@@ -9,13 +9,21 @@ class PIDDrive {
 	double I;
 	double D;
 
-	Motor A;
-	Motor B;
-	Gyro gyro;
+	Motor* A;
+	Motor* B;
+
+	Shield* shield;
+
+	double integral;
+	double last_diff;
+
+	struct timeval start;
+	struct timeval end;
 public:
-	PIDDrive(Motor a, Motor b, Gyro g, double p, double i, double d);
-	void drive_straight(double desired, double estimated, double speed);
-	void turn(/*param*/); //will this go here?
+	PIDDrive(Motor* a, Motor* b, Shield* s,
+			 double p, double i, double d);
+	void drive(double desired, double estimated, double speed);
+	void stop();
 };
 
 #endif
