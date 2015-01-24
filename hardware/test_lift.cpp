@@ -52,7 +52,7 @@ int main() {
   int up = 1;
   int test = 0;
   while (running && !test) {
-    lift.collect(shield);
+    lift.collect();
     test = 1;
     std::cout << "collected" << std::endl;
     //lift.reset();

@@ -6,7 +6,7 @@
 
 LiftMech::LiftMech(Motor* lw, Motor* rw, Motor* lm, 
 			             Servo* ld, Servo* rd, Servo* ll, Servo* rl,
-			             int top, int bottom) : topbeam(top), bottombeam(bottom)
+			             int top, int bottom, Shield* sh) : topbeam(top), bottombeam(bottom)
 {
   left_wheel = lw;
   right_wheel = rw;
@@ -18,6 +18,8 @@ LiftMech::LiftMech(Motor* lw, Motor* rw, Motor* lm,
   left_lift = ll;
   right_lift = rl;
 
+  shield = sh;
+  
   counter = 0;
   up = 1;
 }
