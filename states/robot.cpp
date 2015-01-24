@@ -53,6 +53,9 @@
 
 int running = 1;
 
+
+struct timeval gameclock;
+
 void sig_handler(int signo) {
   if (signo == SIGINT) {
     printf("closing spi nicely\n");
@@ -97,10 +100,16 @@ int main() {
   State *states[7] = {start, stack, drive, lift, platform, align, drop};
   State *curState = states[0];
 
-  while (running) {
+  gettimeofday(&gameclock, NULL);
+  double gametime = ((double)gameclock.tv_sec - (double)start.tv_sec) + 0.000001 * (gameclock.tv_usec - start.tv_usec);
+
+  while (running && gametime <= 180) {
     std::cout << "current state: " << curState->getState() << std::endl;
     int next = curState->process();
     curState = states[next];
+
+    gettimeofday(&gameclock, NULL);
+    gametime = ((double)gameclock.tv_sec - (double)start.tv_sec) + 0.000001 * ((double)gameclock.tv_usec - (double)start.tv_usec);
     usleep(1000000);
   }
 }

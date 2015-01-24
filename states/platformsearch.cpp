@@ -4,6 +4,7 @@
 
 PlatformSearch::PlatformSearch() {
 	state_num = PLATFORMSEARCH;
+	//reset gyro angle;
 }
 
 int PlatformSearch::getState() {
@@ -21,10 +22,21 @@ int PlatformSearch::process() {
 
 int PlatformSearch::getNext(/*Data*/) {
 	return ALIGN;
-	//return next_state; //IMPLEMENT THIS
+	/*
+	if (found && closeEnough) {
+		return ALIGN;
+	} else {
+		return PLATFORMSEARCH;
+	}
+	*/
 }
 
 void PlatformSearch::run(/*Data*/) {
-	//DO STUFF
-	//printf("run\n");
+	/*
+	if (gyro.get_angle() > 360 || gyro.get_angle() < -360) {
+		wallFollow() OR wallBounce();
+	} else {
+		drive.drive(gyro.get_angle() - 20, gyro.get_angle(), 0.2);
+	}
+	*/
 }

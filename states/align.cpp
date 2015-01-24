@@ -21,10 +21,25 @@ int Align::process() {
 
 int Align::getNext(/*Data*/) {
 	return DROP;
-	//return next_state; //IMPLEMENT THIS
+	/*
+	if (aligned) {
+		return DROP;
+	} else if (lostPlatform) {
+		return PLATFORMSEARCH;
+	} else {
+		return ALIGN;
+	}
+	*/
 }
 
 void Align::run(/*Data*/) {
-	//DO STUFF
-	//printf("run\n");
+	/*
+	if (canSeePlatform) {
+		drive.drive(platform_angle, gyro.get_angle(), 0.25);
+		sleep(.5);
+	} else {
+	    drive.drive(gyro.get_angle, gyro.get_angle(), 0.3);
+	    usleep(200000);
+	}
+	*/
 }

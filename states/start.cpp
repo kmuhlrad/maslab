@@ -11,9 +11,16 @@ int Start::getState() {
 }
 
 int Start::process() {
-	run();
+	//run();
 	return STACKSEARCH;
-	//return next_state; //IMPLEMENT THIS
+	
+	/*
+	if (startSwitch) {
+		return STACKSEARCH;
+	} else {
+		return START;
+	}
+	*/
 }
 
 void Start::run(/*Data*/) {

@@ -22,10 +22,25 @@ int Drive::process() {
 
 int Drive::getNext(/*Data*/) {
 	return LIFT;
-	//return next_state; //IMPLEMENT THIS
+	/*
+	if(reachedStack) {
+		return LIFT;
+	} else if (!foundStack || wrongColor) {
+		return STACKSEARCH;
+	} else {
+		return DRIVE;
+	}
+	*/
 }
 
 void Drive::run(/*Data*/) {
-	//DO STUFF
-	//printf("run\n");
+	/*
+	if (canSeeStack) {
+		drive.drive(stack_angle, gyro.get_angle(), 0.25);
+		sleep(.5);
+	} else {
+	    drive.drive(gyro.get_angle, gyro.get_angle(), 0.3);
+	    usleep(200000);
+	}
+	*/
 }

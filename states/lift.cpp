@@ -35,11 +35,18 @@ int Lift::getNext(/*Data*/) {
     	return LIFT;
     }
     
-	//return next_state; //IMPLEMENT THIS
+    /*
+    if (noStacksLeft || time < 1 min) {
+		return PLATFORMSEARCH;
+    } else if (successful) {
+		return STACKSEARCH;
+    } else {
+		return LIFT;
+    }
+    */
 }
 
 void Lift::run(/*Data*/) {
-    std::cout << "collecting" << std::endl;
 	liftmech->reset();
 	liftmech->collect();
 }
