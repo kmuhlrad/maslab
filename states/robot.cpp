@@ -32,13 +32,11 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-/*#include "mraa.hpp"
-#include "encoder.h"
-#include "gyro.h"
-#include "motor.h"
-#include "ultrasonic.h"
-#include "ir.h"
-#include "servo.h"*/
+#include "mraa.hpp"
+#include "../hardware/motor.h"
+#include "../hardware/servo.h"
+#include "../hardware/liftmech.h"
+#include "../hardware/shield.h"
 
 #include "robot_states.h"
 #include "state.h"
@@ -46,7 +44,6 @@
 #include "start.h"
 #include "stacksearch.h"
 #include "drive.h"
-#include "wiggle.h"
 #include "lift.h"
 #include "platformsearch.h"
 #include "align.h"
@@ -67,16 +64,37 @@ int main() {
   //Handle Ctrl-C quit
   signal(SIGINT, sig_handler);
 
+  Shield *shield = new Shield();
+
+  Motor left_wheel(15, 2);
+  Motor right_wheel(4, 8);
+  Motor lift_motor(12, 3);
+
+  Servo left_door(1);
+  Servo right_door(0);
+
+  Servo left_lift(9);
+  Servo right_lift(8);
+
+  mraa::Gpio topbeam = mraa::Gpio(4);
+  topbeam.dir(mraa::DIR_IN);
+
+  mraa::Gpio bottombeam = mraa::Gpio(5);
+  bottombeam.dir(mraa::DIR_IN);
+
+  LiftMech liftmech(&left_wheel, &right_wheel, &lift_motor,
+                    &left_door, &right_door, &left_lift, &right_lift,
+                    &bottombeam, &topbeam, shield);
+
   Start *start = new Start();
   StackSearch *stack = new StackSearch();
   Drive *drive = new Drive();
-  Wiggle *wiggle = new Wiggle();
-  Lift *lift = new Lift();
+  Lift *lift = new Lift(&liftmech);
   PlatformSearch *platform = new PlatformSearch();
   Align *align = new Align();
-  Drop *drop = new Drop();
+  Drop *drop = new Drop(&liftmech);
 
-  State *states[8] = {start, stack, drive, wiggle, lift, platform, align, drop};
+  State *states[7] = {start, stack, drive, lift, platform, align, drop};
   State *curState = states[0];
 
   while (running) {

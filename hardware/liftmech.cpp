@@ -6,8 +6,7 @@
 
 LiftMech::LiftMech(Motor* lw, Motor* rw, Motor* lm, 
 			             Servo* ld, Servo* rd, Servo* ll, Servo* rl,
-			             int top, int bottom, Shield* sh) : topbeam(top), bottombeam(bottom)
-{
+			             mraa::Gpio* top, mraa::Gpio* bottom, Shield* sh) {
   left_wheel = lw;
   right_wheel = rw;
   lift_motor = lm;
@@ -18,6 +17,9 @@ LiftMech::LiftMech(Motor* lw, Motor* rw, Motor* lm,
   left_lift = ll;
   right_lift = rl;
 
+  topbeam = top;
+  bottombeam = bottom;
+  
   shield = sh;
 
   counter = 0;
@@ -28,7 +30,7 @@ void LiftMech::collect() {
   lift_motor->setSpeed(shield, 0.2);
 
   while(counter != 2) {
-    if ((!topbeam.read() && up)) {
+    if ((!topbeam->read() && up)) {
       lift_motor->stop(shield);
       sleep(1);
       counter++;
@@ -91,7 +93,7 @@ void LiftMech::collect() {
       sleep(2);
 
       up = 0;
-    } else if (!bottombeam.read() && !up) {
+    } else if (!bottombeam->read() && !up) {
       lift_motor->stop(shield);
       sleep(1);
 
@@ -101,9 +103,9 @@ void LiftMech::collect() {
       sleep(2);
 
       up = 1;
-    } else if (!topbeam.read() && !up) {
+    } else if (!topbeam->read() && !up) {
       lift_motor->setSpeed(shield, -0.1);
-    } else if (!bottombeam.read() && up) {
+    } else if (!bottombeam->read() && up) {
       lift_motor->setSpeed(shield, 0.15);
     }
   }

@@ -1,9 +1,14 @@
+#include <iostream>
+
 #include "drop.h"
 #include "robot_states.h"
-//#include "mraa.hpp"
 
-Drop::Drop() {
+#include "mraa.hpp"
+#include "../hardware/liftmech.h"
+
+Drop::Drop(LiftMech* lm) {
 	state_num = DROP;
+	liftmech = lm;
 }
 
 int Drop::getState() {
@@ -20,11 +25,11 @@ int Drop::process() {
 }
 
 int Drop::getNext(/*Data*/) {
-	return STACKSEARCH;
+	return DROP; //last state - eventually change but for now...
 	//return next_state; //IMPLEMENT THIS
 }
 
 void Drop::run(/*Data*/) {
-	//DO STUFF
-	//printf("run\n");
+    std::cout << "scoring" << std::endl;
+	liftmech.score();
 }

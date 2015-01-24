@@ -3,11 +3,16 @@
 
 #include "state.h"
 
+#include "mraa.hpp"
+#include "../hardware/liftmech.h"
+
 class Drop : public State {
 	int getNext(/*Data*/);
 	void run(/*Data*/);
+
+	LiftMech* liftmech;
 public:
-	Drop();
+	Drop(LiftMech* lm);
 	virtual int process(/*Data*/);
 	int getState();
 };

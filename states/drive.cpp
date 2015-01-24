@@ -1,6 +1,7 @@
 #include "drive.h"
 #include "robot_states.h"
-//#include "mraa.hpp"
+
+#include "mraa.hpp"
 
 Drive::Drive() {
 	state_num = DRIVE;
@@ -20,7 +21,7 @@ int Drive::process() {
 }
 
 int Drive::getNext(/*Data*/) {
-	return WIGGLE;
+	return LIFT;
 	//return next_state; //IMPLEMENT THIS
 }
 

@@ -19,15 +19,15 @@ class LiftMech {
  	Servo* left_lift;
  	Servo* right_lift;
 
- 	mraa::Gpio topbeam;
- 	mraa::Gpio bottombeam;
+ 	mraa::Gpio* topbeam;
+ 	mraa::Gpio* bottombeam;
 
  	int counter;
  	int up;
 public:
 	LiftMech(Motor* lw, Motor* rw, Motor* lm, 
 			 Servo* ld, Servo* rd, Servo* ll, Servo* rl,
-			 int top, int bottom, Shield* sh);
+			 mraa::Gpio* top, mraa::Gpio* bottom, Shield* sh);
 	void collect();
 	void score();
 	void reset();

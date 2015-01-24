@@ -1,9 +1,16 @@
+#include <iostream>
+
 #include "lift.h"
 #include "robot_states.h"
-//#include "mraa.hpp"
 
-Lift::Lift() {
+#include "mraa.hpp"
+#include "../hardware/liftmech.h"
+
+Lift::Lift(LiftMech* lm) {
 	state_num = LIFT;
+	liftmech = lm;
+
+	counter = 0;
 }
 
 int Lift::getState() {
@@ -20,11 +27,19 @@ int Lift::process() {
 }
 
 int Lift::getNext(/*Data*/) {
-	return PLATFORMSEARCH;
+	//return PLATFORMSEARCH;
+    if (counter == 0) {
+    	counter = 1;
+    	return LIFT;
+    } else {
+    	return PLATFORMSEARCH;
+    }
+    
 	//return next_state; //IMPLEMENT THIS
 }
 
 void Lift::run(/*Data*/) {
-	//DO STUFF
-	//printf("run\n");
+    std::cout << "collecting" << std::endl;
+	liftmech.reset();
+	liftmech.collect();
 }
