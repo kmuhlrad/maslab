@@ -22,11 +22,11 @@ LiftMech::LiftMech(Motor* lw, Motor* rw, Motor* lm,
 }
 
 void LiftMech::collect(Shield* shield) {
-  lift_motor.setSpeed(shield, 0.2);
+  lift_motor->setSpeed(shield, 0.2);
 
   while(counter != 2) {
     if ((!topbeam.read() && up)) {
-      lift_motor.stop(shield);
+      lift_motor->stop(shield);
       sleep(1);
       counter++;
 
@@ -34,87 +34,87 @@ void LiftMech::collect(Shield* shield) {
         break;
       }
       //put the doors out
-      left_door.setDegree(shield, 150-0);
-      right_door.setDegree(shield, 0);
+      left_door->setDegree(shield, 150-0);
+      right_door->setDegree(shield, 0);
       sleep(1);
 
       //wiggle
-      left_wheel.setSpeed(shield, 0.25);
-      right_wheel.setSpeed(shield, -0.25);
+      left_wheel->setSpeed(shield, 0.25);
+      right_wheel->setSpeed(shield, -0.25);
       usleep(250000);
-      left_wheel.stop(shield);
-      right_wheel.stop(shield);
+      left_wheel->stop(shield);
+      right_wheel->stop(shield);
       usleep(300000);
-      left_wheel.setSpeed(shield, -0.25);
-      right_wheel.setSpeed(shield, 0.25);
+      left_wheel->setSpeed(shield, -0.25);
+      right_wheel->setSpeed(shield, 0.25);
       usleep(500000);
-      left_wheel.stop(shield);
-      right_wheel.stop(shield);
+      left_wheel->stop(shield);
+      right_wheel->stop(shield);
       usleep(300000);
-      left_wheel.setSpeed(shield, 0.25);
-      right_wheel.setSpeed(shield, -0.25);
+      left_wheel->setSpeed(shield, 0.25);
+      right_wheel->setSpeed(shield, -0.25);
       usleep(500000);
-      left_wheel.stop(shield);
-      right_wheel.stop(shield);
+      left_wheel->stop(shield);
+      right_wheel->stop(shield);
       usleep(300000);
-      left_wheel.setSpeed(shield, -0.25);
-      right_wheel.setSpeed(shield, 0.25);
+      left_wheel->setSpeed(shield, -0.25);
+      right_wheel->setSpeed(shield, 0.25);
       usleep(500000);
-      left_wheel.stop(shield);
-      right_wheel.stop(shield);
+      left_wheel->stop(shield);
+      right_wheel->stop(shield);
       usleep(300000);
-      left_wheel.setSpeed(shield, 0.25);
-      right_wheel.setSpeed(shield, -0.25);
+      left_wheel->setSpeed(shield, 0.25);
+      right_wheel->setSpeed(shield, -0.25);
       usleep(200000);
-      left_wheel.stop(shield);
-      right_wheel.stop(shield);
+      left_wheel->stop(shield);
+      right_wheel->stop(shield);
       usleep(300000);
 
       //drive forward slightly
-      left_wheel.setSpeed(shield, 0.2);
-      right_wheel.setSpeed(shield, 0.2);
+      left_wheel->setSpeed(shield, 0.2);
+      right_wheel->setSpeed(shield, 0.2);
       usleep(300000);
-      left_wheel.setSpeed(shield, 0);
-      right_wheel.setSpeed(shield, 0);
+      left_wheel->setSpeed(shield, 0);
+      right_wheel->setSpeed(shield, 0);
 
       //put the doors back
-      left_door.setDegree(shield, 150-150);
-      right_door.setDegree(shield, 150);
+      left_door->setDegree(shield, 150-150);
+      right_door->setDegree(shield, 150);
       sleep(1);
 
       //drop stack 
-      left_lift.setDegree(shield, 180 - 90);
-      right_lift.setDegree(shield, 90);
+      left_lift->setDegree(shield, 180 - 90);
+      right_lift->setDegree(shield, 90);
       sleep(2);
 
       up = 0;
     } else if (!bottombeam.read() && !up) {
-      lift_motor.stop(shield);
+      lift_motor->stop(shield);
       sleep(1);
 
       //grab the blocks
-      left_lift.setDegree(shield, 180 - 40);
-      right_lift.setDegree(shield, 40);
+      left_lift->setDegree(shield, 180 - 40);
+      right_lift->setDegree(shield, 40);
       sleep(2);
 
       up = 1;
     } else if (!topbeam.read() && !up) {
-      lift_motor.setSpeed(shield, -0.1);
+      lift_motor->setSpeed(shield, -0.1);
     } else if (!bottombeam.read() && up) {
-      lift_motor.setSpeed(shield, 0.15);
+      lift_motor->setSpeed(shield, 0.15);
     }
   }
 }
 
 void LiftMech::score(Shield* shield) {
   //close doors
-  left_door.setDegree(shield, 150-150);
-  right_door.setDegree(shield, 150);
+  left_door->setDegree(shield, 150-150);
+  right_door->setDegree(shield, 150);
   sleep(1);
 
   //drop cubes
-  left_lift.setDegree(shield, 180 - 90);
-  right_lift.setDegree(shield, 90);
+  left_lift->setDegree(shield, 180 - 90);
+  right_lift->setDegree(shield, 90);
 }
 
 void LiftMech::reset() {
