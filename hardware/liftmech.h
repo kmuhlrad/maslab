@@ -9,15 +9,15 @@
 class LiftMech {
  	//Shield* shield;
 
- 	Motor left_wheel;
- 	Motor right_wheel;
- 	Motor lift_motor;
+ 	Motor* left_wheel;
+ 	Motor* right_wheel;
+ 	Motor* lift_motor;
 
- 	Servo left_door;
- 	Servo right_door;
+ 	Servo* left_door;
+ 	Servo* right_door;
 
- 	Servo left_lift;
- 	Servo right_lift;
+ 	Servo* left_lift;
+ 	Servo* right_lift;
 
  	mraa::Gpio topbeam;
  	mraa::Gpio bottombeam;
@@ -25,8 +25,8 @@ class LiftMech {
  	int counter;
  	int up;
 public:
-	LiftMech(Motor& lw, Motor& rw, Motor& lm, 
-			 Servo& ld, Servo& rd, Servo& ll, Servo& rl,
+	LiftMech(Motor* lw, Motor* rw, Motor* lm, 
+			 Servo* ld, Servo* rd, Servo* ll, Servo* rl,
 			 int top, int bottom);
 	void collect(Shield* shield);
 	void score(Shield* shield);
