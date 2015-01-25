@@ -6,7 +6,7 @@
 #include "shield.h"
 #include "mraa.hpp"
 
-PIDDrive(Motor* a, Motor* b, Shield* s,
+PIDDrive::PIDDrive(Motor* a, Motor* b, Shield* s,
        double p, double i, double d) {
   A = a;
   B = b;
@@ -38,8 +38,6 @@ void PIDDrive::drive(double desired, double estimated, double speed) {
   //CHECK DIRECTION
   A->setSpeed(shield, speed - power);
   B->setSpeed(shield, speed + power);
-
-  std::cout << "power: " << power << std::endl;
 
   gettimeofday(&start, NULL);
   last_diff = diff;

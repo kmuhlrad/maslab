@@ -4,7 +4,10 @@
 //[ADD IN OTHER FILES LATER AS NEEDED]
 
 //PINS:
-//1
+
+//DIO:
+//0 - 
+//1 - 
 //2 - Short range IR
 //3 -
 //4 - Right wheel dir
@@ -22,8 +25,26 @@
 //A1 - Med range IR A
 //A2 -
 //A3 -
-//A4 -
-//A5 -
+//A4 - DON'T USE
+//A5 - DON'T USE
+
+//PWM (SWITCH AROUND)
+//0 - Left door servo
+//1 - Right door servo
+//2 - 
+//3 - 
+//4 - Right wheel PWM
+//5 - 
+//6 - 
+//7 - 
+//8 - Right lift servo
+//9 - Left lift servo
+//10 - 
+//11 - 
+//12 - Lift motor PWM
+//13 - 
+//14 - 
+//15 - Left wheel PWM
 
 #include <csignal>
 #include <iostream>
@@ -52,7 +73,6 @@
 
 
 int running = 1;
-
 
 struct timeval gameclock;
 struct timeval starttime;

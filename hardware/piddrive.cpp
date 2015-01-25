@@ -36,10 +36,8 @@ void PIDDrive::drive(double desired, double estimated, double speed) {
   float power = P*diff + I*integral + D*derivative;
 
   //CHECK DIRECTION
-  A->setSpeed(shield, speed - power);
-  B->setSpeed(shield, speed + power);
-
-  std::cout << "power: " << power << std::endl;
+  A->setSpeed(shield, speed - power, 0.4);
+  B->setSpeed(shield, speed + power, 0.4);
 
   gettimeofday(&start, NULL);
   last_diff = diff;
