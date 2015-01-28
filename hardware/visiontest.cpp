@@ -5,12 +5,12 @@
 #include <sys/time.h>
 #include <typeinfo>
 
-#include "mraa.hpp"
+/*#include "mraa.hpp"
 #include "gyro.h"
 #include "motor.h"
 #include "piddrive.h"
 #include "shield.h"
-#include "ir.h"
+#include "ir.h"*/
 
 #include "opencv2/imgproc/imgproc.hpp"
 //#include "opencv2/opencv2.hpp"
@@ -37,6 +37,8 @@ int main() {
   while (running) {
     cap >> img;
     cs.processImage(img);
-    imwrite("video.jpg", img);
+    if (cs.findStack(img)) {
+      std::cout << "found stack" << std::endl;
+    }
   }
 }
