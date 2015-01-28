@@ -230,7 +230,6 @@ void CubeSearch::processImage(Mat& src2) {
       count++;
     }
   }
-  imwrite("../fieldpictures/output.jpg", drawing);
 
   //namedWindow( "Contours", WINDOW_AUTOSIZE );
   //imshow( "Contours", drawing );
