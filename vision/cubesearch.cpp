@@ -15,6 +15,11 @@
 
 using namespace cv;
 
+CubeSearch::CubeSearch() {
+  rng = RNG(12345);
+  stack = false;
+}
+
 //gb: 1.02, 1.04, 1.02
 //gr: 1.04, 0.98, 1.02
 void CubeSearch::filterGreenPx(Vec3b& color) { //bgr
@@ -231,7 +236,7 @@ void CubeSearch::processImage(Mat& src2) {
 }
 
 bool CubeSearch::findStack(Mat& img) {
-  processImage(img)
+  processImage(img);
   return stack;
 }
 

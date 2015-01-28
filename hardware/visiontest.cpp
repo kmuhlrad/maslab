@@ -27,6 +27,6 @@ int main() {
   CubeSearch cs;
 
   while (running) {
-    cs.process("../fieldpictures/rgr1.jpg");
+    cs.processImage("../fieldpictures/rgr1.jpg");
   }
 }

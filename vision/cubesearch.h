@@ -11,9 +11,9 @@ using namespace cv;
 class CubeSearch {
 	Mat src;
 	Mat src_gray;
-	RNG rng(12345);
+	RNG rng;
 
-	bool stack = false;
+	bool stack;
 	vector<int> centerXs;
 	vector<int> centerYs;
 	vector<double> angles;
@@ -39,6 +39,8 @@ class CubeSearch {
 	void makeStack(Mat& img);
 
 public:
+	CubeSearch();
+
 	void processImage(Mat& src2);
 
 	int getTopColor(Mat& img);
