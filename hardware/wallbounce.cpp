@@ -57,17 +57,17 @@ int main() {
     }
     avg = sum / 5.;
     */
-    //std::cout << "sensor: " << medA.getDistance() << std::endl;
+    std::cout << "sensor: " << medA.getDistance() << std::endl;
     //std::cout << "avg: " << avg << std::endl;
 
-    if (medA.getDistance() < 40) {
+    if (medA.getDistance() < 30) {
       if (turning == 0) {
         curAngle = gyro.get_angle();
       }
       turning++;
       drive.drive(curAngle + 90, gyro.get_angle(), .25); //turn away from wall
       straight = 0;
-      sleep(.5);
+      sleep(.75);
       std::cout << "turning " << "angle: " << curAngle << std::endl;
     } else {
       turning = 0;

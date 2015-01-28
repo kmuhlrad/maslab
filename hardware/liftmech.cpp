@@ -44,32 +44,32 @@ void LiftMech::collect() {
       sleep(1);
 
       //wiggle
-      left_wheel->setSpeed(shield, 0.25);
-      right_wheel->setSpeed(shield, -0.25);
-      usleep(250000);
-      left_wheel->stop(shield);
-      right_wheel->stop(shield);
-      usleep(300000);
-      left_wheel->setSpeed(shield, -0.25);
-      right_wheel->setSpeed(shield, 0.25);
+      left_wheel->setSpeed(shield, 0.2);
+      right_wheel->setSpeed(shield, -0.2);
       usleep(500000);
       left_wheel->stop(shield);
       right_wheel->stop(shield);
       usleep(300000);
-      left_wheel->setSpeed(shield, 0.25);
-      right_wheel->setSpeed(shield, -0.25);
+      left_wheel->setSpeed(shield, -0.2);
+      right_wheel->setSpeed(shield, 0.2);
       usleep(500000);
       left_wheel->stop(shield);
       right_wheel->stop(shield);
       usleep(300000);
-      left_wheel->setSpeed(shield, -0.25);
-      right_wheel->setSpeed(shield, 0.25);
+      left_wheel->setSpeed(shield, 0.2);
+      right_wheel->setSpeed(shield, -0.2);
       usleep(500000);
       left_wheel->stop(shield);
       right_wheel->stop(shield);
       usleep(300000);
-      left_wheel->setSpeed(shield, 0.25);
-      right_wheel->setSpeed(shield, -0.25);
+      left_wheel->setSpeed(shield, -0.2);
+      right_wheel->setSpeed(shield, 0.2);
+      usleep(500000);
+      left_wheel->stop(shield);
+      right_wheel->stop(shield);
+      usleep(300000);
+      left_wheel->setSpeed(shield, 0.2);
+      right_wheel->setSpeed(shield, -0.2);
       usleep(200000);
       left_wheel->stop(shield);
       right_wheel->stop(shield);
@@ -78,7 +78,7 @@ void LiftMech::collect() {
       //drive forward slightly
       left_wheel->setSpeed(shield, 0.2);
       right_wheel->setSpeed(shield, 0.2);
-      usleep(300000);
+      usleep(600000);
       left_wheel->setSpeed(shield, 0);
       right_wheel->setSpeed(shield, 0);
 
@@ -104,9 +104,9 @@ void LiftMech::collect() {
 
       up = 1;
     } else if (!topbeam->read() && !up) {
-      lift_motor->setSpeed(shield, -0.1);
+      lift_motor->setSpeed(shield, -0.2);
     } else if (!bottombeam->read() && up) {
-      lift_motor->setSpeed(shield, 0.15);
+      lift_motor->setSpeed(shield, 0.25);
     }
   }
 }

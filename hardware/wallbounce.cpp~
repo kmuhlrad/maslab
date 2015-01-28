@@ -57,7 +57,7 @@ int main() {
     }
     avg = sum / 5.;
     */
-    //std::cout << "sensor: " << medA.getDistance() << std::endl;
+    std::cout << "sensor: " << medA.getDistance() << std::endl;
     //std::cout << "avg: " << avg << std::endl;
 
     if (medA.getDistance() < 40) {
@@ -75,7 +75,7 @@ int main() {
         curAngle = gyro.get_angle();
       }
       straight++;
-      drive.drive(curAngle, gyro.get_angle(), 0.3); //keep driving straight
+      drive.drive(curAngle, gyro.get_angle(), 0.25); //keep driving straight
       std::cout << "straight\t" << "angle: " << curAngle <<  std::endl;
       //sleep(0.25);
     }
