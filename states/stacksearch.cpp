@@ -1,8 +1,12 @@
+#include <sys/time.h>
+
 #include "stacksearch.h"
 #include "robot_states.h"
-//#include "mraa.hpp"
+#include "mraa.hpp"
 
-StackSearch::StackSearch() {
+#include "cubesearch.h"
+
+StackSearch::StackSearch(CubeSearch cs) {
 	state_num = STACKSEARCH;
 }
 
@@ -23,7 +27,7 @@ int StackSearch::getNext(/*Data*/) {
 	return DRIVE;
 	//return next_state; //IMPLEMENT THIS
 	/*
-	if (found stack && right color) {
+	if (cs.findStack(cameraFeed) && cs.getTopColor() == data.rgswitch()) {
 		return DRIVE;
 	} else {
 		return STACKSEARCH;
@@ -37,6 +41,7 @@ void StackSearch::run(/*Data*/) {
 		wallFollow() OR wallBounce();
 	} else {
 		drive.drive(gyro.get_angle() - 20, gyro.get_angle(), 0.2);
+		usleep(200000);
 	}
 	*/
 }

@@ -36,7 +36,8 @@ else{
 }*/
 
 void filterRed(Vec3b& color) {
-        vector<vector<bool>> eliminate(,vector<bool>())
+        //vector<vector<bool> > eliminate(,vector<bool>());
+    //0 = b, 1 = g, 2 = r?? or rgb?
 	if(color[2] < color[1]*1.7 || color[2] < color[0]*1.7){
                     color[2] = 0;
                 
@@ -46,10 +47,10 @@ void filterRed(Vec3b& color) {
  
 }
 
-int main()
+int main(int, char** argv)
 {
 
-    Mat img = imread("/home/diego/Pictures/vlcsnap-2015-01-08-13h22m52s161.png",CV_LOAD_IMAGE_COLOR);
+    Mat img = imread(argv[1], 1);
     for(int y = 0; y < img.rows ; y++)
     	for(int x = 0; x < img.cols;x++)//bgr
                 filterRed(img.at<Vec3b>(Point(x,y)));

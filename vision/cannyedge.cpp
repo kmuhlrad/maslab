@@ -15,7 +15,7 @@ int lowThreshold;
 int const max_lowThreshold = 100;
 int ratio = 3;
 int kernel_size = 3;
-char* window_name = "Edge Map";
+char window_name[] = "Edge Map";
 
 /**
  * @function CannyThreshold
@@ -41,7 +41,7 @@ void CannyThreshold(int, void*)
 int main( int argc, char** argv )
 {
   /// Load an image
-  src = imread( argv[1] );
+  src = imread( argv[1], 1 );
 
   if( !src.data )
   { return -1; }

@@ -21,6 +21,44 @@ RNG rng(12345);
 /// Function header
 void thresh_callback(int, void* );
 
+//gb: 1.02, 1.04, 1.02
+//gr: 1.04, 0.98, 1.02
+void filterGreenPx(Vec3b& color) {//bgr
+//        vector<vector<bool> > eliminate(,vector<bool>());
+  if(color[1] < color[0]*1.02 || color[1] < color[2]*1){
+    color[2] = 0;
+    color[1] = 0;
+    color[0] = 0;
+  }
+}
+
+void filterGreen(Mat& img) {
+   for(int y = 0; y < img.rows; y++)
+      for(int x = 0; x < img.cols; x++) //bgr
+        filterGreenPx(img.at<Vec3b>(Point(x, y)));
+}
+
+//br: 1.2, 1.5?
+//bg: 1.2
+void filterBluePx(Vec3b& color) {//bgr
+//        vector<vector<bool> > eliminate(,vector<bool>());
+  if(color[0] < color[1]*1.2 || color[0] < color[2]*1.2){
+    color[2] = 0;
+    color[1] = 0;
+    color[0] = 0;
+  } else {
+    color[2] = 255;
+    color[1] = 255;
+    color[0] = 255;
+  }
+}
+
+void filterBlue(Mat& img) {
+   for(int y = 0; y < img.rows; y++)
+      for(int x = 0; x < img.cols; x++) //bgr
+        filterBluePx(img.at<Vec3b>(Point(x, y)));
+}
+
 /**
  * @function main
  */
@@ -28,6 +66,14 @@ int main( int, char** argv )
 {
   /// Load source image and convert it to gray
   src = imread( argv[1], 1 );
+
+  filterBlue(src);
+
+  erode(src, src, getStructuringElement(MORPH_ELLIPSE, Size(9, 9)));
+  dilate( src, src, getStructuringElement(MORPH_ELLIPSE, Size(9, 9)));
+
+  dilate(src, src, getStructuringElement(MORPH_ELLIPSE, Size(9, 9)));
+  erode(src, src, getStructuringElement(MORPH_ELLIPSE, Size(9, 9)));
 
   /// Convert image to gray and blur it
   cvtColor( src, src_gray, COLOR_BGR2GRAY );
@@ -61,12 +107,12 @@ void thresh_callback(int, void* )
 
   /// Draw contours
   Mat drawing = Mat::zeros( canny_output.size(), CV_8UC3 );
-  printf("Number of contours: %d\n\n\n", contours.size());
+  printf("Number of contours: %d\n\n\n", (int)contours.size());
   for( size_t i = 0; i< contours.size(); i++ )
      {
-       printf("--------------------------------\nNumber of vectors in contour #%d: %d \n---------------------------------",i,contours[i].size());
+       printf("--------------------------------\nNumber of vectors in contour #%d: %d \n---------------------------------",(int)i,(int)contours[i].size());
        Scalar color = Scalar( rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
-       drawContours( drawing, contours, (int)i, color, 2, 8, hierarchy, 0, Point() );
+       drawContours( drawing, contours, (int)i, color, -1, 8, hierarchy, 0, Point() );
      }
 
   /// Show in a window

@@ -6,24 +6,24 @@
 //PINS:
 
 //DIO:
-//0 - 
-//1 - 
-//2 - Short range IR
-//3 -
-//4 - Right wheel dir
-//5 - Right wheel pwm
-//6
+//0 - Left wheel dir
+//1 - Lift motor dir
+//2 - Right wheel dir
+//3 - Top breakbeam
+//4 - 
+//5 - 
+//6 - 
 //7 - DON'T USE!!!!
-//8 - Left wheel dir
-//9 - Left wheel pwm
+//8 - Back close IR
+//9 - Bottom breakbeam
 //10 - Gyro CS
 //11 - Gyro MOSI
 //12 - Gyro MISO
 //13 - Gyro SCLK
 
-//A0 -
-//A1 - Med range IR A
-//A2 -
+//A0 - Med range IR C
+//A1 - Med range IR B
+//A2 - Med range IR A
 //A3 -
 //A4 - DON'T USE
 //A5 - DON'T USE
@@ -90,9 +90,9 @@ int main() {
 
   Shield *shield = new Shield();
 
-  Motor left_wheel(15, 2);
-  Motor right_wheel(4, 8);
-  Motor lift_motor(12, 3);
+  Motor left_wheel(15, 0);
+  Motor right_wheel(4, 2);
+  Motor lift_motor(12, 1);
 
   Servo left_door(1);
   Servo right_door(0);
@@ -100,10 +100,10 @@ int main() {
   Servo left_lift(9);
   Servo right_lift(8);
 
-  mraa::Gpio topbeam(4);
+  mraa::Gpio topbeam(3);
   topbeam.dir(mraa::DIR_IN);
 
-  mraa::Gpio bottombeam(5);
+  mraa::Gpio bottombeam(9);
   bottombeam.dir(mraa::DIR_IN);
 
   LiftMech liftmech(&left_wheel, &right_wheel, &lift_motor,

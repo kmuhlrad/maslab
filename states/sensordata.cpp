@@ -2,32 +2,33 @@
 #include "robot_states.h"
 #include "mraa.hpp"
 
-SensorData::SensorData(int pinL, int pinB, int pinR, int pinIR, double a, double b) :
-  close_IR_L(pinL), close_IR_B(pinB), close_IR_R(pinR), medA(pinIR, a, b) {
-  
-  close_IR_B.dir(mraa::DIR_IN);
-  close_IR_R.dir(mraa::DIR_IN);
-  close_IR_L.dir(mraa::DIR_IN);
+SensorData::SensorData(mraa::Gpio* back, mraa::Gpio* RG, IR* A, IR* B, IR* C) {
+  close_IR_Back = back;
+  rg = RG;
+
+  medA = A;
+  medB = B;
+  medC = C;
 }
 
-void SensorData::collectData() {
-  //collect ALL the data!
-  //honestly maybe delete...
-  //wait until I know more about vision
+int SensorData::readBack() {
+  return close_IR_Back.read();
 }
 
-int SensorData::readB() {
-  return close_IR_B.read();
+int SensorData::rgswitch() {
+  return rg.read() + 1;
+  //red = 1
+  //green = 2
 }
 
-int SensorData::readR() {
-  return close_IR_R.read();
-}
-
-int SensorData::readL() {
-  return close_IR_L.read();
-}
-
-double SensorData::getDistance() {
+double SensorData::getDistanceA() {
   return medA.getDistance();
+}
+
+double SensorData::getDistanceB() {
+  return medB.getDistance();
+}
+
+double SensorData::getDistanceC() {
+  return medC.getDistance();
 }
