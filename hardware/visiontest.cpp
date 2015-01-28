@@ -13,6 +13,7 @@
 #include "ir.h"
 
 #include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/opencv2.hpp"
 #include "../vision/cubesearch.h"
 
 int running = 1;
@@ -26,8 +27,14 @@ void sig_handler(int signo) {
 
 int main() {
   CubeSearch cs;
-  Mat img = imread("../fieldpictures/rgr1.jpg");
-  
+  VideoCapture cap(0);
+  asserr(cap.isOpened());
+
+  Mat img;
+  cap >> img;
+
+  //Mat img = imread("../fieldpictures/rgr1.jpg");
+
   while (running) {
     cs.processImage(img);
   }
