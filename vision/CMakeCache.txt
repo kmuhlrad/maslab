@@ -128,7 +128,7 @@ CMAKE_OSX_DEPLOYMENT_TARGET:STRING=
 CMAKE_OSX_SYSROOT:STRING=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=findcubes
+CMAKE_PROJECT_NAME:STATIC=videotest
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -246,6 +246,12 @@ shapes6_BINARY_DIR:STATIC=/Users/katy/MASLAB/vision
 
 //Value Computed by CMake
 shapes6_SOURCE_DIR:STATIC=/Users/katy/MASLAB/vision
+
+//Value Computed by CMake
+videotest_BINARY_DIR:STATIC=/Users/katy/MASLAB/vision
+
+//Value Computed by CMake
+videotest_SOURCE_DIR:STATIC=/Users/katy/MASLAB/vision
 
 
 ########################
