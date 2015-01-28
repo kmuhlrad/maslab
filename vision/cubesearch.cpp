@@ -224,6 +224,9 @@ void CubeSearch::processImage(Mat& src2) {
       count++;
     }
   }
+
+  namedWindow( "Contours", WINDOW_AUTOSIZE );
+  imshow( "Contours", drawing );
 }
 
 bool CubeSearch::findStack(Mat& img) {
