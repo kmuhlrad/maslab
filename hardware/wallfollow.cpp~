@@ -39,7 +39,7 @@ int main() {
   //was 0.015, 0, 0.4
   //also 0.05, 0, 0.2
   //for sensor:
-  PIDDrive drive(&left_motor, &right_motor, shield, 0.00001, 0.0001, 0.1);
+  PIDDrive drive(&left_motor, &right_motor, shield, 0.00001, 0, 0.1);
 
   int straight = 0;
   int turning = 0;

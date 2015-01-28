@@ -124,7 +124,7 @@ int main() {
   gettimeofday(&gameclock, NULL);
   double gametime = ((double)gameclock.tv_sec - (double)starttime.tv_sec) + 0.000001 * (gameclock.tv_usec - starttime.tv_usec);
 
-  while (running && gametime <= 180) {
+  while (running /*&& gametime <= 180*/) {
     std::cout << "current state: " << curState->getState() << std::endl;
     int next = curState->process();
     curState = states[next];
