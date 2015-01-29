@@ -9,6 +9,8 @@ SensorData::SensorData(mraa::Gpio* back, mraa::Gpio* RG, IR* A, IR* B, IR* C) {
   medA = A;
   medB = B;
   medC = C;
+
+  gyro = g;
 }
 
 int SensorData::readBack() {
@@ -31,4 +33,8 @@ double SensorData::getDistanceB() {
 
 double SensorData::getDistanceC() {
   return medC.getDistance();
+}
+
+double SensorData::get_angle() {
+  return gyro.getGyroAngle();
 }

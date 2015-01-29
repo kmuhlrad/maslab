@@ -2,15 +2,27 @@
 #define STACK_SEARCH_H
 
 #include "state.h"
-#include "cubesearch.h"
+#include "sensordata.h"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "../vision/cubesearch.h"
+#include "../hardware/piddrive.h"
 
 class StackSearch : public State {
-	int getNext(/*Data*/);
-	void run(/*Data*/);
+	int getNext(SensorData data);
+	void run(SensorData data);
+
+	int count = 0;
+
+	PIDDrive* drive;
+	PIDDrive* driveA;
+	PIDDrive* driveB;
+
+	VideoCapture cap;
+
 public:
-	StackSearch(CubeSearch cs);
-	virtual int process(/*Data*/);
-	int getState();
+	StackSearch(CubeSearch* cs, PIDDrive* dr, PIDDrive* a, PIDDrive* b);
+	virtual int process(SensorData data);
+	int getState(SensorData data);
 };
 
 #endif

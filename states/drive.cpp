@@ -4,45 +4,57 @@
 #include "robot_states.h"
 
 #include "mraa.hpp"
+#include "sensordata.h"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "../vision/cubesearch.h"
+#include "../hardware/piddrive.h"
 
-Drive::Drive() {
+Drive::Drive(CubeSearch* cs, PIDDrive* dr) {
 	state_num = DRIVE;
+
+	drive = dr;
+	cubesearch = cs;
+
+	cap = VideoCapture(0);
 }
 
 int Drive::getState() {
 	return state_num;
 }
 
-int Drive::process() {
-	if (getNext() != state_num) {
-		return getNext();
+int Drive::process(SensorData data) {
+	int next = getNext(data);
+	if (next != state_num) {
+		return next;
 	} else {
-		run();
+		run(data);
 		return state_num;
 	}
 }
 
-int Drive::getNext(/*Data*/) {
-	return LIFT;
-	/*
-	if(reachedStack) {
+int Drive::getNext(SensorData data) {
+	if(data.getDistanceB() < 8) {
 		return LIFT;
-	} else if (!foundStack || wrongColor) {
-		return STACKSEARCH;
 	} else {
 		return DRIVE;
 	}
+
+	/* EVENTUALLY IMPLEMENT IF NEEDED
+	 else if (!foundStack || wrongColor) { ////FINISH///////
+		return STACKSEARCH;
 	*/
 }
 
-void Drive::run(/*Data*/) {
-	/*
-	if (canSeeStack) {
-		drive.drive(stack_angle, gyro.get_angle(), 0.25);
+void Drive::run(SensorData data) {
+	cap >> img; //maybe request 6 images
+	cubesearch.process(img);
+	if (cs.findStack(img)) {
+		std::cout << "Drive: driving towards stack" << std::endl;
+		drive.drive(cubesearch.getAngle(img), data.getGryoAngle(), 0.25);
 		sleep(.5);
 	} else {
-	    drive.drive(gyro.get_angle, gyro.get_angle(), 0.3);
+		std::cout << "Drive: driving straight" << std::endl;
+	    drive.drive(data.getGyroAngle(), data.getGyroAngle(), 0.3);
 	    usleep(200000);
 	}
-	*/
 }

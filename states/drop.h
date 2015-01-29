@@ -7,13 +7,13 @@
 #include "../hardware/liftmech.h"
 
 class Drop : public State {
-	int getNext(/*Data*/);
-	void run(/*Data*/);
+	int getNext();
+	void run();
 
 	LiftMech* liftmech;
 public:
 	Drop(LiftMech* lm);
-	virtual int process(/*Data*/);
+	virtual int process();
 	int getState();
 };
 

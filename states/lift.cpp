@@ -18,21 +18,16 @@ int Lift::getState() {
 }
 
 int Lift::process() {
-	if (getNext() != state_num) {
-		return getNext();
-	} else {
-		run();
-		return state_num;
-	}
+	run();
+	return getNext();
 }
 
-int Lift::getNext(/*Data*/) {
+int Lift::getNext() {
 	//return PLATFORMSEARCH; 
    if (counter == 4) {
     	return PLATFORMSEARCH;
     } else {
-        counter++;
-    	return LIFT;
+        return STACKSEARCH;
     }
     
     /*
@@ -46,7 +41,8 @@ int Lift::getNext(/*Data*/) {
     */
 }
 
-void Lift::run(/*Data*/) {
+void Lift::run() {
+	counter++;
 	liftmech->reset();
 	liftmech->collect();
 }

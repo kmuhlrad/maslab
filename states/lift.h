@@ -6,15 +6,15 @@
 #include "../hardware/liftmech.h"
 
 class Lift : public State {
-	int getNext(/*Data*/);
-	void run(/*Data*/);
+	int getNext();
+	void run();
 
 	LiftMech* liftmech;
 
 	int counter;
 public:
 	Lift(LiftMech* lm);
-	virtual int process(/*Data*/);
+	virtual int process();
 	int getState();
 };
 

@@ -16,10 +16,10 @@ class SensorData {
 	IR* medB;
 	IR* medC;
 
-	int dist;
+	Gyro* gyro;
 
 public:
-	SensorData(mraa::Gpio* back, mraa::Gpio* RG, IR* A, IR* B, IR* C); //initialize all pin values or pass in objects directly
+	SensorData(mraa::Gpio* back, mraa::Gpio* RG, IR* A, IR* B, IR* C, Gyro* g); //initialize all pin values or pass in objects directly
 	
 	//return all the values
 	int readBack();
@@ -28,6 +28,8 @@ public:
 	double getDistanceA();
 	double getDistanceB();
 	double getDistanceC();
+
+	double getGyroAngle();
 };
 
 #endif

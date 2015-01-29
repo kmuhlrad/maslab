@@ -2,13 +2,21 @@
 #define DRIVE_H
 
 #include "state.h"
+#include "sensordata.h"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "../vision/cubesearch.h"
+#include "../hardware/piddrive.h"
 
 class Drive : public State {
-	int getNext(/*Data*/);
-	void run(/*Data*/);
+	int getNext(SensorData data);
+	void run(SensorData data);
+
+	PIDDrive* drive;
+	CubeSearch* cubesearch;
+
 public:
-	Drive();
-	virtual int process(/*Data*/);
+	Drive(CubeSearch* cs, PIDDrive* dr);
+	virtual int process(SensorData data);
 	int getState();
 };
 

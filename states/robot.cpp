@@ -58,6 +58,7 @@
 #include "../hardware/servo.h"
 #include "../hardware/liftmech.h"
 #include "../hardware/shield.h"
+#include "../vision/cubesearch.h"
 
 #include "robot_states.h"
 #include "state.h"
@@ -106,13 +107,26 @@ int main() {
   mraa::Gpio bottombeam(9);
   bottombeam.dir(mraa::DIR_IN);
 
+  mraa::Gpio rg(5);
+  bottombeam.dir(mraa::DIR_IN);
+
+  IR medA = IR(2, 6149.816568, 4.468768853);
+  IR medB = IR(1, 2391.189039, -0.079559138);
+  IR medC = IR(0, 2683.626202, 1.265350342);
+
   LiftMech liftmech(&left_wheel, &right_wheel, &lift_motor,
                     &left_door, &right_door, &left_lift, &right_lift,
                     &topbeam, &bottombeam, shield);
 
+  PIDDrive drive(&left_motor, &right_motor, shield, 0.015, 0, 0.4);
+  PIDDrive driveA(&left_motor, &right_motor, shield, 0.00001, 0.0001, 0.2);
+  PIDDrive driveB(&left_motor, &right_motor, shield, 0.00001, 0.0001, 0.1);
+
+  CubeSearch cs;
+
   Start *start = new Start();
-  StackSearch *stack = new StackSearch();
-  Drive *drive = new Drive();
+  StackSearch *stack = new StackSearch(&cs, &drive, &driveA, &driveB);
+  Drive *drive = new Drive(&cs, &drive);
   Lift *lift = new Lift(&liftmech);
   PlatformSearch *platform = new PlatformSearch();
   Align *align = new Align();

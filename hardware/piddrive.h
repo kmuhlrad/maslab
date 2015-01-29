@@ -9,9 +9,6 @@ class PIDDrive {
 	double I;
 	double D;
 
-	Motor* A;
-	Motor* B;
-
 	Shield* shield;
 
 	double integral;
@@ -20,6 +17,9 @@ class PIDDrive {
 	struct timeval start;
 	struct timeval end;
 public:
+	Motor* A;
+	Motor* B;
+	
 	PIDDrive(Motor* a, Motor* b, Shield* s,
 			 double p, double i, double d);
 	void drive(double desired, double estimated, double speed);

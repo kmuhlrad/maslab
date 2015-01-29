@@ -16,19 +16,14 @@ int Drop::getState() {
 }
 
 int Drop::process() {
-	if (getNext() != state_num) {
-		return getNext();
-	} else {
-		run();
-		return state_num;
-	}
+	run();
 }
 
-int Drop::getNext(/*Data*/) {
-	return DROP;
+int Drop::getNext() {
+	//return DROP;
 }
 
-void Drop::run(/*Data*/) {
+void Drop::run() {
     std::cout << "scoring" << std::endl;
 	liftmech->score();
 	/*
