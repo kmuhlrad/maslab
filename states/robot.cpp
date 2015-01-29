@@ -132,12 +132,13 @@ int main() {
   PIDDrive driveB(&left_wheel, &right_wheel, shield, 0.00001, 0.0001, 0.1);
 
   CubeSearch cs;
+  VideoCapture cap(0);
 
   SensorData sensors(&backIR, &rg, &medA, &medB, &medC, &gyro);
 
   Start *start = new Start();
-  StackSearch *stack = new StackSearch(&cs, &driveW, &driveA, &driveB);
-  Drive *drive = new Drive(&cs, &driveW);
+  StackSearch *stack = new StackSearch(&cs, &cap, &driveW, &driveA, &driveB);
+  Drive *drive = new Drive(&cs, &cap, &driveW);
   Lift *lift = new Lift(&liftmech);
   PlatformSearch *platform = new PlatformSearch();
   Align *align = new Align();

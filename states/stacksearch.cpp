@@ -10,7 +10,7 @@
 #include "../hardware/piddrive.h"
 #include "../vision/cubesearch.h"
 
-StackSearch::StackSearch(CubeSearch* cs, PIDDrive* dr, PIDDrive* a, PIDDrive* b) {
+StackSearch::StackSearch(CubeSearch* cs, VideoCapture* vid, PIDDrive* dr, PIDDrive* a, PIDDrive* b) {
 	state_num = STACKSEARCH;
 
 	cubesearch = cs;
@@ -18,7 +18,7 @@ StackSearch::StackSearch(CubeSearch* cs, PIDDrive* dr, PIDDrive* a, PIDDrive* b)
 	driveA = a;
 	driveB = b;
 
-	cap = VideoCapture(0);
+	cap = vid;
 
 	count = 0;
 }
@@ -28,6 +28,7 @@ int StackSearch::getState() {
 }
 
 int StackSearch::process(SensorData data) {
+	std::cout << "StackSearch: Process" << std::endl;
 	int next = getNext(data);
 	if (next != state_num) {
 		return next;
@@ -41,12 +42,14 @@ int StackSearch::getNext(SensorData data) {
 	//only need to check for color once
 	Mat img;
 	cap >> img;
+	std::cout << "StackSearch: getNext" << std::endl;
 	cubesearch->processImage(img);
 	if (cubesearch->findStack(img)) {
 		if (count == 0 && cubesearch->getTopColor(img) != data.rgswitch()) {
 			return STACKSEARCH;
 		}
 		count++;
+		cap.release();
 		return DRIVE;
 	} else {
 		return STACKSEARCH;

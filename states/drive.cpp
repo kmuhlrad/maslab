@@ -10,13 +10,13 @@
 #include "../vision/cubesearch.h"
 #include "../hardware/piddrive.h"
 
-Drive::Drive(CubeSearch* cs, PIDDrive* dr) {
+Drive::Drive(CubeSearch* cs, VideoCapture* vid, PIDDrive* dr) {
 	state_num = DRIVE;
 
 	drive = dr;
 	cubesearch = cs;
 
-	cap = VideoCapture(0);
+	cap = vid;
 	double curAngle = 0;
 }
 
@@ -25,7 +25,9 @@ int Drive::getState() {
 }
 
 int Drive::process(SensorData data) {
+	std::cout << "Drive: process before" << std::endl;
 	int next = getNext(data);
+	std::cout << "Drive: process after" << std::endl;
 	if (next != state_num) {
 		return next;
 	} else {
@@ -36,7 +38,9 @@ int Drive::process(SensorData data) {
 }
 
 int Drive::getNext(SensorData data) {
+	std::cout << "Drive: getNext" << std::endl;
 	if(data.getDistanceB() < 8) {
+		//cap.release();
 		return LIFT;
 	} else {
 		return DRIVE;
@@ -49,9 +53,12 @@ int Drive::getNext(SensorData data) {
 }
 
 void Drive::run(SensorData data) {
+	std::cout << "Drive: process first" << std::endl;
 	Mat img;
 	cap >> img; //maybe request 6 images
+	std::cout << "Drive: process second" << std::endl;
 	cubesearch->processImage(img);
+	std::cout << "Drive: process third" << std::endl;
 	if (cubesearch->findStack(img)) {
 		std::cout << "Drive: driving towards stack" << std::endl;
 		drive->drive(curAng + cubesearch->getAngle(img)[0], data.getGyroAngle(), 0.25);

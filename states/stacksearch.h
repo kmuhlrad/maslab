@@ -22,7 +22,7 @@ class StackSearch : public State {
 	VideoCapture cap;
 
 public:
-	StackSearch(CubeSearch* cs, PIDDrive* dr, PIDDrive* a, PIDDrive* b);
+	StackSearch(CubeSearch* cs, VideoCapture* vid, PIDDrive* dr, PIDDrive* a, PIDDrive* b);
 	virtual int process(SensorData data);
 	int getState();
 };

@@ -19,7 +19,7 @@ class Drive : public State {
 	double curAng;
 
 public:
-	Drive(CubeSearch* cs, PIDDrive* dr);
+	Drive(CubeSearch* cs, VideoCapture* vid, PIDDrive* dr);
 	virtual int process(SensorData data);
 	int getState();
 };
