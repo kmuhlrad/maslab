@@ -219,9 +219,10 @@ void thresh_callback(int, void*) {
 
   for (size_t i = 0; i < contours.size(); i++) {
     double area = sqrt(contourArea(contours[i]))*0.05;
+    double ap = contourArea(contours[i])/arcLength(contours[i], false);
 
     //skip small particles or duplicate 
-    if (20*area < 50 || ((last_area - 2) < 20*area  && 20*area < (last_area + 2))) continue;
+    if (20*area < 50 || ((last_area - 2) < 20*area  && 20*area < (last_area + 2)) || ap < 20) continue;
 
     approxPolyDP(contours[i], approx, area, true);
     Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
@@ -235,7 +236,7 @@ void thresh_callback(int, void*) {
       Point center((bounding.x + bounding.width/2), (bounding.y + bounding.height/2));
       double ba = bounding.width * bounding.height;
 
-      if (ba < 1000 || ba > 100000) continue;
+      //if (ba < 1000 || ba > 100000) continue;
       //bounding box
       rectangle(drawing, bounding.tl(), bounding.br(), color, 2, 8, 0);
 
@@ -246,6 +247,8 @@ void thresh_callback(int, void*) {
       printf("Contour Area: %lf \n", last_area);
       printf("Bounding Box: %lf \n", ba);
       printf("Angle: %lf\n", center.x * 0.10625 - 34);
+      printf("A/P: %lf\n", ap);
+
       stack = true;
       count++;
     }
