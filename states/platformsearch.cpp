@@ -2,6 +2,7 @@
 
 #include "platformsearch.h"
 #include "robot_states.h"
+#include "sensordata.h"
 //#include "mraa.hpp"
 
 PlatformSearch::PlatformSearch() {
@@ -13,7 +14,7 @@ int PlatformSearch::getState() {
 	return state_num;
 }
 
-int PlatformSearch::process() {
+int PlatformSearch::process(SensorData data) {
 	if (getNext() != state_num) {
 		return getNext();
 	} else {

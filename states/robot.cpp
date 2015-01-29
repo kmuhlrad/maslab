@@ -146,7 +146,7 @@ int main() {
 
   while (running /*&& gametime <= 180*/) {
     std::cout << "current state: " << curState->getState() << std::endl;
-    int next = curState->process();
+    int next = curState->process(sensors);
     curState = states[next];
 
     gettimeofday(&gameclock, NULL);

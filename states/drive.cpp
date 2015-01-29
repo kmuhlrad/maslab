@@ -52,7 +52,7 @@ void Drive::run(SensorData data) {
 	cubesearch->processImage(img);
 	if (cubesearch->findStack(img)) {
 		std::cout << "Drive: driving towards stack" << std::endl;
-		drive->drive(cubesearch->getAngle(img), data.getGyroAngle(), 0.25);
+		drive->drive(cubesearch->getAngle(img)[0], data.getGyroAngle(), 0.25);
 		sleep(.5);
 	} else {
 		std::cout << "Drive: driving straight" << std::endl;
