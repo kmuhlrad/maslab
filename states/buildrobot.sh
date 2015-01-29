@@ -1,1 +1,1 @@
-g++ robot.cpp state.cpp start.cpp stacksearch.cpp drive.cpp lift.cpp platformsearch.cpp align.cpp drop.cpp ../hardware/motor.cpp ../hardware/servo.cpp ../hardware/liftmech.cpp ../hardware/shield.cpp -o robot -lmraa
+g++ robot.cpp state.cpp start.cpp stacksearch.cpp drive.cpp lift.cpp platformsearch.cpp align.cpp drop.cpp sensordata.cpp ../hardware/motor.cpp ../hardware/servo.cpp ../hardware/gyro.cpp ../hardware/liftmech.cpp ../hardware/shield.cpp ../hardware/piddrive.cpp ../hardware/ir.cpp ../vision/cubesearch.cpp -o robot `pkg-config opencv --cflags --libs` -lpthread -lmraa

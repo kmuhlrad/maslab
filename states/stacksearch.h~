@@ -19,7 +19,7 @@ class StackSearch : public State {
 	PIDDrive* driveA;
 	PIDDrive* driveB;
 
-	VideoCapture* cap;
+	VideoCapture cap;
 
 public:
 	StackSearch(CubeSearch* cs, VideoCapture* vid, PIDDrive* dr, PIDDrive* a, PIDDrive* b);

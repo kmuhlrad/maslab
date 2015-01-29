@@ -197,9 +197,10 @@ void CubeSearch::processImage(Mat& src2) {
 
   for (size_t i = 0; i < contours.size(); i++) {
     double area = sqrt(contourArea(contours[i]))*0.05;
+    double ap = contourArea(contours[i])/arcLength(contours[i], false);
 
     //skip small particles or duplicate 
-    if (20*area < 50 || ((last_area - 2) < 20*area  && 20*area < (last_area + 2))) continue;
+    if (20*area < 50 || ((last_area - 2) < 20*area  && 20*area < (last_area + 2)) || ap < 20) continue;
 
     approxPolyDP(contours[i], approx, area, true);
     Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
@@ -222,11 +223,11 @@ void CubeSearch::processImage(Mat& src2) {
 
       //center point
       circle(drawing, center, 2, color, 2, 8, 0);
-
+/*
       printf("Center: (%d, %d) \n", center.x, center.y);
       printf("Contour Area: %lf \n", last_area);
       printf("Bounding Box: %lf \n", ba);
-
+*/
       stack = true;
       count++;
     }
@@ -253,8 +254,9 @@ vector<int> CubeSearch::getCenterY(Mat& img) {
 }
 
 vector<double> CubeSearch::getAngle(Mat& img) {
+  processImage(img);
   for (int i = 0; i < centerXs.size(); i++) {
-    angles.push_back(centerXs[i] * 0.10625 - 34);
+    angles.push_back(centerXs[i] * 0.10625 - 34 - 2);
   }
 
   return angles;

@@ -14,7 +14,7 @@ class Drive : public State {
 	PIDDrive* drive;
 	CubeSearch* cubesearch;
 
-	VideoCapture* cap;
+	VideoCapture cap;
 
 	double curAng;
 

@@ -126,8 +126,8 @@ int main() {
   LiftMech liftmech(&left_wheel, &right_wheel, &lift_motor,
                     &left_door, &right_door, &left_lift, &right_lift,
                     &topbeam, &bottombeam, shield);
-
-  PIDDrive driveW(&left_wheel, &right_wheel, shield, 0.015, 0, 0.4);
+  //was 0.015, 0, 0.4
+  PIDDrive driveW(&left_wheel, &right_wheel, shield, 0.015, 0.0, 0.4);
   PIDDrive driveA(&left_wheel, &right_wheel, shield, 0.00001, 0.0001, 0.2);
   PIDDrive driveB(&left_wheel, &right_wheel, shield, 0.00001, 0.0001, 0.1);
 

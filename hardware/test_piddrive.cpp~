@@ -27,16 +27,17 @@ int main() {
   Shield *shield = new Shield();
 
   //two motor setup
-  Motor left_motor(15, 2);
-  Motor right_motor(4, 8);
-  Motor lift_motor(12, 3);
+  Motor left_motor(15, 0);
+  Motor right_motor(4, 2);
+  //Motor lift_motor(12, 3);
 
   Gyro gyro;
 
   PIDDrive drive(&left_motor, &right_motor, shield, 0.015, 0, 0.4);
+  double start = gyro.get_angle();
 
   while (running) {
-    drive.drive(0, gyro.get_angle(), 0.2);
+    drive.drive(start - 20, gyro.get_angle(), 0.);
     std::cout << gyro.get_angle() << std::endl;
   }
 }

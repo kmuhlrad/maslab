@@ -34,9 +34,10 @@ int main() {
   Gyro gyro;
 
   PIDDrive drive(&left_motor, &right_motor, shield, 0.015, 0, 0.4);
+  double start = gyro.get_angle();
 
   while (running) {
-    drive.drive(0, gyro.get_angle(), 0.2);
+    drive.drive(start - 90, gyro.get_angle(), 0.);
     std::cout << gyro.get_angle() << std::endl;
   }
 }
