@@ -27,9 +27,9 @@ int main() {
   Shield *shield = new Shield();
 
   //two motor setup
-  Motor left_motor(15, 2);
-  Motor right_motor(4, 8);
-  Motor lift_motor(12, 3);
+  Motor left_motor(15, 0);
+  Motor right_motor(4, 2);
+  //Motor lift_motor(12, 3);
 
   Gyro gyro;
 

@@ -29,7 +29,7 @@ int main() {
 
   //two motor setup
   Motor left_motor(15, 0);
-  Motor right_motor(4, 3);
+  Motor right_motor(4, 2);
 
   Gyro gyro;
 
@@ -38,8 +38,9 @@ int main() {
 
   //was 0.015, 0, 0.4
   //also 0.05, 0, 0.2
-  //for sensor:
-  PIDDrive drive(&left_motor, &right_motor, shield, 0.00001, 0.0001, 0.1);
+  //for medA:
+  PIDDrive driveA(&left_motor, &right_motor, shield, 0.00001, 0.0001, 0.2);
+  PIDDrive driveB(&left_motor, &right_motor, shield, 0.00001, 0.0001, 0.1);
 
   int straight = 0;
   int turning = 0;
@@ -70,7 +71,7 @@ int main() {
         curAngle = gyro.get_angle();
       }
       straight++;
-      drive.drive(curAngle, gyro.get_angle(), 0.25); //keep driving straight
+      driv.drive(curAngle, gyro.get_angle(), 0.25); //keep driving straight
       std::cout << "straight\t" << "angle: " << curAngle <<  std::endl;
     } else if ((medA.getDistance() < 20 && medB.getDistance() < 30) || (medA.getDistance() > 30)) {
       straight = 0;
@@ -87,7 +88,24 @@ int main() {
       drive.drive(gyro.get_angle(), gyro.get_angle(), 0.2);
     }*/
     
-    drive.drive(15, medA.getDistance(), 0.2);
+    if (medB.getDistance() < 15) {
+      driveA.stop();
+      driveB.stop();
+      while (medB.getDistance() < 30) {
+        left_motor.setSpeed(shield, 0.2);
+        right_motor.setSpeed(shield, -0.2);
+        std::cout << "B" << std::endl;
+      }
+    } else if (medA.getDistance() > 80) {
+      left_motor.setSpeed(shield, 0.2);
+      right_motor.setSpeed(shield, -0.2);
+      usleep(300000);
+    } else {
+      turning = 0;
+      driveA.drive(15, medA.getDistance(), 0.2);
+      std::cout << "A" << std::endl;
+      usleep(100000);
+    }
 
     /*
     if (medA.getDistance() < 14) {
