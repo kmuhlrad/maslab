@@ -9,8 +9,6 @@ class PIDDrive {
 	double I;
 	double D;
 
-	Shield* shield;
-
 	double integral;
 	double last_diff;
 
@@ -19,6 +17,8 @@ class PIDDrive {
 public:
 	Motor* A;
 	Motor* B;
+
+	Shield* shield;
 	
 	PIDDrive(Motor* a, Motor* b, Shield* s,
 			 double p, double i, double d);

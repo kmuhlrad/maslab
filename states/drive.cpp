@@ -49,14 +49,14 @@ int Drive::getNext(SensorData data) {
 void Drive::run(SensorData data) {
 	Mat img;
 	cap >> img; //maybe request 6 images
-	cubesearch->process(img);
+	cubesearch->processImage(img);
 	if (cubesearch->findStack(img)) {
 		std::cout << "Drive: driving towards stack" << std::endl;
-		drive.drive(cubesearch->getAngle(img), data.getGyroAngle(), 0.25);
+		drive->drive(cubesearch->getAngle(img), data.getGyroAngle(), 0.25);
 		sleep(.5);
 	} else {
 		std::cout << "Drive: driving straight" << std::endl;
-	    drive.drive(data.getGyroAngle(), data.getGyroAngle(), 0.3);
+	    drive->drive(data.getGyroAngle(), data.getGyroAngle(), 0.3);
 	    usleep(200000);
 	}
 }
