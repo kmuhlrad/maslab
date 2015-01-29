@@ -157,14 +157,14 @@ int getTopColor(Mat& img) {
  */
 int main(int, char** argv) {
 
-  VideoCapture cap(0);
-  assert(cap.isOpened());
+  //VideoCapture cap(0);
+  //assert(cap.isOpened());
 
-  Mat src2;
-  cap.read(src2);
+  //Mat src2;
+  //cap.read(src2);
 
   /// Load source image and convert it to gray
-  //Mat src2 = imread(argv[1], 1);
+  Mat src2 = imread(argv[1], 1);
   int top = (int) (0.05*src2.rows), bottom = (int) (0.05*src2.rows);
   int left = (int) (0.05*src2.cols), right = (int) (0.05*src2.cols);
   //copyMakeBorder( src2, src, top, bottom, left, right, BORDER_CONSTANT, Scalar(0,0,0) );
@@ -188,7 +188,7 @@ int main(int, char** argv) {
   namedWindow(source_window, WINDOW_AUTOSIZE);
   imshow(source_window, src);
 
-  createTrackbar( " Canny thresh:", "Source", &thresh, 255, thresh_callback );
+  //createTrackbar( " Canny thresh:", "Source", &thresh, 255, thresh_callback );
   thresh_callback( 0, 0 );
 
   if (stack) {
@@ -235,6 +235,7 @@ void thresh_callback(int, void*) {
       Point center((bounding.x + bounding.width/2), (bounding.y + bounding.height/2));
       double ba = bounding.width * bounding.height;
 
+      if (ba < 1000 || ba > 100000) continue;
       //bounding box
       rectangle(drawing, bounding.tl(), bounding.br(), color, 2, 8, 0);
 
@@ -244,7 +245,7 @@ void thresh_callback(int, void*) {
       printf("Center: (%d, %d) \n", center.x, center.y);
       printf("Contour Area: %lf \n", last_area);
       printf("Bounding Box: %lf \n", ba);
-
+      printf("Angle: %lf\n", center.x * 0.10625 - 34);
       stack = true;
       count++;
     }

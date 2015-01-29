@@ -216,6 +216,7 @@ void CubeSearch::processImage(Mat& src2) {
 
       double ba = bounding.width * bounding.height;
 
+      if (ba < 1000 || ba > 100000) continue;
       //bounding box
       rectangle(drawing, bounding.tl(), bounding.br(), color, 2, 8, 0);
 
@@ -253,7 +254,7 @@ vector<int> CubeSearch::getCenterY(Mat& img) {
 
 vector<double> CubeSearch::getAngle(Mat& img) {
   for (int i = 0; i < centerXs.size(); i++) {
-    angles.push_back(centerXs[i] * 0.10625);
+    angles.push_back(centerXs[i] * 0.10625 - 34);
   }
 
   return angles;

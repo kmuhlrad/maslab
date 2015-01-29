@@ -53,38 +53,38 @@ CMAKE_SOURCE_DIR = /Users/katy/MASLAB/vision
 CMAKE_BINARY_DIR = /Users/katy/MASLAB/vision
 
 #=============================================================================
-# Target rules for target CMakeFiles/videotest.dir
+# Target rules for target CMakeFiles/findcubes.dir
 
 # All Build rule for target.
-CMakeFiles/videotest.dir/all:
-	$(MAKE) -f CMakeFiles/videotest.dir/build.make CMakeFiles/videotest.dir/depend
-	$(MAKE) -f CMakeFiles/videotest.dir/build.make CMakeFiles/videotest.dir/build
+CMakeFiles/findcubes.dir/all:
+	$(MAKE) -f CMakeFiles/findcubes.dir/build.make CMakeFiles/findcubes.dir/depend
+	$(MAKE) -f CMakeFiles/findcubes.dir/build.make CMakeFiles/findcubes.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/katy/MASLAB/vision/CMakeFiles  1
-	@echo "Built target videotest"
-.PHONY : CMakeFiles/videotest.dir/all
+	@echo "Built target findcubes"
+.PHONY : CMakeFiles/findcubes.dir/all
 
 # Include target in all.
-all: CMakeFiles/videotest.dir/all
+all: CMakeFiles/findcubes.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/videotest.dir/rule: cmake_check_build_system
+CMakeFiles/findcubes.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/katy/MASLAB/vision/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/videotest.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/findcubes.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/katy/MASLAB/vision/CMakeFiles 0
-.PHONY : CMakeFiles/videotest.dir/rule
+.PHONY : CMakeFiles/findcubes.dir/rule
 
 # Convenience name for target.
-videotest: CMakeFiles/videotest.dir/rule
-.PHONY : videotest
+findcubes: CMakeFiles/findcubes.dir/rule
+.PHONY : findcubes
 
 # clean rule for target.
-CMakeFiles/videotest.dir/clean:
-	$(MAKE) -f CMakeFiles/videotest.dir/build.make CMakeFiles/videotest.dir/clean
-.PHONY : CMakeFiles/videotest.dir/clean
+CMakeFiles/findcubes.dir/clean:
+	$(MAKE) -f CMakeFiles/findcubes.dir/build.make CMakeFiles/findcubes.dir/clean
+.PHONY : CMakeFiles/findcubes.dir/clean
 
 # clean rule for target.
-clean: CMakeFiles/videotest.dir/clean
+clean: CMakeFiles/findcubes.dir/clean
 .PHONY : clean
 
 #=============================================================================

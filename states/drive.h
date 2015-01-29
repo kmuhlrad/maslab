@@ -16,6 +16,8 @@ class Drive : public State {
 
 	VideoCapture cap;
 
+	double curAng;
+
 public:
 	Drive(CubeSearch* cs, PIDDrive* dr);
 	virtual int process(SensorData data);

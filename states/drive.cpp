@@ -17,6 +17,7 @@ Drive::Drive(CubeSearch* cs, PIDDrive* dr) {
 	cubesearch = cs;
 
 	cap = VideoCapture(0);
+	double curAngle = 0;
 }
 
 int Drive::getState() {
@@ -28,6 +29,7 @@ int Drive::process(SensorData data) {
 	if (next != state_num) {
 		return next;
 	} else {
+		curAng = data.getGyroAngle();
 		run(data);
 		return state_num;
 	}
@@ -40,7 +42,7 @@ int Drive::getNext(SensorData data) {
 		return DRIVE;
 	}
 
-	/* EVENTUALLY IMPLEMENT IF NEEDED
+	/* IMPLEMENT SOON
 	 else if (!foundStack || wrongColor) { ////FINISH///////
 		return STACKSEARCH;
 	*/
@@ -52,7 +54,7 @@ void Drive::run(SensorData data) {
 	cubesearch->processImage(img);
 	if (cubesearch->findStack(img)) {
 		std::cout << "Drive: driving towards stack" << std::endl;
-		drive->drive(cubesearch->getAngle(img)[0], data.getGyroAngle(), 0.25);
+		drive->drive(curAng + cubesearch->getAngle(img)[0], data.getGyroAngle(), 0.25);
 		sleep(.5);
 	} else {
 		std::cout << "Drive: driving straight" << std::endl;

@@ -103,41 +103,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named videotest
+# Target rules for targets named findcubes
 
 # Build rule for target.
-videotest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 videotest
-.PHONY : videotest
+findcubes: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 findcubes
+.PHONY : findcubes
 
 # fast build rule for target.
-videotest/fast:
-	$(MAKE) -f CMakeFiles/videotest.dir/build.make CMakeFiles/videotest.dir/build
-.PHONY : videotest/fast
+findcubes/fast:
+	$(MAKE) -f CMakeFiles/findcubes.dir/build.make CMakeFiles/findcubes.dir/build
+.PHONY : findcubes/fast
 
-videotest.o: videotest.cpp.o
-.PHONY : videotest.o
+findcubes.o: findcubes.cpp.o
+.PHONY : findcubes.o
 
 # target to build an object file
-videotest.cpp.o:
-	$(MAKE) -f CMakeFiles/videotest.dir/build.make CMakeFiles/videotest.dir/videotest.cpp.o
-.PHONY : videotest.cpp.o
+findcubes.cpp.o:
+	$(MAKE) -f CMakeFiles/findcubes.dir/build.make CMakeFiles/findcubes.dir/findcubes.cpp.o
+.PHONY : findcubes.cpp.o
 
-videotest.i: videotest.cpp.i
-.PHONY : videotest.i
+findcubes.i: findcubes.cpp.i
+.PHONY : findcubes.i
 
 # target to preprocess a source file
-videotest.cpp.i:
-	$(MAKE) -f CMakeFiles/videotest.dir/build.make CMakeFiles/videotest.dir/videotest.cpp.i
-.PHONY : videotest.cpp.i
+findcubes.cpp.i:
+	$(MAKE) -f CMakeFiles/findcubes.dir/build.make CMakeFiles/findcubes.dir/findcubes.cpp.i
+.PHONY : findcubes.cpp.i
 
-videotest.s: videotest.cpp.s
-.PHONY : videotest.s
+findcubes.s: findcubes.cpp.s
+.PHONY : findcubes.s
 
 # target to generate assembly for a file
-videotest.cpp.s:
-	$(MAKE) -f CMakeFiles/videotest.dir/build.make CMakeFiles/videotest.dir/videotest.cpp.s
-.PHONY : videotest.cpp.s
+findcubes.cpp.s:
+	$(MAKE) -f CMakeFiles/findcubes.dir/build.make CMakeFiles/findcubes.dir/findcubes.cpp.s
+.PHONY : findcubes.cpp.s
 
 # Help Target
 help:
@@ -146,11 +146,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... findcubes"
 	@echo "... rebuild_cache"
-	@echo "... videotest"
-	@echo "... videotest.o"
-	@echo "... videotest.i"
-	@echo "... videotest.s"
+	@echo "... findcubes.o"
+	@echo "... findcubes.i"
+	@echo "... findcubes.s"
 .PHONY : help
 
 

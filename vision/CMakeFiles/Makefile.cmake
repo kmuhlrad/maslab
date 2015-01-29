@@ -48,5 +48,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/videotest.dir/DependInfo.cmake"
+  "CMakeFiles/findcubes.dir/DependInfo.cmake"
   )
