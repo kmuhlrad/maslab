@@ -239,22 +239,22 @@ void CubeSearch::processImage(Mat& src2) {
 }
 
 bool CubeSearch::findStack(Mat& img) {
-  processImage(img);
+  //processImage(img);
   return stack;
 }
 
 vector<int> CubeSearch::getCenterX(Mat& img) {
-  processImage(img);
+  //processImage(img);
   return centerXs;
 }
 
 vector<int> CubeSearch::getCenterY(Mat& img) {
-  processImage(img);
+  //processImage(img);
   return centerYs;
 }
 
 vector<double> CubeSearch::getAngle(Mat& img) {
-  processImage(img);
+  //processImage(img);
   for (int i = 0; i < centerXs.size(); i++) {
     angles.push_back(centerXs[i] * 0.10625 - 34 - 2);
   }
