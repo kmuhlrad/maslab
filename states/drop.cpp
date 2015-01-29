@@ -5,6 +5,7 @@
 
 #include "mraa.hpp"
 #include "../hardware/liftmech.h"
+#include "sensordata.h"
 
 Drop::Drop(LiftMech* lm) {
 	state_num = DROP;
@@ -15,7 +16,7 @@ int Drop::getState() {
 	return state_num;
 }
 
-int Drop::process() {
+int Drop::process(SensorData data) {
 	run();
 }
 

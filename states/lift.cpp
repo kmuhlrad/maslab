@@ -5,6 +5,7 @@
 
 #include "mraa.hpp"
 #include "../hardware/liftmech.h"
+#include "sensordata.h"
 
 Lift::Lift(LiftMech* lm) {
 	state_num = LIFT;
@@ -17,7 +18,7 @@ int Lift::getState() {
 	return state_num;
 }
 
-int Lift::process() {
+int Lift::process(SensorData data) {
 	run();
 	return getNext();
 }

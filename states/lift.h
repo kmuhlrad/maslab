@@ -4,6 +4,7 @@
 #include "state.h"
 #include "mraa.hpp"
 #include "../hardware/liftmech.h"
+#include "sensordata.h"
 
 class Lift : public State {
 	int getNext();
@@ -14,7 +15,7 @@ class Lift : public State {
 	int counter;
 public:
 	Lift(LiftMech* lm);
-	virtual int process();
+	virtual int process(SensorData data);
 	int getState();
 };
 

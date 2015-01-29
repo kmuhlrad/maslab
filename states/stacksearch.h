@@ -10,9 +10,11 @@
 class StackSearch : public State {
 	int getNext(SensorData data);
 	void run(SensorData data);
+	void wallFollow(SensorData data);
 
-	int count = 0;
+	int count;
 
+	CubeSearch* cubesearch;
 	PIDDrive* drive;
 	PIDDrive* driveA;
 	PIDDrive* driveB;
@@ -22,7 +24,7 @@ class StackSearch : public State {
 public:
 	StackSearch(CubeSearch* cs, PIDDrive* dr, PIDDrive* a, PIDDrive* b);
 	virtual int process(SensorData data);
-	int getState(SensorData data);
+	int getState();
 };
 
 #endif

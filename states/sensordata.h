@@ -2,6 +2,7 @@
 #define SENSOR_H
 
 #include "mraa.hpp"
+#include "../hardware/gyro.h"
 #include "../hardware/ir.h"
 
 //need to figure out how to access all of the data

@@ -5,6 +5,7 @@
 
 #include "mraa.hpp"
 #include "../hardware/liftmech.h"
+#include "sensordata.h"
 
 class Drop : public State {
 	int getNext();
@@ -13,7 +14,7 @@ class Drop : public State {
 	LiftMech* liftmech;
 public:
 	Drop(LiftMech* lm);
-	virtual int process();
+	virtual int process(SensorData data);
 	int getState();
 };
 

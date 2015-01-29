@@ -1,5 +1,6 @@
 #include "align.h"
 #include "robot_states.h"
+#include "sensordata.h"
 //#include "mraa.hpp"
 
 Align::Align() {
@@ -10,7 +11,7 @@ int Align::getState() {
 	return state_num;
 }
 
-int Align::process() {
+int Align::process(SensorData data) {
 	if (getNext() != state_num) {
 		return getNext();
 	} else {

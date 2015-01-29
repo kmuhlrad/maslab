@@ -62,6 +62,7 @@
 
 #include "robot_states.h"
 #include "state.h"
+#include "sensordata.h"
 
 #include "start.h"
 #include "stacksearch.h"
@@ -107,8 +108,11 @@ int main() {
   mraa::Gpio bottombeam(9);
   bottombeam.dir(mraa::DIR_IN);
 
+  mraa::Gpio backIR(8);
+  backIR.dir(mraa::DIR_IN);
+
   mraa::Gpio rg(5);
-  bottombeam.dir(mraa::DIR_IN);
+  rg.dir(mraa::DIR_IN);
 
   IR medA = IR(2, 6149.816568, 4.468768853);
   IR medB = IR(1, 2391.189039, -0.079559138);
@@ -118,15 +122,17 @@ int main() {
                     &left_door, &right_door, &left_lift, &right_lift,
                     &topbeam, &bottombeam, shield);
 
-  PIDDrive drive(&left_motor, &right_motor, shield, 0.015, 0, 0.4);
-  PIDDrive driveA(&left_motor, &right_motor, shield, 0.00001, 0.0001, 0.2);
-  PIDDrive driveB(&left_motor, &right_motor, shield, 0.00001, 0.0001, 0.1);
+  PIDDrive driveW(&left_wheel, &right_wheel, shield, 0.015, 0, 0.4);
+  PIDDrive driveA(&left_wheel, &right_wheel, shield, 0.00001, 0.0001, 0.2);
+  PIDDrive driveB(&left_wheel, &right_wheel, shield, 0.00001, 0.0001, 0.1);
 
   CubeSearch cs;
 
+  SensorData sensors(&backIR, &rg, &medA, &medB, &medC, &gyro);
+
   Start *start = new Start();
-  StackSearch *stack = new StackSearch(&cs, &drive, &driveA, &driveB);
-  Drive *drive = new Drive(&cs, &drive);
+  StackSearch *stack = new StackSearch(&cs, &driveW, &driveA, &driveB);
+  Drive *drive = new Drive(&cs, &driveW);
   Lift *lift = new Lift(&liftmech);
   PlatformSearch *platform = new PlatformSearch();
   Align *align = new Align();

@@ -1,4 +1,5 @@
 #include <sys/time.h>
+#include <iostream>
 
 #include "drive.h"
 #include "robot_states.h"
@@ -46,11 +47,12 @@ int Drive::getNext(SensorData data) {
 }
 
 void Drive::run(SensorData data) {
+	Mat img;
 	cap >> img; //maybe request 6 images
-	cubesearch.process(img);
-	if (cs.findStack(img)) {
+	cubesearch->process(img);
+	if (cubesearch->findStack(img)) {
 		std::cout << "Drive: driving towards stack" << std::endl;
-		drive.drive(cubesearch.getAngle(img), data.getGryoAngle(), 0.25);
+		drive.drive(cubesearch->getAngle(img), data.getGyroAngle(), 0.25);
 		sleep(.5);
 	} else {
 		std::cout << "Drive: driving straight" << std::endl;
