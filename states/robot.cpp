@@ -58,6 +58,9 @@
 #include "../hardware/servo.h"
 #include "../hardware/liftmech.h"
 #include "../hardware/shield.h"
+#include "../hardware/gyro.h"
+#include "../hardware/ir.h"
+#include "../hardware/piddrive.h"
 #include "../vision/cubesearch.h"
 
 #include "robot_states.h"
@@ -101,6 +104,8 @@ int main() {
 
   Servo left_lift(9);
   Servo right_lift(8);
+
+  Gyro gyro;
 
   mraa::Gpio topbeam(3);
   topbeam.dir(mraa::DIR_IN);
