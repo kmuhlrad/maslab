@@ -91,6 +91,46 @@ void sig_handler(int signo) {
   }
 }
 
+void gyro_callback(Gyro* g) {
+  while(true) {
+    g->chipSelect->write(0);
+    char* recv = g->spi->write(writeBuf, 4);
+    g->chipSelect->write(1);
+
+    if (recv != NULL) {
+      unsigned int recvVal = ((uint8_t) recv[3] & 0xFF);
+      recvVal = (recvVal << 8) | ((uint8_t)recv[2] & 0xFF);
+      recvVal = (recvVal << 8) | ((uint8_t)recv[1] & 0xFF);
+      recvVal = (recvVal << 8) | ((uint8_t)recv[0] & 0xFF);
+      
+      // Sensor reading
+      short reading = (recvVal >> 10) & 0xffff;
+
+      if (init) {
+        unsigned long long ms = (unsigned long long)(tv.tv_sec)*1000 +
+          (unsigned long long)(tv.tv_usec) / 1000;
+
+        gettimeofday(&tv, NULL);
+
+        ms -= (unsigned long long)(tv.tv_sec)*1000 +
+          (unsigned long long)(tv.tv_usec) / 1000;
+
+        int msi = (int)ms;
+        float msf = (float)msi;
+        float ang_vel = (float)reading / 80.0;
+        gyro->angle += -0.001 * msf * (ang_vel);
+      }
+      else { //init == 0
+        gyro->init = 1;
+        gettimeofday(&tv, NULL);
+      }
+    }
+    else {
+      printf("No recv\n"); //no data
+    }
+  }
+}
+
 int main() {
   //Handle Ctrl-C quit
   signal(SIGINT, sig_handler);
