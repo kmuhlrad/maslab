@@ -133,6 +133,7 @@ int main() {
   PIDDrive driveW(&left_wheel, &right_wheel, shield, 0.015, 0.00075, 0.4);
   PIDDrive driveA(&left_wheel, &right_wheel, shield, 0.00001, 0.0001, 0.2);
   PIDDrive driveB(&left_wheel, &right_wheel, shield, 0.00001, 0.0001, 0.1);
+  PIDDrive driveC(&left_wheel, &right_wheel, shield, 0.00001, 0.0001, 0.2);
 
   CubeSearch cs;
   PlatformFinder pf;
@@ -141,7 +142,7 @@ int main() {
   SensorData sensors(&backIR, &rg, &medA, &medB, &medC, &gyro);
 
   Start *start = new Start();
-  StackSearch *stack = new StackSearch(&cs, &cap, &driveW, &driveA, &driveB);
+  StackSearch *stack = new StackSearch(&cs, &cap, &driveW, &driveA, &driveB, &driveC);
   Drive *drive = new Drive(&cs, &cap, &driveW, &left_door, &right_door);
   Lift *lift = new Lift(&liftmech);
   PlatformSearch *platform = new PlatformSearch(&pf, &cap, &driveW, &driveA, &driveB);
