@@ -143,6 +143,6 @@ float Gyro::get_angular_velocity() {
   }
 }
 
-/*Gyro::~Gyro() {
+Gyro::~Gyro() {
   delete spi;
-}*/
+}

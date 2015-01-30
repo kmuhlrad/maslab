@@ -110,6 +110,8 @@ int main() {
   right_lift.setDegree(shield, 0);
 
   Gyro gyro;
+  std::thread gyro_thread(gyro_callback, &gyro);
+  gyro_thread.join();
 
   mraa::Gpio topbeam(3);
   topbeam.dir(mraa::DIR_IN);

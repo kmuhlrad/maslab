@@ -13,7 +13,7 @@ public:
 	Gyro();
 
 	//deconstructor
-	//~Gyro();
+	~Gyro();
 	
 	//class methods
 	float get_angle(); //need params??

@@ -44,26 +44,26 @@ void LiftMech::collect() {
       sleep(1);
 
       //wiggle
-      left_wheel->setSpeed(shield, 0.15);
-      right_wheel->setSpeed(shield, -0.15);
+      left_wheel->setSpeed(shield, 0.17);
+      right_wheel->setSpeed(shield, -0.17);
       usleep(1000000);
       left_wheel->stop(shield);
       right_wheel->stop(shield);
       usleep(500000);
-      left_wheel->setSpeed(shield, -0.15);
-      right_wheel->setSpeed(shield, 0.15);
+      left_wheel->setSpeed(shield, -0.17);
+      right_wheel->setSpeed(shield, 0.17);
       usleep(1000000);
       left_wheel->stop(shield);
       right_wheel->stop(shield);
       usleep(500000);
-      left_wheel->setSpeed(shield, 0.15);
-      right_wheel->setSpeed(shield, -0.15);
+      left_wheel->setSpeed(shield, 0.17);
+      right_wheel->setSpeed(shield, -0.17);
       usleep(1000000);
       left_wheel->stop(shield);
       right_wheel->stop(shield);
       usleep(500000);
-      left_wheel->setSpeed(shield, -0.15);
-      right_wheel->setSpeed(shield, 0.15);
+      left_wheel->setSpeed(shield, -0.17);
+      right_wheel->setSpeed(shield, 0.17);
       usleep(1000000);
       left_wheel->stop(shield);
       right_wheel->stop(shield);
@@ -100,7 +100,7 @@ void LiftMech::collect() {
       //grab the blocks
       left_lift->setDegree(shield, 170 - 40);
       right_lift->setDegree(shield, 40);
-      sleep(2.5);
+      sleep(3);
 
       up = 1;
     } else if (!topbeam->read() && !up) {

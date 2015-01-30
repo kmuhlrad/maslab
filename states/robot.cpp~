@@ -52,6 +52,7 @@
 #include <cmath>
 #include <sys/time.h>
 #include <unistd.h>
+#include <thread>
 
 #include "mraa.hpp"
 #include "../hardware/motor.h"
@@ -109,6 +110,8 @@ int main() {
   right_lift.setDegree(shield, 0);
 
   Gyro gyro;
+  std::thread gyro_thread(&Gyro::gyro_callback, Gyro());
+  gyro_thread.join();
 
   mraa::Gpio topbeam(3);
   topbeam.dir(mraa::DIR_IN);
@@ -156,7 +159,7 @@ int main() {
     lift_motor.setSpeed(shield, 0.25);
     std::cout << topbeam.read() << std::endl;
   }
-
+  lift_motor.stop(shield);
   left_lift.setDegree(shield, 170-110);
   right_lift.setDegree(shield, 110);
 

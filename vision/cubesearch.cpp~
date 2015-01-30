@@ -256,7 +256,7 @@ vector<int> CubeSearch::getCenterY(Mat& img) {
 vector<double> CubeSearch::getAngle(Mat& img) {
   //processImage(img);
   for (int i = 0; i < centerXs.size(); i++) {
-    angles.push_back(centerXs[i] * 0.10625 - 34 + 10);
+    angles.push_back(centerXs[i] * 0.10625 - 34 - 6.8);
   }
 
   return angles;
