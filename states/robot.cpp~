@@ -133,6 +133,7 @@ int main() {
   PIDDrive driveW(&left_wheel, &right_wheel, shield, 0.015, 0.00075, 0.4);
   PIDDrive driveA(&left_wheel, &right_wheel, shield, 0.00001, 0.0001, 0.2);
   PIDDrive driveB(&left_wheel, &right_wheel, shield, 0.00001, 0.0001, 0.1);
+  PIDDrive driveC(&left_wheel, &right_wheel, shield, 0.00001, 0.0001, 0.2);
 
   CubeSearch cs;
   PlatformFinder pf;
@@ -141,7 +142,7 @@ int main() {
   SensorData sensors(&backIR, &rg, &medA, &medB, &medC, &gyro);
 
   Start *start = new Start();
-  StackSearch *stack = new StackSearch(&cs, &cap, &driveW, &driveA, &driveB);
+  StackSearch *stack = new StackSearch(&cs, &cap, &driveW, &driveA, &driveB, &driveC);
   Drive *drive = new Drive(&cs, &cap, &driveW, &left_door, &right_door);
   Lift *lift = new Lift(&liftmech);
   PlatformSearch *platform = new PlatformSearch(&pf, &cap, &driveW, &driveA, &driveB);
@@ -152,8 +153,12 @@ int main() {
   State *curState = states[0];
 
   while(topbeam.read()) {
-    lift_motor.setSpeed(shield, 0.15);
+    lift_motor.setSpeed(shield, 0.25);
+    std::cout << topbeam.read() << std::endl;
   }
+
+  left_lift.setDegree(shield, 170-110);
+  right_lift.setDegree(shield, 110);
 
   gettimeofday(&gameclock, NULL);
   double gametime = ((double)gameclock.tv_sec - (double)starttime.tv_sec) + 0.000001 * (gameclock.tv_usec - starttime.tv_usec);

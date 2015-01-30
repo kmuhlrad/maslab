@@ -13,8 +13,8 @@ int Start::getState() {
 
 int Start::process(SensorData data) {
 	//run();
-	return STACKSEARCH;
-	//return PLATFORMSEARCH;
+	//return STACKSEARCH;
+	return PLATFORMSEARCH;
 	/*
 	if (startSwitch) {
 		return STACKSEARCH;

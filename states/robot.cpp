@@ -153,8 +153,12 @@ int main() {
   State *curState = states[0];
 
   while(topbeam.read()) {
-    lift_motor.setSpeed(shield, 0.2);
+    lift_motor.setSpeed(shield, 0.25);
+    std::cout << topbeam.read() << std::endl;
   }
+  lift_motor.stop(shield);
+  left_lift.setDegree(shield, 170-110);
+  right_lift.setDegree(shield, 110);
 
   gettimeofday(&gameclock, NULL);
   double gametime = ((double)gameclock.tv_sec - (double)starttime.tv_sec) + 0.000001 * (gameclock.tv_usec - starttime.tv_usec);

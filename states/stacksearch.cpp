@@ -48,10 +48,10 @@ int StackSearch::getNext(SensorData data) {
 	std::cout << "StackSearch: getNext" << std::endl;
 	cubesearch->processImage(img);
 	if (cubesearch->findStack(img)) {
-		/*if (count == 0 && cubesearch->getTopColor(img) != data.rgswitch()) {
+		if (/*count == 0 &&*/ cubesearch->getTopColor(img) != data.rgswitch()) {
 			return STACKSEARCH;
 		}
-		count++;*/
+		//count++;*/
 		//cap.release();
         drive->stop();
         //sleep(1);
@@ -62,21 +62,21 @@ int StackSearch::getNext(SensorData data) {
 }
 
 void StackSearch::run(SensorData data) {
-	wallFollowCW(data);
-	usleep(50000);
+	//wallFollowCW(data);
+	//usleep(50000);
 	/*if (data.getGyroAngle() > 360 || data.getGyroAngle() < -360) {
 		std::cout << "StackSearch: wall following" << std::endl;
-		wallFollow(data);
+		wallFollowCW(data);
         usleep(50000);
         drive->stop();
-	} else {
+	} else {*/
 		std::cout << "StackSearch: turning" << std::endl;
 		//drive->drive(data.getGyroAngle() - 5, data.getGyroAngle(), 0.0);
 		drive->A->setSpeed(drive->shield, -0.25);
         drive->B->setSpeed(drive->shield, 0.25);
-        usleep(300000);
+        usleep(400000);
         drive->stop();
-	}*/
+	//}
 }
 
 void StackSearch::wallFollowCW(SensorData data) {

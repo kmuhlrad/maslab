@@ -67,7 +67,7 @@ void Align::run(SensorData data) {
 		    std::cout << "IR: " << data.getDistanceB() << std::endl;
 	    }
             drive->A->setSpeed(drive->shield, 0.2);
-            drive->B->setSpeed(drive->shield, 0.2);
+            drive->b->setSpeed(drive->shield, 0.2);
             sleep(1);
     }/* else {
 		std::cout << "Drive: driving straight" << std::endl;

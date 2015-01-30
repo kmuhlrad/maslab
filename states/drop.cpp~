@@ -5,6 +5,7 @@
 
 #include "mraa.hpp"
 #include "../hardware/liftmech.h"
+#include "sensordata.h"
 
 Drop::Drop(LiftMech* lm) {
 	state_num = DROP;
@@ -15,21 +16,18 @@ int Drop::getState() {
 	return state_num;
 }
 
-int Drop::process() {
-	if (getNext() != state_num) {
-		return getNext();
-	} else {
-		run();
-		return state_num;
-	}
+int Drop::process(SensorData data) {
+	run();
 }
 
-int Drop::getNext(/*Data*/) {
-	return DROP; //last state - eventually change but for now...
-	//return next_state; //IMPLEMENT THIS
+int Drop::getNext() {
+	return DROP;
 }
 
-void Drop::run(/*Data*/) {
+void Drop::run() {
     std::cout << "scoring" << std::endl;
-	liftmech.score();
+	liftmech->score();
+	/*
+	STOP EVERYTHING
+	*/
 }

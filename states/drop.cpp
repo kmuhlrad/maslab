@@ -18,10 +18,11 @@ int Drop::getState() {
 
 int Drop::process(SensorData data) {
 	run();
+        getNext();
 }
 
 int Drop::getNext() {
-	//return DROP;
+	return DROP;
 }
 
 void Drop::run() {

@@ -43,6 +43,7 @@ int PlatformSearch::getNext(SensorData data) {
 	platfinder->processImage(img);
 	if (platfinder->findPlatform(img)) {
         drive->stop();
+                std::cout << "platform found!" << std::endl;
 		return ALIGN;
 	} else {
 		return PLATFORMSEARCH;
@@ -61,7 +62,7 @@ void PlatformSearch::run(SensorData data) {
 		//drive->drive(data.getGyroAngle() - 5, data.getGyroAngle(), 0.0);
 		drive->A->setSpeed(drive->shield, -0.25);
         drive->B->setSpeed(drive->shield, 0.25);
-        usleep(300000);
+        usleep(400000);
         drive->stop();
 	//}
 }

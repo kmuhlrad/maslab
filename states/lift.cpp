@@ -24,12 +24,12 @@ int Lift::process(SensorData data) {
 }
 
 int Lift::getNext() {
-	//return PLATFORMSEARCH; 
-   if (counter == 4) {
+	return PLATFORMSEARCH; 
+   /*if (counter == 4) {
     	return PLATFORMSEARCH;
     } else {
         return STACKSEARCH;
-    }
+    }*/
     
     /*
     if (noStacksLeft || time < 1 min) {
