@@ -146,6 +146,24 @@ void findWalls(Mat& img) {
         findWallsPx(img.at<Vec3b>(Point(x, y)));
 }
 
+void makePlatformPx(Vec3b& color) { //bgr
+  if(color[2] > color[0]*1.8){
+    color[2] = 255;
+    color[1] = 255;
+    color[0] = 0;
+  } else {
+    color[2] = 0;
+    color[1] = 0;
+    color[0] = 0;
+  }
+}
+
+void makePlatform(Mat& img) {
+   for(int y = 0; y < img.rows; y++)
+      for(int x = 0; x < img.cols; x++)
+        makePlatformPx(img.at<Vec3b>(Point(x, y)));
+}
+
 int main(int, char** argv) {
   /// Load source image and convert it to gray
   Mat src2 = imread(argv[1], 1);
@@ -153,7 +171,7 @@ int main(int, char** argv) {
   int left = (int) (0.05*src2.cols), right = (int) (0.05*src2.cols);
   //copyMakeBorder( src2, src, top, bottom, left, right, BORDER_CONSTANT, Scalar(0,0,0) );
   
-  findWalls(src2);
+  makePlatform(src2);
 
   erode(src2, src2, getStructuringElement(MORPH_ELLIPSE, Size(9, 9)));
   dilate( src2, src2, getStructuringElement(MORPH_ELLIPSE, Size(9, 9)));
@@ -195,9 +213,10 @@ void thresh_callback(int, void*) {
 
   for (size_t i = 0; i < contours.size(); i++) {
     double area = sqrt(contourArea(contours[i]))*0.05;
+    double ap = contourArea(contours[i])/arcLength(contours[i], false);
 
     //skip small particles or duplicate 
-    if (20*area < 120 || ((last_area - 2) < 20*area  && 20*area < (last_area + 2))) continue;
+    if (20*area < 90 || ((last_area - 2) < 20*area  && 20*area < (last_area + 2))) continue;
 
     approxPolyDP(contours[i], approx, area, true);
     Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
@@ -217,6 +236,9 @@ void thresh_callback(int, void*) {
       circle(drawing, center, 2, color, 2, 8, 0);
 
       printf("Center: (%d, %d) \n", center.x, center.y);
+      printf("Contour Area: %lf \n", last_area);
+      //printf("Bounding Box: %lf \n", ba);
+      printf("A/P: %lf \n", ap);
 
       wall = true;
       count++;

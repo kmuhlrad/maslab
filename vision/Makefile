@@ -103,41 +103,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named findcubes
+# Target rules for targets named materialtest
 
 # Build rule for target.
-findcubes: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 findcubes
-.PHONY : findcubes
+materialtest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 materialtest
+.PHONY : materialtest
 
 # fast build rule for target.
-findcubes/fast:
-	$(MAKE) -f CMakeFiles/findcubes.dir/build.make CMakeFiles/findcubes.dir/build
-.PHONY : findcubes/fast
+materialtest/fast:
+	$(MAKE) -f CMakeFiles/materialtest.dir/build.make CMakeFiles/materialtest.dir/build
+.PHONY : materialtest/fast
 
-findcubes.o: findcubes.cpp.o
-.PHONY : findcubes.o
+materialtest.o: materialtest.cpp.o
+.PHONY : materialtest.o
 
 # target to build an object file
-findcubes.cpp.o:
-	$(MAKE) -f CMakeFiles/findcubes.dir/build.make CMakeFiles/findcubes.dir/findcubes.cpp.o
-.PHONY : findcubes.cpp.o
+materialtest.cpp.o:
+	$(MAKE) -f CMakeFiles/materialtest.dir/build.make CMakeFiles/materialtest.dir/materialtest.cpp.o
+.PHONY : materialtest.cpp.o
 
-findcubes.i: findcubes.cpp.i
-.PHONY : findcubes.i
+materialtest.i: materialtest.cpp.i
+.PHONY : materialtest.i
 
 # target to preprocess a source file
-findcubes.cpp.i:
-	$(MAKE) -f CMakeFiles/findcubes.dir/build.make CMakeFiles/findcubes.dir/findcubes.cpp.i
-.PHONY : findcubes.cpp.i
+materialtest.cpp.i:
+	$(MAKE) -f CMakeFiles/materialtest.dir/build.make CMakeFiles/materialtest.dir/materialtest.cpp.i
+.PHONY : materialtest.cpp.i
 
-findcubes.s: findcubes.cpp.s
-.PHONY : findcubes.s
+materialtest.s: materialtest.cpp.s
+.PHONY : materialtest.s
 
 # target to generate assembly for a file
-findcubes.cpp.s:
-	$(MAKE) -f CMakeFiles/findcubes.dir/build.make CMakeFiles/findcubes.dir/findcubes.cpp.s
-.PHONY : findcubes.cpp.s
+materialtest.cpp.s:
+	$(MAKE) -f CMakeFiles/materialtest.dir/build.make CMakeFiles/materialtest.dir/materialtest.cpp.s
+.PHONY : materialtest.cpp.s
 
 # Help Target
 help:
@@ -146,11 +146,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... findcubes"
+	@echo "... materialtest"
 	@echo "... rebuild_cache"
-	@echo "... findcubes.o"
-	@echo "... findcubes.i"
-	@echo "... findcubes.s"
+	@echo "... materialtest.o"
+	@echo "... materialtest.i"
+	@echo "... materialtest.s"
 .PHONY : help
 
 

@@ -116,6 +116,24 @@ void makeStack(Mat& img, double& rb, double& rg, double& gb, double& gr) {
         makeStackPx(img.at<Vec3b>(Point(x, y)), rb, rg, gb, gr);
 }
 
+void makePlatformPx(Vec3b& color, double& rb, double& rg, double& hrg) { //bgr
+  if(color[2] > color[0]*rb && color[2] > color[1]*rg && color[2] < color[1]*hrg){
+    color[2] = 255;
+    color[1] = 255;
+    color[0] = 0;
+  } else {
+    color[2] = 0;
+    color[1] = 0;
+    color[0] = 0;
+  }
+}
+
+void makePlatform(Mat& img, double& rb, double& rg, double& hrg) {
+   for(int y = 0; y < img.rows; y++)
+      for(int x = 0; x < img.cols; x++)
+        makePlatformPx(img.at<Vec3b>(Point(x, y)), rb, rg, hrg);
+}
+
 int main(int, char** argv) {
   Mat img = imread(argv[1], 1); 
 
@@ -129,23 +147,24 @@ int main(int, char** argv) {
   int br=0;
 
   int des=9;
+  int hrg=0;
 
   //create a window called "Control"
   namedWindow("Control", CV_WINDOW_NORMAL);
 
   //Create trackbars in "Control" window
 
-  
+  /*
   //green
   createTrackbar("G/B minimum*100", "Control", &gb, 300);
   createTrackbar("G/R minimum*100", "Control", &gr, 300);
-  
+  */
 
 
   //red
   createTrackbar("R/B minimum*100", "Control", &rb, 300);
   createTrackbar("R/Gminimum*100", "Control", &rg, 300);
-  
+  createTrackbar("R/Gmax*100", "Control", &hrg, 300);
 
   /*
   //blue
@@ -166,12 +185,12 @@ int main(int, char** argv) {
     cout << "gb: " << dgb << " \t gr: " << dgr << endl;
     */
 
-    /*
+    
     //red
-    double drb = ((double)rb)/100, drg = ((double)rg)/100;
-    makeGreen(imgThresholded, drb, drg);
-    cout << "rb: " << drb << " \t rg: " << drg << endl;
-    */
+    double drb = ((double)rb)/100, drg = ((double)rg)/100, dhrg = ((double)hrg)/100;
+    makePlatform(imgThresholded, drb, drg, dhrg);
+    cout << "rb: " << drb << " \t rg: " << drg << " \t hrg: " << dhrg << endl;
+    
 
     /*
     //blue
@@ -180,11 +199,13 @@ int main(int, char** argv) {
     cout << "bg: " << dbg << " \t br: " << dbr << endl;
     */
 
+    /*
     //stack
     double drb = ((double)rb)/100, drg = ((double)rg)/100;
     double dgb = ((double)gb)/100, dgr = ((double)gr)/100;
-    makeStack(imgThresholded, drb, drg, dgb, dgr);
+    makeStack(imgThresholded, drb, drg);
     cout << "rb: " << drb << " \t rg: " << drg << "\t gb: " << dgb << " \t gr: " << dgr << endl;
+    */
 
     erode(imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(9, 9)));
     dilate( imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(9, 9)));
