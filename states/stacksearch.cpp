@@ -62,19 +62,22 @@ int StackSearch::getNext(SensorData data) {
 
 void StackSearch::run(SensorData data) {
 	//might only work once...
+        wallFollow(data);
+        std::cout << "IR A: " << data.getDistanceA() << "\t IR B: " << data.getDistanceB() << std::endl;
+        //usleep(50000);
 	/*if (data.getGyroAngle() > 360 || data.getGyroAngle() < -360) {
-		std::cout << "StackSearch: wall following" << std::endl;
-		wallFollow(data);
-        sleep(200000);
-        drive->stop();
-	} else {*/
-		std::cout << "StackSearch: turning" << std::endl;
-		//drive->drive(data.getGyroAngle() - 5, data.getGyroAngle(), 0.0);
-		drive->A->setSpeed(drive->shield, -0.25);
-        drive->B->setSpeed(drive->shield, 0.25);
-        usleep(300000);
-        drive->stop();
-	//}
+          std::cout << "StackSearch: wall following" << std::endl;
+          wallFollow(data);
+          sleep(20000);
+          //drive->stop();
+	} else {
+          std::cout << "StackSearch: turning" << std::endl;
+	  //drive->drive(data.getGyroAngle() - 5, data.getGyroAngle(), 0.0);
+          drive->A->setSpeed(drive->shield, -0.25);
+          drive->B->setSpeed(drive->shield, 0.25);
+          usleep(300000);
+          drive->stop();
+	}*/
 }
 
 void StackSearch::wallFollow(SensorData data) {

@@ -13,9 +13,9 @@ class PlatformFinder {
 	RNG rng;
 
 	bool platform;
-	int centerX;
-	int centerY;
-	double angle;
+	int centerXs;
+	int centerYs;
+	double angles;
 
 	void filterBluePx(Vec3b& color);
 	void filterBlue(Mat& img);

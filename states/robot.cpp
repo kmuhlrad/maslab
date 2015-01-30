@@ -151,6 +151,10 @@ int main() {
   State *states[7] = {start, stack, drive, lift, platform, align, drop};
   State *curState = states[0];
 
+  while(topbeam.read()) {
+    lift_motor.setSpeed(shield, 0.2);
+  }
+
   gettimeofday(&gameclock, NULL);
   double gametime = ((double)gameclock.tv_sec - (double)starttime.tv_sec) + 0.000001 * (gameclock.tv_usec - starttime.tv_usec);
 
