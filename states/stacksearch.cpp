@@ -10,13 +10,14 @@
 #include "../hardware/piddrive.h"
 #include "../vision/cubesearch.h"
 
-StackSearch::StackSearch(CubeSearch* cs, VideoCapture* vid, PIDDrive* dr, PIDDrive* a, PIDDrive* b) {
+StackSearch::StackSearch(CubeSearch* cs, VideoCapture* vid, PIDDrive* dr, PIDDrive* a, PIDDrive* b, PIDDrive* c) {
 	state_num = STACKSEARCH;
 
 	cubesearch = cs;
 	drive = dr;
 	driveA = a;
 	driveB = b;
+	driveC = c;
 
 	cap = vid;
 
@@ -62,22 +63,24 @@ int StackSearch::getNext(SensorData data) {
 
 void StackSearch::run(SensorData data) {
 	//might only work once...
+	wallFollowCW(data);
+	usleep(50000);
 	/*if (data.getGyroAngle() > 360 || data.getGyroAngle() < -360) {
 		std::cout << "StackSearch: wall following" << std::endl;
 		wallFollow(data);
-        sleep(200000);
+        usleep(50000);
         drive->stop();
-	} else {*/
+	} else {
 		std::cout << "StackSearch: turning" << std::endl;
 		//drive->drive(data.getGyroAngle() - 5, data.getGyroAngle(), 0.0);
 		drive->A->setSpeed(drive->shield, -0.25);
         drive->B->setSpeed(drive->shield, 0.25);
         usleep(300000);
         drive->stop();
-	//}
+	}*/
 }
 
-void StackSearch::wallFollow(SensorData data) {
+void StackSearch::wallFollowCW(SensorData data) {
   if (data.getDistanceB() < 15) {
     driveA->stop();
     driveB->stop();
@@ -93,6 +96,26 @@ void StackSearch::wallFollow(SensorData data) {
   } else {
     driveA->drive(15, data.getDistanceA(), 0.2);
     std::cout << "A" << std::endl;
+    usleep(100000);
+  }
+}
+
+void StackSearch::wallFollowCCW(SensorData data) {
+  if (data.getDistanceB() < 15) {
+    driveC->stop();
+    driveB->stop();
+    while (data.getDistanceB() < 30) {
+      driveC->A->setSpeed(driveB->shield, 0.2);
+      driveC->B->setSpeed(driveB->shield, -0.2);
+      std::cout << "B" << std::endl;
+    }
+  } else if (data.getDistanceC() > 80) {
+    driveC->A->setSpeed(driveB->shield, 0.2);
+    driveC->B->setSpeed(driveB->shield, -0.2);
+    usleep(300000);
+  } else {
+    driveC->drive(15, data.getDistanceC(), 0.2);
+    std::cout << "C" << std::endl;
     usleep(100000);
   }
 }
