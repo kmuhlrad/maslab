@@ -52,6 +52,7 @@
 #include <cmath>
 #include <sys/time.h>
 #include <unistd.h>
+#include <thread>
 
 #include "mraa.hpp"
 #include "../hardware/motor.h"

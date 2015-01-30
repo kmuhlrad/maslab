@@ -8,6 +8,7 @@
 #include <stdint.h>
 #include <signal.h>
 #include <sys/time.h>
+#include <thread>
 
 #include "gyro.h"
 #include "mraa.hpp"
@@ -17,7 +18,7 @@
 #define GYRO_DATA_OKAY_MASK 0x0C000000
 #define GYRO_DATA_OKAY 0x04000000
 
-float angle = 0.0;
+//float angle = 0.0;
 float ang_vel = 0.0;
 int init = 0;
 char writeBuf[4];
@@ -27,6 +28,46 @@ mraa::Gpio *chipSelect = new mraa::Gpio(10);
 //CHECK SCOPE OF VARIABLES
 
 struct timeval tv;
+
+void gyro_callback() {
+  while(true) {
+    chipSelect->write(0);
+    char* recv = spi->write(writeBuf, 4);
+    chipSelect->write(1);
+
+    if (recv != NULL) {
+      unsigned int recvVal = ((uint8_t) recv[3] & 0xFF);
+      recvVal = (recvVal << 8) | ((uint8_t)recv[2] & 0xFF);
+      recvVal = (recvVal << 8) | ((uint8_t)recv[1] & 0xFF);
+      recvVal = (recvVal << 8) | ((uint8_t)recv[0] & 0xFF);
+      
+      // Sensor reading
+      short reading = (recvVal >> 10) & 0xffff;
+
+      if (init) {
+        unsigned long long ms = (unsigned long long)(tv.tv_sec)*1000 +
+          (unsigned long long)(tv.tv_usec) / 1000;
+
+        gettimeofday(&tv, NULL);
+
+        ms -= (unsigned long long)(tv.tv_sec)*1000 +
+          (unsigned long long)(tv.tv_usec) / 1000;
+
+        int msi = (int)ms;
+        float msf = (float)msi;
+        float ang_vel = (float)reading / 80.0;
+        angle += -0.001 * msf * (ang_vel);
+      }
+      else { //init == 0
+        init = 1;
+        gettimeofday(&tv, NULL);
+      }
+    }
+    else {
+      printf("No recv\n"); //no data
+    }
+  }
+}
 
 Gyro::Gyro() {
   chipSelect->dir(mraa::DIR_OUT);
@@ -46,48 +87,12 @@ Gyro::Gyro() {
   float total = 0;
   struct timeval tv;
   init = 0;
+
+  std::thread first (gyro_callback);
 }
 
 float Gyro::get_angle() {
-  chipSelect->write(0);
-  char* recv = spi->write(writeBuf, 4);
-  chipSelect->write(1);
-
-  if (recv != NULL) {
-    unsigned int recvVal = ((uint8_t) recv[3] & 0xFF);
-    recvVal = (recvVal << 8) | ((uint8_t)recv[2] & 0xFF);
-    recvVal = (recvVal << 8) | ((uint8_t)recv[1] & 0xFF);
-    recvVal = (recvVal << 8) | ((uint8_t)recv[0] & 0xFF);
-    
-    // Sensor reading
-    short reading = (recvVal >> 10) & 0xffff;
-
-    if (init) {
-      unsigned long long ms = (unsigned long long)(tv.tv_sec)*1000 +
-        (unsigned long long)(tv.tv_usec) / 1000;
-
-      gettimeofday(&tv, NULL);
-
-      ms -= (unsigned long long)(tv.tv_sec)*1000 +
-        (unsigned long long)(tv.tv_usec) / 1000;
-
-      int msi = (int)ms;
-      float msf = (float)msi;
-      float ang_vel = (float)reading / 80.0;
-      angle += -0.001 * msf * (ang_vel);
-
-      return angle;
-    }
-    else { //init == 0
-      init = 1;
-      gettimeofday(&tv, NULL);
-      return 0;
-    }
-  }
-  else {
-    printf("No recv\n"); //no data
-    return 100000.0;
-  }
+  return angle;
 }
 
 float Gyro::get_angular_velocity() {
