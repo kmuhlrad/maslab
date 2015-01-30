@@ -15,8 +15,8 @@ class Drive : public State {
 	PIDDrive* drive;
 	CubeSearch* cubesearch;
 
-        Servo* left_door;
-        Servo* right_door;
+    Servo* left_door;
+    Servo* right_door;
 
 	VideoCapture* cap;
 

@@ -17,8 +17,8 @@ Drive::Drive(CubeSearch* cs, VideoCapture* vid, PIDDrive* dr, Servo* left, Servo
 	drive = dr;
 	cubesearch = cs;
 
-        left_door = left;
-        right_door = right;
+    left_door = left;
+    right_door = right;
 
 	cap = vid;
 	double curAngle = 0;
@@ -29,9 +29,7 @@ int Drive::getState() {
 }
 
 int Drive::process(SensorData data) {
-	std::cout << "Drive: process before" << std::endl;
 	int next = getNext(data);
-	std::cout << "Drive: process after" << std::endl;
 	if (next != state_num) {	
             return next;
 	} else {

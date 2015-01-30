@@ -4,7 +4,6 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include <stdlib.h>
-#include <vector>
 
 using namespace cv;
 
@@ -14,9 +13,9 @@ class PlatformFinder {
 	RNG rng;
 
 	bool platform;
-	vector<int> centerXs;
-	vector<int> centerYs;
-	vector<double> angles;
+	int centerXs;
+	int centerYs;
+	double angles;
 
 	void filterBluePx(Vec3b& color);
 	void filterBlue(Mat& img);
@@ -37,9 +36,9 @@ public:
 	void processImage(Mat& src2);
 
 	bool findPlatform(Mat& img);
-	vector<int> getCenterX(Mat& img);
-	vector<int> getCenterY(Mat& img);
-	vector<double> getAngle(Mat& img);
+	int getCenterX(Mat& img);
+	int getCenterY(Mat& img);
+	double getAngle(Mat& img);
 };
 
 #endif

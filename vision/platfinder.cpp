@@ -103,10 +103,10 @@ void PlatformFinder::makePlatform(Mat& img) {
 }
 
 void PlatformFinder::processImage(Mat& src2) {
-  centerXs.clear();
-  centerYs.clear();
-  angles.clear();
-
+  centerX = 0;
+  centerY = 0;
+  angle = 0;
+  
   platform = false;
 
   int top = (int) (0.05*src2.rows), bottom = (int) (0.05*src2.rows);
@@ -157,8 +157,8 @@ void PlatformFinder::processImage(Mat& src2) {
       bounding = boundingRect(approx);
       
       Point center((bounding.x + bounding.width/2), (bounding.y + bounding.height/2));
-      centerXs.push_back(center.x);
-      centerYs.push_back(center.y);
+      centerX = center.x;
+      centerY = center.y;
 
       double ba = bounding.width * bounding.height;
 
@@ -185,21 +185,18 @@ bool PlatformFinder::findPlatform(Mat& img) {
   return platform;
 }
 
-vector<int> PlatformFinder::getCenterX(Mat& img) {
+int PlatformFinder::getCenterX(Mat& img) {
   //processImage(img);
-  return centerXs;
+  return centerX;
 }
 
-vector<int> PlatformFinder::getCenterY(Mat& img) {
+int PlatformFinder::getCenterY(Mat& img) {
   //processImage(img);
-  return centerYs;
+  return centerY;
 }
 
-vector<double> PlatformFinder::getAngle(Mat& img) {
+double PlatformFinder::getAngle(Mat& img) {
   //processImage(img);
-  for (int i = 0; i < centerXs.size(); i++) {
-    angles.push_back(centerXs[i] * 0.10625 - 34 - 2);
-  }
 
-  return angles;
+  return centerX * 0.10625 - 34 - 2;
 }
