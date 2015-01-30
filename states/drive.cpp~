@@ -9,12 +9,16 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "../vision/cubesearch.h"
 #include "../hardware/piddrive.h"
+#include "../hardware/servo.h"
 
-Drive::Drive(CubeSearch* cs, VideoCapture* vid, PIDDrive* dr) {
+Drive::Drive(CubeSearch* cs, VideoCapture* vid, PIDDrive* dr, Servo* left, Servo* right) {
 	state_num = DRIVE;
 
 	drive = dr;
 	cubesearch = cs;
+
+        left_door = left;
+        right_door = right;
 
 	cap = vid;
 	double curAngle = 0;
@@ -28,8 +32,8 @@ int Drive::process(SensorData data) {
 	std::cout << "Drive: process before" << std::endl;
 	int next = getNext(data);
 	std::cout << "Drive: process after" << std::endl;
-	if (next != state_num) {
-		return next;
+	if (next != state_num) {	
+            return next;
 	} else {
 		//curAng = data.getGyroAngle();
 		run(data);
@@ -71,7 +75,7 @@ void Drive::run(SensorData data) {
                 std::cout << "first curAng: " << curAng << std::endl;
                 std::cout << "first cube angle: " << cubeAng << std::endl;
                 std::cout << "first gyro reading: " << data.getGyroAngle() << std::endl;
-		while(!(data.getGyroAngle() - (curAng + cubeAng) < 1 && data.getGyroAngle() - (curAng + cubeAng) > -1)) {
+		/*while(!(data.getGyroAngle() - (curAng + cubeAng) < 1 && data.getGyroAngle() - (curAng + cubeAng) > -1)) {
                   drive->drive(curAng + cubeAng, data.getGyroAngle(), 0.);
 		  //sleep(.5);
                   //drive->stop();
@@ -80,12 +84,17 @@ void Drive::run(SensorData data) {
                   std::cout << "gyro reading: " << data.getGyroAngle() << std::endl;
                   std::cout << "driving" << std::endl;
                   //drive->drive(curAng + cubeAng, data.getGyroAngle(), 0.25);
-                }
+                }*/
                 while(data.getDistanceB() > 8) {
                   //cap->read(img);
                   //cubesearch->processImage(img);
                   //cubeAng = cubesearch->getAngle(img)[0];
+                  left_door->setDegree(drive->shield, 40);
+                  right_door->setDegree(drive->shield, 110);
                   drive->drive(curAng + cubeAng, data.getGyroAngle(), 0.15);
+                  std::cout << "curAng: " << curAng << std::endl;
+                  std::cout << "cube angle: " << cubeAng << std::endl;
+                  std::cout << "gyro reading: " << data.getGyroAngle() << std::endl;
                   std::cout << "IR: " << data.getDistanceB() << std::endl;
                 }
 	}/* else {

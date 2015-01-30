@@ -31,7 +31,7 @@ int StackSearch::process(SensorData data) {
 	std::cout << "StackSearch: Process" << std::endl;
 	int next = getNext(data);
 	if (next != state_num) {
-		return next;
+               return next;
 	} else {
 		run(data);
 		return state_num;
@@ -53,7 +53,7 @@ int StackSearch::getNext(SensorData data) {
 		count++;*/
 		//cap.release();
                 drive->stop();
-                sleep(1);
+                //sleep(1);
 		return DRIVE;
 	} else {
 		return STACKSEARCH;

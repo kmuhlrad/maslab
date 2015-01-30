@@ -99,11 +99,13 @@ int main() {
   Motor right_wheel(4, 2);
   Motor lift_motor(12, 1);
 
-  Servo left_door(1);
-  Servo right_door(0);
+  Servo left_door(0);
+  Servo right_door(1);
 
   Servo left_lift(9);
   Servo right_lift(8);
+  left_lift.setDegree(shield, 160);
+  right_lift.setDegree(shield, 0);
 
   Gyro gyro;
 
@@ -127,7 +129,7 @@ int main() {
                     &left_door, &right_door, &left_lift, &right_lift,
                     &topbeam, &bottombeam, shield);
   //was 0.015, 0, 0.4
-  PIDDrive driveW(&left_wheel, &right_wheel, shield, 0.015, 0.0, 0.4);
+  PIDDrive driveW(&left_wheel, &right_wheel, shield, 0.015, 0.00075, 0.4);
   PIDDrive driveA(&left_wheel, &right_wheel, shield, 0.00001, 0.0001, 0.2);
   PIDDrive driveB(&left_wheel, &right_wheel, shield, 0.00001, 0.0001, 0.1);
 
@@ -138,7 +140,7 @@ int main() {
 
   Start *start = new Start();
   StackSearch *stack = new StackSearch(&cs, &cap, &driveW, &driveA, &driveB);
-  Drive *drive = new Drive(&cs, &cap, &driveW);
+  Drive *drive = new Drive(&cs, &cap, &driveW, &left_door, &right_door);
   Lift *lift = new Lift(&liftmech);
   PlatformSearch *platform = new PlatformSearch();
   Align *align = new Align();
@@ -157,6 +159,7 @@ int main() {
 
     gettimeofday(&gameclock, NULL);
     gametime = ((double)gameclock.tv_sec - (double)starttime.tv_sec) + 0.000001 * ((double)gameclock.tv_usec - (double)starttime.tv_usec);
-    usleep(1000000);
+    //usleep(1000000);
   }
+  cap.release();
 }

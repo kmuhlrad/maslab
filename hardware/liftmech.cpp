@@ -49,31 +49,31 @@ void LiftMech::collect() {
       usleep(500000);
       left_wheel->stop(shield);
       right_wheel->stop(shield);
-      usleep(300000);
+      usleep(450000);
       left_wheel->setSpeed(shield, -0.2);
       right_wheel->setSpeed(shield, 0.2);
       usleep(500000);
       left_wheel->stop(shield);
       right_wheel->stop(shield);
-      usleep(300000);
+      usleep(450000);
       left_wheel->setSpeed(shield, 0.2);
       right_wheel->setSpeed(shield, -0.2);
       usleep(500000);
       left_wheel->stop(shield);
       right_wheel->stop(shield);
-      usleep(300000);
+      usleep(450000);
       left_wheel->setSpeed(shield, -0.2);
       right_wheel->setSpeed(shield, 0.2);
       usleep(500000);
       left_wheel->stop(shield);
       right_wheel->stop(shield);
-      usleep(300000);
+      usleep(450000);
       left_wheel->setSpeed(shield, 0.2);
       right_wheel->setSpeed(shield, -0.2);
       usleep(200000);
       left_wheel->stop(shield);
       right_wheel->stop(shield);
-      usleep(300000);
+      usleep(450000);
 
       //drive forward slightly
       left_wheel->setSpeed(shield, 0.2);
@@ -83,7 +83,7 @@ void LiftMech::collect() {
       right_wheel->setSpeed(shield, 0);
 
       //put the doors back
-      left_door->setDegree(shield, 150-0);
+      left_door->setDegree(shield, 160-0); //opposite servo, was 150 -
       right_door->setDegree(shield, 0);
       sleep(1);
 
@@ -98,9 +98,9 @@ void LiftMech::collect() {
       sleep(1);
 
       //grab the blocks
-      left_lift->setDegree(shield, 180 - 40);
-      right_lift->setDegree(shield, 40);
-      sleep(2);
+      left_lift->setDegree(shield, 180 - 37.5);
+      right_lift->setDegree(shield, 37.5);
+      sleep(2.5);
 
       up = 1;
     } else if (!topbeam->read() && !up) {

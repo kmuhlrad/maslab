@@ -37,8 +37,8 @@ int main() {
   Servo left_lift(9);
   Servo right_lift(8);
 
-  Servo left_door(1);
-  Servo right_door(0);
+  Servo left_door(0);
+  Servo right_door(1);
 
   mraa::Gpio topbeam(3);
   mraa::Gpio bottombeam(9);
