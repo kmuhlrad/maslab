@@ -94,7 +94,7 @@ void sig_handler(int signo) {
 void gyro_callback(Gyro* g) {
   while(true) {
     g->chipSelect->write(0);
-    char* recv = g->spi->write(writeBuf, 4);
+    char* recv = g->spi->write(g->writeBuf, 4);
     g->chipSelect->write(1);
 
     if (recv != NULL) {
@@ -106,23 +106,23 @@ void gyro_callback(Gyro* g) {
       // Sensor reading
       short reading = (recvVal >> 10) & 0xffff;
 
-      if (init) {
-        unsigned long long ms = (unsigned long long)(tv.tv_sec)*1000 +
-          (unsigned long long)(tv.tv_usec) / 1000;
+      if (g->init) {
+        unsigned long long ms = (unsigned long long)(g->tv.tv_sec)*1000 +
+          (unsigned long long)(g->tv.tv_usec) / 1000;
 
-        gettimeofday(&tv, NULL);
+        gettimeofday(&g->tv, NULL);
 
-        ms -= (unsigned long long)(tv.tv_sec)*1000 +
-          (unsigned long long)(tv.tv_usec) / 1000;
+        ms -= (unsigned long long)(g->tv.tv_sec)*1000 +
+          (unsigned long long)(g->tv.tv_usec) / 1000;
 
         int msi = (int)ms;
         float msf = (float)msi;
         float ang_vel = (float)reading / 80.0;
-        gyro->angle += -0.001 * msf * (ang_vel);
+        g->angle += -0.001 * msf * (g->ang_vel);
       }
       else { //init == 0
-        gyro->init = 1;
-        gettimeofday(&tv, NULL);
+        g->init = 1;
+        gettimeofday(&g->tv, NULL);
       }
     }
     else {
@@ -149,9 +149,12 @@ int main() {
   left_lift.setDegree(shield, 160);
   right_lift.setDegree(shield, 0);
 
+  std::cout << "before thread" << std::endl;
   Gyro gyro;
   std::thread gyro_thread(gyro_callback, &gyro);
-  gyro_thread.join();
+  std::cout << "thread made" << std::endl;
+  //gyro_thread.join();
+  std::cout << "thread joined" << std::endl;
 
   mraa::Gpio topbeam(3);
   topbeam.dir(mraa::DIR_IN);
@@ -207,16 +210,18 @@ int main() {
   double gametime = ((double)gameclock.tv_sec - (double)starttime.tv_sec) + 0.000001 * (gameclock.tv_usec - starttime.tv_usec);
 
   while (running /*&& gametime <= 180*/) {
-    std::cout << "current state: " << curState->getState() << std::endl;
+    /*std::cout << "current state: " << curState->getState() << std::endl;
     int next = curState->process(sensors);
     curState = states[next];
 
     gettimeofday(&gameclock, NULL);
     gametime = ((double)gameclock.tv_sec - (double)starttime.tv_sec) + 0.000001 * ((double)gameclock.tv_usec - (double)starttime.tv_usec);
-    //usleep(1000000);
+    //usleep(1000000);*/
+    std::cout << "gyro: " << gyro.get_angle() << std::endl;
   }
   left_wheel.stop(shield);
   right_wheel.stop(shield);
   lift_motor.stop(shield);
   cap.release();
+  gyro_thread.join();
 }
