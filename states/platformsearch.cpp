@@ -1,4 +1,5 @@
 #include <sys/time.h>
+#include <iostream>
 
 #include "platformsearch.h"
 #include "robot_states.h"
@@ -18,9 +19,6 @@ PlatformSearch::PlatformSearch(PlatformFinder* pf, VideoCapture* vid, PIDDrive* 
 	driveB = b;
 
 	cap = vid;
-
-	count = 0;
-	//reset gyro angle;
 }
 
 int PlatformSearch::getState() {

@@ -34,7 +34,12 @@ int Align::process(SensorData data) {
 
 int Align::getNext(SensorData data) {
 	std::cout << "Align: getNext" << std::endl;
-	if(!platfinder->findPlatform() && data.getDistanceB() < 8) {
+	Mat img;
+    for(int i = 0; i < 6; i++) {
+	  cap->read(img);
+    }
+    platfinder->processImage(img);
+	if(!platfinder->findPlatform(img) && data.getDistanceB() < 8) {
         drive->stop();
 		return DROP;
 	} else {
@@ -49,7 +54,7 @@ void Align::run(SensorData data) {
     }
 	platfinder->processImage(img);
     curAng = data.getGyroAngle();
-	if (platfinder->findStack(img)) {
+	if (platfinder->findPlatform(img)) {
 	    double platAng = platfinder->getAngle(img);
 	    std::cout << "first curAng: " << curAng << std::endl;
 	    std::cout << "first platform angle: " << platAng << std::endl;

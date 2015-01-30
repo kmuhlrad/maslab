@@ -62,6 +62,7 @@
 #include "../hardware/ir.h"
 #include "../hardware/piddrive.h"
 #include "../vision/cubesearch.h"
+#include "../vision/platfinder.h"
 
 #include "robot_states.h"
 #include "state.h"
@@ -134,6 +135,7 @@ int main() {
   PIDDrive driveB(&left_wheel, &right_wheel, shield, 0.00001, 0.0001, 0.1);
 
   CubeSearch cs;
+  PlatformFinder pf;
   VideoCapture cap(0);
 
   SensorData sensors(&backIR, &rg, &medA, &medB, &medC, &gyro);
@@ -142,8 +144,8 @@ int main() {
   StackSearch *stack = new StackSearch(&cs, &cap, &driveW, &driveA, &driveB);
   Drive *drive = new Drive(&cs, &cap, &driveW, &left_door, &right_door);
   Lift *lift = new Lift(&liftmech);
-  PlatformSearch *platform = new PlatformSearch();
-  Align *align = new Align();
+  PlatformSearch *platform = new PlatformSearch(&pf, &cap, &driveW, &driveA, &driveB);
+  Align *align = new Align(&pf, &cap, &driveW);
   Drop *drop = new Drop(&liftmech);
 
   State *states[7] = {start, stack, drive, lift, platform, align, drop};
@@ -161,5 +163,8 @@ int main() {
     gametime = ((double)gameclock.tv_sec - (double)starttime.tv_sec) + 0.000001 * ((double)gameclock.tv_usec - (double)starttime.tv_usec);
     //usleep(1000000);
   }
+  left_wheel.stop(shield);
+  right_wheel.stop(shield);
+  lift_motor.stop(shield);
   cap.release();
 }
